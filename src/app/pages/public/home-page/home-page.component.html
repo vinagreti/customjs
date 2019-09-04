@@ -1,0 +1,30 @@
+<div style="text-align:center">
+  <h1
+    [innerHTML]="sanitize(i18n.trans.pages.home.title(today | date: 'short'))"
+  ></h1>
+
+  <small>{{ i18n.trans.pages.home.subtitle }}</small>
+
+  <p>{{ 32165498 | currency }}</p>
+
+  <div class="select-lang-wrapper">
+    <div>
+      <button mat-flat-button (click)="i18n.setLocale(locales.pt)">
+        pt
+        <mat-icon *ngIf="locale === locales.pt">check</mat-icon>
+      </button>
+    </div>
+    <div>
+      <button mat-flat-button (click)="i18n.setLocale(locales.en)">
+        en
+        <mat-icon *ngIf="locale === locales.en">check</mat-icon>
+      </button>
+    </div>
+    <div>
+      <button mat-flat-button (click)="i18n.setLocale(locales.es)">
+        es
+        <mat-icon *ngIf="locale === locales.es">check</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

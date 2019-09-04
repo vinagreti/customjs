@@ -1,0 +1,37 @@
+<h1>{{ i18n.trans.pages.login.login }}</h1>
+
+<button mat-flat-button color="primary" (click)="login()">
+  {{ i18n.trans.pages.login.login }}
+</button>
+
+<mat-form-field>
+  <input
+    matInput
+    type="text"
+    inputmode="numeric"
+    pattern="[0-9]{4,4}"
+    required
+    #branchNumberField="ngModel"
+    [(ngModel)]="form.branchNumberField"
+  />
+
+  <mat-error *ngIf="!branchNumberField.valid">
+    sssss
+  </mat-error>
+</mat-form-field>
+
+<mat-form-field>
+  <input
+    matInput
+    type="text"
+    inputmode="numeric"
+    pattern="[a-zA-Z0-9]{2,}"
+    required
+    #branchNumberField2="ngModel"
+    [(ngModel)]="form.branchNumberField2"
+  />
+
+  <mat-error *ngIf="!branchNumberField2.valid">
+    sssss
+  </mat-error>
+</mat-form-field>

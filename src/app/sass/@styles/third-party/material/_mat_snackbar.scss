@@ -1,0 +1,34 @@
+@import "@styles/colors";
+@import "@styles/layout";
+
+.app-alert-success {
+  color: #FFF !important;
+  background: $app-color-success !important;
+
+  .mat-simple-snackbar-action {
+    color: rgba(#FFF, 0.7) !important;
+  }
+}
+
+.app-alert-info {
+  color: #FFF !important;
+  background: $app-color-info !important;
+
+  .mat-simple-snackbar-action {
+    color: rgba(#FFF, 0.7) !important;
+  }
+}
+
+.app-alert-error {
+  color: #FFF;
+  background: $app-color-warn !important;
+
+  .mat-simple-snackbar-action {
+    color: rgba(#FFF, 0.7) !important;
+  }
+}
+
+
+.mat-snack-bar-container {
+  max-width: $app-max-width !important;
+}

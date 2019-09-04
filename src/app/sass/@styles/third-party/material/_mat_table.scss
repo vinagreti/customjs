@@ -1,0 +1,31 @@
+@import '@styles/colors';
+
+td.mat-cell:first-of-type,
+th.mat-header-cell:first-of-type {
+  padding-left: 4px !important;
+}
+
+td.mat-cell:last-of-type,
+th.mat-header-cell:last-of-type {
+  padding-right: 4px !important;
+}
+
+.mat-row:nth-child(even){
+  color: black;
+  background-color: rgba(grey, 0.25);
+}
+
+.mat-row[color="accent"]:nth-child(even){
+  color: $app-color-accent-contrast;
+  background-color: rgba($app-color-accent, 0.25);
+}
+
+.mat-row[color="primary"]:nth-child(even){
+  color: $app-color-primary-contrast;
+  background-color: rgba($app-color-primary, 0.25);
+}
+
+.mat-row[color="warn"]:nth-child(even){
+  color: $app-color-warn-contrast;
+  background-color: rgba($app-color-warn, 0.25);
+}

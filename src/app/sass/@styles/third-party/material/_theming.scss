@@ -1,0 +1,51 @@
+@import '~@angular/material/theming';
+@import '@styles/colors';
+
+$app-accent-pallet: (
+  darker: $app-color-accent-dark,
+  default: $app-color-accent,
+  lighter: $app-color-accent-light,
+  contrast: (
+    darker: $app-color-accent-contrast,
+    default: $app-color-accent-contrast,
+    lighter: $app-color-accent-contrast,
+  ),
+);
+
+$app-primary-pallet: (
+  darker: $app-color-primary-dark,
+  default: $app-color-primary,
+  lighter: $app-color-primary-light,
+  contrast: (
+    darker: $app-color-primary-contrast,
+    default: $app-color-primary-contrast,
+    lighter: $app-color-primary-contrast,
+  ),
+);
+
+$app-warn-pallet: (
+  darker: $app-color-warn-dark,
+  default: $app-color-warn,
+  lighter: $app-color-warn-light,
+  contrast: (
+    darker: $app-color-warn-contrast,
+    default: $app-color-warn-contrast,
+    lighter: $app-color-warn-contrast,
+  ),
+);
+
+// theme color constants
+$customjs-primary: mat-palette($app-primary-pallet, default, lighter, darker);
+$customjs-accent: mat-palette($app-accent-pallet, default, lighter, darker);
+$customjs-warn: mat-palette($app-warn-pallet, default, lighter, darker);
+
+// theme
+$customjs-theme: mat-light-theme(
+  $customjs-primary,
+  $customjs-accent,
+  $customjs-warn
+);
+
+@include mat-core();
+
+@include angular-material-theme($customjs-theme);

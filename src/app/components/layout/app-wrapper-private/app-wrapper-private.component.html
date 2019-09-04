@@ -1,0 +1,24 @@
+<app-navbar
+  [title]="i18n.trans.components.appWrapperPrivate.title"
+  routerPath="/dashboard"
+>
+  <button
+    mat-flat-button
+    [matMenuTriggerFor]="appWarpperPrivateMenu"
+    class="menu-icon"
+  >
+    &#9776;
+  </button>
+  <mat-menu #appWarpperPrivateMenu="matMenu">
+    <button mat-menu-item routerLink="/dashboard">
+      {{ i18n.trans.components.appWrapperPrivate.dashboard }}
+    </button>
+    <button mat-menu-item color="warn" (click)="logout()">
+      {{ i18n.trans.components.appWrapperPrivate.logout }}
+    </button>
+  </mat-menu>
+</app-navbar>
+
+<app-warpper-content>
+  <router-outlet></router-outlet>
+</app-warpper-content>

@@ -1,0 +1,30 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Use Node.js 12.9
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.9
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build libraries
+        run: npm run build-libs
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm run test-once
+
+      - name: Build
+        run: npm run build --prod

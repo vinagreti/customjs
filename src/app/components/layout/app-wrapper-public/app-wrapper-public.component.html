@@ -1,0 +1,12 @@
+<app-navbar
+  [title]="i18n.trans.components.appWrapperPublic.title"
+  routerPath="/"
+>
+  <button mat-flat-button routerLink="/login">
+    {{ i18n.trans.components.appWrapperPublic.login }}
+  </button>
+</app-navbar>
+
+<app-warpper-content>
+  <router-outlet></router-outlet>
+</app-warpper-content>

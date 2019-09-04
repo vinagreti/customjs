@@ -1,0 +1,8 @@
+[class*="mat-"] {
+  [class*="-button"] {
+    min-width: 24px !important;
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+    text-transform: uppercase !important;
+  }
+}

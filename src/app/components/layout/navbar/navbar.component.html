@@ -1,0 +1,25 @@
+<mat-toolbar color="accent">
+  <a [routerLink]="routerPath">
+    <h1>{{ title }}</h1>
+  </a>
+
+  <span class="center-space"></span>
+
+  <span *ngIf="locale">
+    <ng-container *ngIf="i18nLocales.length > 1">
+      <mat-menu #localeMenu="matMenu">
+        <ng-container *ngFor="let i18nLocale of i18nLocales">
+          <button mat-menu-item *ngIf="locale !== i18nLocale" (click)="setLanguage(i18nLocale)">{{i18nLocale}}</button>
+        </ng-container>
+      </mat-menu>
+      <button mat-flat-button [matMenuTriggerFor]="localeMenu">{{locale}}</button>
+    </ng-container>
+  </span>
+
+  &nbsp;
+
+  <span>
+    <ng-content></ng-content>
+  </span>
+
+</mat-toolbar>
