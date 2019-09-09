@@ -19,8 +19,7 @@ describe('I18nAppConfigService', () => {
     const service: any = TestBed.get(I18nAppConfigService);
     service.isBrowser = true;
     // when
-    const spy = spyOn(service, 'destroyApp').and.callThrough();
-    spyOn(service.appModuleRef, 'destroy').and.callFake(() => {});
+    const spy = spyOn(document, 'dispatchEvent').and.callFake(() => true);
     service.reloadMainApp();
     // then
     expect(spy).toHaveBeenCalled();
@@ -31,7 +30,7 @@ describe('I18nAppConfigService', () => {
     const service: any = TestBed.get(I18nAppConfigService);
     service.isBrowser = false;
     // when
-    const spy = spyOn(service, 'destroyApp');
+    const spy = spyOn(document, 'dispatchEvent').and.callFake(() => true);
     service.reloadMainApp();
     // then
     expect(spy).not.toHaveBeenCalled();

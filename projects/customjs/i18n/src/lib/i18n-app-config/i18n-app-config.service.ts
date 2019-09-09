@@ -16,13 +16,8 @@ export class I18nAppConfigService {
 
   reloadMainApp() {
     if (this.isBrowser) {
-      this.destroyApp();
       this.dispatchDOMContentLoadedEvent();
     }
-  }
-
-  private destroyApp() {
-    this.appModuleRef.destroy();
   }
 
   private dispatchDOMContentLoadedEvent() {
