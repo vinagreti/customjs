@@ -10,7 +10,9 @@ I18n library for Angular 2+ apps
 
 ### Configure app bootstrap
 
-On the main.ts, add the `DOMContentLoaded` around the bootstrap call as following (it is ready for use with universal apps)
+On the `main.ts`, add the `DOMContentLoaded` around the bootstrap call as following (it is ready for use with universal apps).
+
+Universal apps already have this setup.
 
 ```typescript
 document.addEventListener('DOMContentLoaded', () => {
@@ -35,6 +37,7 @@ This file is used to tell the lib which translation we have and helps intelisens
 `/src/app/i18n/i18n-translation-keys.ts`
 
 ```typescript
+// DO NOT TYPE THIS OBJECT AS IT IS USED AS A TYPE ITSELF
 export const AppTranslationKeys = {};
 
 export type AppTranslationKeysMap = typeof AppTranslationKey;
