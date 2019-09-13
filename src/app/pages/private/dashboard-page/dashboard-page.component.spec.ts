@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AskTestingModule } from 'projects/customjs/ask/src/lib/ask-testing.module';
+import { AskTestingModule } from '@customjs/ask';
+import { WsModule } from '@customjs/ws';
 import { of } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { DashboardPageComponent } from './dashboard-page.component';
@@ -11,7 +12,7 @@ describe('DashboardPageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [DashboardPageComponent],
-      imports: [AskTestingModule],
+      imports: [AskTestingModule, WsModule],
     }).compileComponents();
   }));
 
@@ -32,6 +33,18 @@ describe('DashboardPageComponent', () => {
     );
     // when
     component.onAsk();
+    // then
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should sendMessage', () => {
+    // given
+    const spy = spyOn(
+      (component as any).wsConnection.channel,
+      'send'
+    ).and.returnValue('');
+    // when
+    component.sendMessage();
     // then
     expect(spy).toHaveBeenCalled();
   });

@@ -48,6 +48,12 @@
       ],
       "@customjs/ask/*": [
         "dist/customjs/ask/*"
+      ],
+      "@customjs/ws": [
+        "dist/customjs/ws"
+      ],
+      "@customjs/ws/*": [
+        "dist/customjs/ws/*"
       ]
     }
   },

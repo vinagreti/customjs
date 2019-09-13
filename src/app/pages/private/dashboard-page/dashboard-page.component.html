@@ -1,3 +1,10 @@
 <p>dashboard-page works!</p>
 
 <button (click)="onAsk()">ask</button>
+
+<button (click)="sendMessage()">sendMessage</button>
+
+<div *ngIf="wsConnection.message | async as message">
+  <h3>Last message</h3>
+  {{ message }}
+</div>
