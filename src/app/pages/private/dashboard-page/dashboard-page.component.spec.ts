@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { AskTestingModule } from 'projects/customjs/ask/src/lib/ask-testing.module';
+import { of } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { DashboardPageComponent } from './dashboard-page.component';
 
 describe('DashboardPageComponent', () => {
@@ -8,9 +10,9 @@ describe('DashboardPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardPageComponent ]
-    })
-    .compileComponents();
+      declarations: [DashboardPageComponent],
+      imports: [AskTestingModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,5 +23,16 @@ describe('DashboardPageComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should ask', () => {
+    // given
+    const spy = spyOn((component as any).askService, 'ask').and.returnValue(
+      of('').pipe(take(1))
+    );
+    // when
+    component.onAsk();
+    // then
+    expect(spy).toHaveBeenCalled();
   });
 });

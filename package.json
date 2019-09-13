@@ -16,8 +16,11 @@
     "transpile:ssr": "ng run customjs:server:production --bundleDependencies all",
     "build:serve:ssr": "npm run build:ssr && npm run serve:ssr",
     "build:serve:ssr:prod": "APP_ENVIRONMENT=production npm run build:ssr && npm run serve:ssr",
-    "build-libs": "npm run build:i18n",
-    "build:i18n": "ng b @customjs/i18n"
+    "build:customjs": "npm run build:i18n && npm run build:ask",
+    "build:i18n": "ng b @customjs/i18n",
+    "publish:i18n": "npm publish dist/customjs/i18n/ --access=public",
+    "build:ask": "ng b @customjs/ask",
+    "publish:ask": "npm publish dist/customjs/ask/ --access=public"
   },
   "private": true,
   "dependencies": {

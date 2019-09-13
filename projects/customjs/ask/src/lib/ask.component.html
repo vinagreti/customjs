@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>{{ title }}</h1>
+
+<mat-dialog-content>
+  {{ question }}
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  &nbsp;
+  <button mat-flat-button color="accent" [mat-dialog-close]="true">
+    {{ confirm }}
+  </button>
+  <ng-container *ngIf="showReject">
+    &nbsp;
+    <button mat-button color="warn" [mat-dialog-close]="false">
+      {{ reject }}
+    </button>
+  </ng-container>
+  <ng-container *ngIf="!hideCancel">
+    &nbsp;
+    <button mat-button [mat-dialog-close]="">
+      {{ cancel }}
+    </button>
+  </ng-container>
+</mat-dialog-actions>

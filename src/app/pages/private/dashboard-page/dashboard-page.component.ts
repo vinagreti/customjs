@@ -1,16 +1,23 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { AskService } from '@customjs/ask';
 
 @Component({
   selector: 'app-dashboard-page',
   templateUrl: './dashboard-page.component.html',
   styleUrls: ['./dashboard-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DashboardPageComponent implements OnInit {
+export class DashboardPageComponent {
+  constructor(private askService: AskService) {}
 
-  constructor() { }
-
-  ngOnInit() {
+  onAsk() {
+    this.askService
+      .ask({
+        title: 'titulo',
+        showReject: true,
+      })
+      .subscribe(res => {
+        console.log('ask res', res);
+      });
   }
-
 }
