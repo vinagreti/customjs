@@ -2,6 +2,7 @@
  * Public API Surface of ask
  */
 
+export * from './lib/ask-testing.module';
 export * from './lib/ask.component';
 export * from './lib/ask.i18n';
 export * from './lib/ask.model';
