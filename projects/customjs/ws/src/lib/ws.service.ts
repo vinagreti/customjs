@@ -5,16 +5,16 @@ import { WsOpenConnection } from './ws.models';
 
 const connectionInterval = 5e3;
 
+const wsServiceConnections: {
+  [key: string]: WsOpenConnection<any>;
+} = {};
+
 @Injectable()
 export class WsService {
-  private connections: {
-    [key: string]: WsOpenConnection<any>;
-  } = {};
-
   constructor() {}
 
   connect<T>(url): WsOpenConnection<T> {
-    const connection = this.connections[url];
+    const connection = wsServiceConnections[url];
     if (connection) {
       return connection;
     } else {
@@ -24,7 +24,7 @@ export class WsService {
 
   private connectToWs(url): WsOpenConnection<any> {
     const connection = this.openConnection(url);
-    this.connections[url] = connection;
+    wsServiceConnections[url] = connection;
     return connection;
   }
 

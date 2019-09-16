@@ -1,6 +1,6 @@
 {
   "name": "@customjs/i18n",
-  "version": "0.0.1-beta.12",
+  "version": "0.0.1-beta.13",
   "peerDependencies": {
     "@angular/common": "^8.2.0",
     "@angular/core": "^8.2.0"

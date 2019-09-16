@@ -42,8 +42,10 @@ export class I18nService<T> {
   }
 
   setLocale(locale: I18nLocale, reloadApp = true) {
-    this.persistLocale(locale);
-    this.loadLocalOrFetchLocaleFromServer(locale, reloadApp);
+    if (locale !== this.locale) {
+      this.persistLocale(locale);
+      this.loadLocalOrFetchLocaleFromServer(locale, reloadApp);
+    }
   }
 
   get enabledLocales() {
