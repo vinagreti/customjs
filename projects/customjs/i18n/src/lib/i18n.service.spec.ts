@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { I18nAppConfigModule } from './i18n-app-config/i18n-app-config.module';
 import { I18nService } from './i18n.service';
 import { I18N_LOCALES_CONFIG } from './models/i18n-locales-config.interface';
 import { I18nLocale } from './models/i18n-locales.enum';
@@ -7,7 +6,6 @@ import { I18nLocale } from './models/i18n-locales.enum';
 describe('I18nService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [I18nAppConfigModule],
       providers: [
         I18nService,
         {

@@ -11,7 +11,7 @@ import localePtExtra from '@angular/common/locales/extra/pt';
 import localePt from '@angular/common/locales/pt';
 import { NgModule } from '@angular/core';
 import { I18nLocale, I18nModule } from '@customjs/i18n';
-import { VersionServiceModule } from '@services/version';
+import { VersionModule } from '@customjs/version';
 import { AppTranslationKeys } from '../i18n/i18n-translation-keys';
 import { AppReduxModule } from './redux/ngxs-singleton.module';
 
@@ -29,13 +29,13 @@ export function getTranslation(locale: I18nLocale) {
   imports: [
     CommonModule,
     AppReduxModule, // must be before any other module that uses store
-    VersionServiceModule,
     I18nModule.forRoot({
       defaultLocale: I18nLocale.pt,
       extraLocales: [I18nLocale.en, I18nLocale.es],
       getTranslation,
       translationKeys: AppTranslationKeys,
     }),
+    VersionModule,
   ],
 })
 export class CoreModule {}

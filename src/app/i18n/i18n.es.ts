@@ -36,6 +36,16 @@ export const es: AppTranslationKeysMap = {
       reject: 'Rechazar',
     },
   },
+  thirdParty: {
+    customjs: {
+      version: {
+        title: 'Actualización disponible',
+        question: 'Actualizar aplicación?',
+        confirm: 'Actualizar',
+        cancel: 'Después',
+      },
+    },
+  },
 };
 
 export default es;

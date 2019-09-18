@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Inject, ModuleWithProviders, NgModule } from '@angular/core';
-import { I18nAppConfigModule } from './../i18n-app-config/i18n-app-config.module';
 import { I18nService } from './../i18n.service';
 import { I18N_TRANSLATION_KEYS } from './../models/i18n-locales-config.interface';
 import { I18nLocale } from './../models/i18n-locales.enum';
@@ -23,7 +22,7 @@ export class I18nMockService<T> {
 }
 
 @NgModule({
-  imports: [CommonModule, I18nAppConfigModule],
+  imports: [CommonModule],
 })
 export class I18nServiceTestingModule {
   static forRoot(translationKeys): ModuleWithProviders {

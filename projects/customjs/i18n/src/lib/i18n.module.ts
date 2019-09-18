@@ -7,7 +7,6 @@ import {
   Optional,
   SkipSelf,
 } from '@angular/core';
-import { I18nAppConfigModule } from './i18n-app-config/i18n-app-config.module';
 import { I18nService } from './i18n.service';
 import {
   I18nLocalesConfig,
@@ -22,14 +21,14 @@ export function localeIdFactory(
 }
 
 export function i18nServiceInitializer(i18n: I18nService<any>) {
-  const factory = function getLocale() {
-    return i18n.locale;
+  const factory = () => {
+    return i18n.initService();
   };
   return factory;
 }
 
 @NgModule({
-  imports: [CommonModule, I18nAppConfigModule],
+  imports: [CommonModule],
 })
 export class I18nModule {
   constructor(@Optional() @SkipSelf() parentModule: I18nModule) {

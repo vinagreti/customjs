@@ -54,6 +54,12 @@
       ],
       "@customjs/ws/*": [
         "dist/customjs/ws/*"
+      ],
+      "@customjs/version": [
+        "dist/customjs/version"
+      ],
+      "@customjs/version/*": [
+        "dist/customjs/version/*"
       ]
     }
   },

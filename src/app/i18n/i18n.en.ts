@@ -36,6 +36,16 @@ export const enUs: AppTranslationKeysMap = {
       reject: 'Reject',
     },
   },
+  thirdParty: {
+    customjs: {
+      version: {
+        title: 'Update available',
+        question: 'Would you like to update your app?',
+        confirm: 'Update',
+        cancel: 'Later',
+      },
+    },
+  },
 };
 
 export default enUs;

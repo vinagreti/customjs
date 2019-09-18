@@ -36,6 +36,16 @@ export const ptBr: AppTranslationKeysMap = {
       reject: 'Rejeitar',
     },
   },
+  thirdParty: {
+    customjs: {
+      version: {
+        title: 'Atualizacão disponível',
+        question: 'Atualizar aplicativo?',
+        confirm: 'Atualizar',
+        cancel: 'Depois',
+      },
+    },
+  },
 };
 
 export default ptBr;
