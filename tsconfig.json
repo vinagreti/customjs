@@ -11,56 +11,23 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2018", "dom"],
     "paths": {
-      "@env/*": [
-        "src/environments/*"
-      ],
-      "@components/*": [
-        "src/app/components/*"
-      ],
-      "@core/*": [
-        "src/app/core/*"
-      ],
-      "@i18n/*": [
-        "src/app/i18n/*"
-      ],
-      "@models/*": [
-        "src/app/models/*"
-      ],
-      "@services/*": [
-        "src/app/services/*"
-      ],
-      "@testing/*": [
-        "src/app/testing/*"
-      ],
-      "@customjs/*": [
-        "dist/customjs/*"
-      ],
-      "@customjs/ask": [
-        "dist/customjs/ask"
-      ],
-      "@customjs/ask/*": [
-        "dist/customjs/ask/*"
-      ],
-      "@customjs/ws": [
-        "dist/customjs/ws"
-      ],
-      "@customjs/ws/*": [
-        "dist/customjs/ws/*"
-      ],
-      "@customjs/version": [
-        "dist/customjs/version"
-      ],
-      "@customjs/version/*": [
-        "dist/customjs/version/*"
-      ]
+      "@env/*": ["src/environments/*"],
+      "@components/*": ["src/app/components/*"],
+      "@core/*": ["src/app/core/*"],
+      "@i18n/*": ["src/app/i18n/*"],
+      "@models/*": ["src/app/models/*"],
+      "@services/*": ["src/app/services/*"],
+      "@testing/*": ["src/app/testing/*"],
+      "@customjs/*": ["dist/customjs/*"],
+      "@customjs/ask": ["dist/customjs/ask"],
+      "@customjs/ask/*": ["dist/customjs/ask/*"],
+      "@customjs/ws": ["dist/customjs/ws"],
+      "@customjs/ws/*": ["dist/customjs/ws/*"],
+      "@customjs/version": ["dist/customjs/version"],
+      "@customjs/version/*": ["dist/customjs/version/*"]
     }
   },
   "angularCompilerOptions": {
