@@ -21,6 +21,8 @@
     "publish:i18n": "npm publish dist/customjs/i18n/ --access=public",
     "build:ask": "ng b @customjs/ask",
     "publish:ask": "npm publish dist/customjs/ask/ --access=public",
+    "build:generic-http": "ng b @customjs/generic-http",
+    "publish:generic-http": "npm publish dist/customjs/generic-http/ --access=public",
     "build:version": "ng b @customjs/version && npm run build:version:i18n",
     "build:version:i18n": "tsc projects/customjs/version/src/lib/i18n/*.ts --outDir dist/customjs/version/i18n",
     "publish:version": "npm publish dist/customjs/version/ --access=public",
