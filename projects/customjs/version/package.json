@@ -1,6 +1,6 @@
 {
   "name": "@customjs/version",
-  "version": "0.0.1-beta.1",
+  "version": "0.0.1-beta.5",
   "peerDependencies": {
     "@angular/common": "^8.2.0",
     "@angular/core": "^8.2.0",

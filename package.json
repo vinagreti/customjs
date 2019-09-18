@@ -21,7 +21,8 @@
     "publish:i18n": "npm publish dist/customjs/i18n/ --access=public",
     "build:ask": "ng b @customjs/ask",
     "publish:ask": "npm publish dist/customjs/ask/ --access=public",
-    "build:version": "ng b @customjs/version",
+    "build:version": "ng b @customjs/version && npm run copy:version:i18n",
+    "copy:version:i18n": "cp -R projects/customjs/version/src/lib/i18n dist/customjs/version/i18n",
     "publish:version": "npm publish dist/customjs/version/ --access=public",
     "build:ws": "ng b @customjs/ws",
     "publish:ws": "npm publish dist/customjs/ws/ --access=public"

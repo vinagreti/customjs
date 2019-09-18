@@ -1,4 +1,4 @@
-import * as version from '../../../projects/customjs/version/src/lib/version-service.i18n';
+import * as version from '@customjs/version/i18n/version-service.i18n';
 import * as app from '../app.i18n';
 import * as components from '../components/components.i18n';
 import * as pages from '../pages/pages.i18n';

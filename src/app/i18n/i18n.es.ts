@@ -1,3 +1,4 @@
+import * as version from '@customjs/version/i18n/i18n.es';
 import { AppTranslationKeysMap } from '@i18n/i18n-translation-keys';
 
 export const es: AppTranslationKeysMap = {
@@ -38,12 +39,7 @@ export const es: AppTranslationKeysMap = {
   },
   thirdParty: {
     customjs: {
-      version: {
-        title: 'Actualización disponible',
-        question: 'Actualizar aplicación?',
-        confirm: 'Actualizar',
-        cancel: 'Después',
-      },
+      version: version.default,
     },
   },
 };
