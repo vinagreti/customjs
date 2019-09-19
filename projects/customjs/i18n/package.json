@@ -1,8 +1,12 @@
 {
   "name": "@customjs/i18n",
-  "version": "0.0.1-beta.15",
+  "version": "0.0.1-beta.17",
   "peerDependencies": {
     "@angular/common": "^8.2.0",
     "@angular/core": "^8.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vinagreti/customjs.git"
   }
 }

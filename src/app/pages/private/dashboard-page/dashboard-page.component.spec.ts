@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { AlertTestingModule } from '@customjs/alert';
 import { AskTestingModule } from '@customjs/ask';
 import { WsModule } from '@customjs/ws';
 import { of } from 'rxjs';
@@ -12,7 +13,7 @@ describe('DashboardPageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [DashboardPageComponent],
-      imports: [AskTestingModule, WsModule],
+      imports: [AskTestingModule, WsModule, AlertTestingModule],
     }).compileComponents();
   }));
 

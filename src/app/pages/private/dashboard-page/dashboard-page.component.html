@@ -2,6 +2,8 @@
 
 <button (click)="onAsk()">ask</button>
 
+<button (click)="onAlert()">alert</button>
+
 <button (click)="sendMessage()">sendMessage</button>
 
 <div *ngIf="wsConnection.message | async as message">

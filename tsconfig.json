@@ -66,6 +66,12 @@
       ],
       "@customjs/generic-http/*": [
         "dist/customjs/generic-http/*"
+      ],
+      "@customjs/alert": [
+        "dist/customjs/alert"
+      ],
+      "@customjs/alert/*": [
+        "dist/customjs/alert/*"
       ]
     }
   },
