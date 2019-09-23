@@ -7,3 +7,4 @@ export * from './lib/custom-list-filter/custom-list-filter.component';
 export * from './lib/custom-list.component';
 export * from './lib/custom-list.models';
 export * from './lib/custom-list.module';
+export * from './lib/testing/custom-list.testing.module';

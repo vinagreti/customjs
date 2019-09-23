@@ -16,7 +16,7 @@ import { CustomTableColumnComponent } from './custom-table-column/custom-table-c
 const DEFAULT_COLOR = 'accent';
 
 @Component({
-  selector: 'customjs-table',
+  selector: 'custom-table',
   templateUrl: './custom-table.component.html',
   styleUrls: ['./custom-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

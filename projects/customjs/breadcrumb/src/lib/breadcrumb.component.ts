@@ -12,7 +12,7 @@ export interface CustomBreadcrumbSection {
 }
 
 @Component({
-  selector: 'customjs-breadcrumb',
+  selector: 'custom-breadcrumb',
   template: `
     <p>
       breadcrumb works!

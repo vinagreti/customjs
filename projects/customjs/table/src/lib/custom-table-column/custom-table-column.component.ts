@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'customjs-table-column',
+  selector: 'custom-table-column',
   templateUrl: './custom-table-column.component.html',
   styleUrls: ['./custom-table-column.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

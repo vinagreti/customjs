@@ -9,8 +9,8 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ThemePalette } from '@angular/material';
-import { CustomPaginatorComponent } from '@customjs/paginator/public-api';
-import { CustomTableComponent } from '@customjs/table/public-api';
+import { CustomPaginatorComponent } from '@customjs/paginator';
+import { CustomTableComponent } from '@customjs/table';
 import { BehaviorSubject, Observable, ReplaySubject, Subscription } from 'rxjs';
 import { CustomListCardComponent } from './custom-list-card/custom-list-card.component';
 import { CustomListFilterComponent } from './custom-list-filter/custom-list-filter.component';

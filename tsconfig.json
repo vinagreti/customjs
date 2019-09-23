@@ -96,6 +96,12 @@
       ],
       "@customjs/paginator/*": [
         "dist/customjs/paginator/*"
+      ],
+      "@customjs/text": [
+        "dist/customjs/text"
+      ],
+      "@customjs/text/*": [
+        "dist/customjs/text/*"
       ]
     }
   },

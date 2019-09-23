@@ -34,6 +34,8 @@
     "publish:paginator": "npm publish dist/customjs/paginator/ --access=public",
     "build:table": "ng b @customjs/table",
     "publish:table": "npm publish dist/customjs/table/ --access=public",
+    "build:text": "ng b @customjs/text",
+    "publish:text": "npm publish dist/customjs/text/ --access=public",
     "build:version": "ng b @customjs/version && npm run build:version:i18n",
     "build:version:i18n": "tsc projects/customjs/version/src/lib/i18n/*.ts --outDir dist/customjs/version/i18n",
     "publish:version": "npm publish dist/customjs/version/ --access=public",
