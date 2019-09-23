@@ -1,0 +1,51 @@
+<div
+  fxLayout="row"
+  fxLayoutGap="8px"
+  fxLayoutAlign="space-around center"
+  *ngIf="(totalPages$ | async) > 1"
+>
+  <p fxFlex [style.textAlign]="'right'">
+    <ng-container *ngIf="page > 1">
+      <button
+        mat-stroked-button
+        (click)="start()"
+        title="{{ 'label.First_page' }}"
+      >
+        &#171;
+      </button>
+      &nbsp;
+      <button
+        mat-stroked-button
+        (click)="prev()"
+        title="{{ 'label.Previous_page' }}"
+      >
+        &#8249;
+      </button>
+    </ng-container>
+  </p>
+
+  <p>
+    {{ 'label.Page' }} {{ page$ | async }} {{ 'label.of' }}
+    {{ totalPages$ | async }}
+  </p>
+
+  <p fxFlex>
+    <ng-container *ngIf="page < (totalPages$ | async)">
+      <button
+        mat-stroked-button
+        (click)="next()"
+        title="{{ 'label.Next_page' }}"
+      >
+        &#8250;
+      </button>
+      &nbsp;
+      <button
+        mat-stroked-button
+        (click)="end()"
+        title="{{ 'label.Last_page' }}"
+      >
+        &#187;
+      </button>
+    </ng-container>
+  </p>
+</div>

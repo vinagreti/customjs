@@ -72,6 +72,30 @@
       ],
       "@customjs/alert/*": [
         "dist/customjs/alert/*"
+      ],
+      "@customjs/breadcrumb": [
+        "dist/customjs/breadcrumb"
+      ],
+      "@customjs/breadcrumb/*": [
+        "dist/customjs/breadcrumb/*"
+      ],
+      "@customjs/list": [
+        "dist/customjs/list"
+      ],
+      "@customjs/list/*": [
+        "dist/customjs/list/*"
+      ],
+      "@customjs/table": [
+        "dist/customjs/table"
+      ],
+      "@customjs/table/*": [
+        "dist/customjs/table/*"
+      ],
+      "@customjs/paginator": [
+        "dist/customjs/paginator"
+      ],
+      "@customjs/paginator/*": [
+        "dist/customjs/paginator/*"
       ]
     }
   },

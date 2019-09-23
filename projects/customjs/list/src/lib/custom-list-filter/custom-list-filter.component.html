@@ -1,0 +1,36 @@
+<form role="form" (submit)="onFilter()">
+  <div>
+    <ng-container
+      [ngTemplateOutlet]="template"
+      [ngTemplateOutletContext]="{ form: form }"
+    ></ng-container>
+  </div>
+
+  <div
+    class="text-right"
+    fxLayout="row"
+    fxLayoutGap="8px"
+    fxLayoutAlign="end center"
+  >
+    <button mat-flat-button color="accent" type="submit">
+      {{ 'label.Do_filter' }}
+    </button>
+    <button
+      mat-flat-button
+      color="warn"
+      type="button"
+      (click)="onClearFilter()"
+    >
+      {{ 'label.Clear' }}
+    </button>
+    <button
+      *ngIf="emptyFilter$ | async"
+      mat-button
+      color="primary"
+      type="button"
+      (click)="onCloseFilter()"
+    >
+      {{ 'label.Close' }}
+    </button>
+  </div>
+</form>

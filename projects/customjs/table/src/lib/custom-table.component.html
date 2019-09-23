@@ -1,0 +1,60 @@
+<ng-container *ngIf="columns$ | async as columns; else noColumnsDef">
+  <ng-container *ngIf="items$ | async as items; else noItemsDef">
+    <table mat-table [dataSource]="items">
+      <ng-container *ngFor="let column of columns" [matColumnDef]="column.name">
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          title="{{
+            column.description
+              ? column.description
+              : column.title
+              ? column.title
+              : ''
+          }}"
+          (click)="column.prop ? onSort(column.prop) : false"
+          [ngClass]="column.prop ? 'click' : ''"
+        >
+          <span *ngIf="sort | async as sortProp" class="sort-arrow">
+            <span [ngSwitch]="true">
+              <span *ngSwitchCase="sortProp === column.prop">
+                &#9195;
+              </span>
+              <span *ngSwitchCase="sortProp === '-' + column.prop">
+                &#9196;
+              </span>
+            </span>
+          </span>
+
+          {{ column.title ? column.title : '' }}
+        </th>
+
+        <td mat-cell *matCellDef="let item">
+          <ng-container
+            *ngIf="column.template"
+            [ngTemplateOutlet]="column.template"
+            [ngTemplateOutletContext]="{ item: item }"
+          ></ng-container>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnsNames$ | async"></tr>
+
+      <tr
+        mat-row
+        [attr.color]="color$ | async"
+        [style.cursor]="selectionDisabled ? 'default' : 'pointer'"
+        (click)="onItemSelected(item)"
+        *matRowDef="let item; columns: columnsNames$ | async"
+      ></tr>
+    </table>
+  </ng-container>
+</ng-container>
+
+<ng-template #noColumnsDef>
+  {{ noColumnsMessage }}
+</ng-template>
+
+<ng-template #noItemsDef>
+  {{ noDataMessage }}
+</ng-template>

@@ -1,0 +1,52 @@
+/* @import '@styles/colors';
+
+@mixin color-by-class {
+  &.default { color: grey; }
+  &.primary { color: $app-color-primary; }
+  &.accent { color: $app-color-accent; }
+  &.warn { color: $app-color-warn; }
+  &.success { color: $app-color-success; }
+  &.info { color: $app-color-info; }
+}
+
+@mixin contrast-by-class {
+  &.default { color: black; }
+  &.primary { color: $app-color-primary-contrast; }
+  &.accent { color: $app-color-accent-contrast; }
+  &.warn { color: $app-color-warn-contrast; }
+  &.success { color: $app-color-success-contrast; }
+  &.info { color: $app-color-info-contrast; }
+} */
+
+ul {
+  padding: 8px 0;
+  list-style: none;
+
+  li {
+    display: inline-block;
+
+    & + :before {
+      margin: 0 4px;
+      @include contrast-by-class();
+      content: '\003E';
+    }
+
+    a,
+    h1 {
+      text-decoration: none !important;
+      font-size: inherit;
+      display: inline-block;
+
+      /*       &:hover {
+        @include color-by-class();
+      } */
+    }
+
+    /*     &:last-child {
+      a,
+      h1 {
+        @include color-by-class();
+      }
+    } */
+  }
+}

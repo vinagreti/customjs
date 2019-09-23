@@ -376,6 +376,146 @@
           }
         }
       }
+    },
+    "@customjs/breadcrumb": {
+      "projectType": "library",
+      "root": "projects/customjs/breadcrumb",
+      "sourceRoot": "projects/customjs/breadcrumb/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/customjs/breadcrumb/tsconfig.lib.json",
+            "project": "projects/customjs/breadcrumb/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/customjs/breadcrumb/src/test.ts",
+            "tsConfig": "projects/customjs/breadcrumb/tsconfig.spec.json",
+            "karmaConfig": "projects/customjs/breadcrumb/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/customjs/breadcrumb/tsconfig.lib.json",
+              "projects/customjs/breadcrumb/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@customjs/list": {
+      "projectType": "library",
+      "root": "projects/customjs/list",
+      "sourceRoot": "projects/customjs/list/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/customjs/list/tsconfig.lib.json",
+            "project": "projects/customjs/list/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/customjs/list/src/test.ts",
+            "tsConfig": "projects/customjs/list/tsconfig.spec.json",
+            "karmaConfig": "projects/customjs/list/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/customjs/list/tsconfig.lib.json",
+              "projects/customjs/list/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@customjs/table": {
+      "projectType": "library",
+      "root": "projects/customjs/table",
+      "sourceRoot": "projects/customjs/table/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/customjs/table/tsconfig.lib.json",
+            "project": "projects/customjs/table/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/customjs/table/src/test.ts",
+            "tsConfig": "projects/customjs/table/tsconfig.spec.json",
+            "karmaConfig": "projects/customjs/table/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/customjs/table/tsconfig.lib.json",
+              "projects/customjs/table/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@customjs/paginator": {
+      "projectType": "library",
+      "root": "projects/customjs/paginator",
+      "sourceRoot": "projects/customjs/paginator/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/customjs/paginator/tsconfig.lib.json",
+            "project": "projects/customjs/paginator/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/customjs/paginator/src/test.ts",
+            "tsConfig": "projects/customjs/paginator/tsconfig.spec.json",
+            "karmaConfig": "projects/customjs/paginator/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/customjs/paginator/tsconfig.lib.json",
+              "projects/customjs/paginator/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "customjs"
