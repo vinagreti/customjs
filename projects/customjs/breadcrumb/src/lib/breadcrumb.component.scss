@@ -27,7 +27,7 @@ ul {
 
     & + :before {
       margin: 0 4px;
-      @include contrast-by-class();
+      /* @include contrast-by-class(); */
       content: '\003E';
     }
 

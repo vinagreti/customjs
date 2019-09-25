@@ -8,9 +8,8 @@
       *ngIf="!hideTotal && ((items$ | async)?.length > 1 || (count$ | async))"
     >
       <strong>{{ (visibleItems$ | async).length }} </strong>
-      {{ 'label.of' }}
+      <span> / </span>
       <strong>{{ (items$ | async).length || (count$ | async) }} </strong>
-      {{ 'label.items' }}
     </div>
   </div>
   <div>
@@ -64,4 +63,4 @@
   (paginate)="onPaginate($event)"
 ></custom-paginator>
 
-<ng-template #noItems>{{ 'label.No_data' }}</ng-template>
+<ng-template #noItems>{{ noDataMessage }}</ng-template>

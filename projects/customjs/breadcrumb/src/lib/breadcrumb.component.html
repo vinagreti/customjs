@@ -1,9 +1,6 @@
 <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
   <div fxFlex>
     <ul class="custom-breadcrumb {{ color }}">
-      <li>
-        <a routerLink="/" [class]="color">{{ 'label.Home' }}</a>
-      </li>
       <ng-container *ngFor="let section of sections">
         <li>
           <a [routerLink]="[section.path]" [class]="color">{{

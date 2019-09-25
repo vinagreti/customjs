@@ -13,12 +13,8 @@ export interface CustomBreadcrumbSection {
 
 @Component({
   selector: 'custom-breadcrumb',
-  template: `
-    <p>
-      breadcrumb works!
-    </p>
-  `,
-  styles: [],
+  templateUrl: './breadcrumb.component.html',
+  styleUrls: ['./breadcrumb.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BreadcrumbComponent {

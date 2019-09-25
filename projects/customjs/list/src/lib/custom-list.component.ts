@@ -112,7 +112,11 @@ export class CustomListComponent implements OnDestroy {
 
   @Input() pageSize: number;
 
-  @Output() itemSelected = new EventEmitter<any>(undefined);
+  @Input() noDataMessage: string;
+
+  @Output() itemSelected = new EventEmitter();
+
+  @Output() refresh = new EventEmitter();
 
   @Output() sort = new BehaviorSubject<string>(undefined);
 
@@ -159,6 +163,7 @@ export class CustomListComponent implements OnDestroy {
   clearAndRefreshItems() {
     this.setCurentStateItems();
     this.refreshItems();
+    this.refresh.emit();
   }
 
   private watchFilterevents() {
@@ -314,12 +319,17 @@ export class CustomListComponent implements OnDestroy {
   }
 
   private mountChangeEvent(): CustomListChangeEvent {
-    return {
+    const event: CustomListChangeEvent = {
       limit: this.paginatorComponent.pageSize,
       page: this.paginatorComponent.page || 1,
       filter: this.filterComponent ? this.filterComponent.form : {},
-      ordering: this.sort.value,
     };
+
+    if (this.sort.value) {
+      event.ordering = this.sort.value;
+    }
+
+    return event;
   }
 
   private detectItemsType(items: CustomListItems): CustomListItemsTypes {
