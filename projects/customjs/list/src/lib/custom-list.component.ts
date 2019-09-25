@@ -9,11 +9,13 @@ import {
   ViewChild,
 } from '@angular/core';
 import { ThemePalette } from '@angular/material';
+import { I18nService } from '@customjs/i18n';
 import { CustomPaginatorComponent } from '@customjs/paginator';
 import { CustomTableComponent } from '@customjs/table';
 import { BehaviorSubject, Observable, ReplaySubject, Subscription } from 'rxjs';
 import { CustomListCardComponent } from './custom-list-card/custom-list-card.component';
 import { CustomListFilterComponent } from './custom-list-filter/custom-list-filter.component';
+import { CustomListTranslationKeysMap } from './custom-list-internal.i18n';
 import {
   CustomListChangeEvent,
   CustomListChangeResponse,
@@ -140,7 +142,7 @@ export class CustomListComponent implements OnDestroy {
 
   private fetchMethosSubscription: Subscription;
 
-  constructor() {}
+  constructor(public i18n: I18nService<CustomListTranslationKeysMap>) {}
 
   ngOnDestroy(): void {
     this.unwatchTableEvents();

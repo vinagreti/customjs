@@ -13,7 +13,7 @@
     fxLayoutAlign="end center"
   >
     <button mat-flat-button color="accent" type="submit">
-      {{ 'label.Do_filter' }}
+      {{ i18n.trans.thirdParty.customjs.list.Do_filter }}
     </button>
     <button
       mat-flat-button
@@ -21,7 +21,7 @@
       type="button"
       (click)="onClearFilter()"
     >
-      {{ 'label.Clear' }}
+      {{ i18n.trans.thirdParty.customjs.list.Clear }}
     </button>
     <button
       *ngIf="emptyFilter$ | async"
@@ -30,7 +30,7 @@
       type="button"
       (click)="onCloseFilter()"
     >
-      {{ 'label.Close' }}
+      {{ i18n.trans.thirdParty.customjs.list.Close }}
     </button>
   </div>
 </form>

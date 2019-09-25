@@ -63,4 +63,6 @@
   (paginate)="onPaginate($event)"
 ></custom-paginator>
 
-<ng-template #noItems>{{ noDataMessage }}</ng-template>
+<ng-template #noItems>{{
+  noDataMessage || i18n.trans.thirdParty.customjs.list.Nothing_found
+}}</ng-template>

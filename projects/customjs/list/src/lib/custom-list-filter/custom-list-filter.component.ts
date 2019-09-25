@@ -7,7 +7,9 @@ import {
   Output,
   TemplateRef,
 } from '@angular/core';
+import { I18nService } from '@customjs/i18n';
 import { BehaviorSubject } from 'rxjs';
+import { CustomListTranslationKeysMap } from './../custom-list-internal.i18n';
 
 @Component({
   selector: 'custom-list-filter',
@@ -26,7 +28,7 @@ export class CustomListFilterComponent {
 
   @Output() closefilter = new EventEmitter();
 
-  constructor() {}
+  constructor(public i18n: I18nService<CustomListTranslationKeysMap>) {}
 
   onFilter() {
     this.filter.emit(this.form);
