@@ -4,7 +4,7 @@ import { I18nService } from '@customjs/i18n';
 import { WsService } from '@customjs/ws';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
-import * as translationFiles from './i18n/version-service.i18n';
+import { VersionServiceTranslationKeysMap } from './version-internal.i18n';
 
 export const STORAGE_KEY = 'custmjsVersion';
 
@@ -12,16 +12,6 @@ export interface VersionServiceData {
   currentVersion?: string;
   latestVersion?: string;
 }
-
-export const VersionServiceTranslationKeys = {
-  thirdParty: {
-    customjs: {
-      version: translationFiles.default,
-    },
-  },
-};
-
-export type VersionServiceTranslationKeysMap = typeof VersionServiceTranslationKeys;
 
 @Injectable({
   providedIn: 'root',

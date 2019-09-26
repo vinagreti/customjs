@@ -9,7 +9,7 @@
       <button
         mat-stroked-button
         (click)="start()"
-        title="{{ 'label.First_page' }}"
+        title="{{ i18n.trans.thirdParty.customjs.paginator.First_page }}"
       >
         &#171;
       </button>
@@ -17,7 +17,7 @@
       <button
         mat-stroked-button
         (click)="prev()"
-        title="{{ 'label.Previous_page' }}"
+        title="{{ i18n.trans.thirdParty.customjs.paginator.Previous_page }}"
       >
         &#8249;
       </button>
@@ -25,7 +25,8 @@
   </p>
 
   <p>
-    {{ 'label.Page' }} {{ page$ | async }} {{ 'label.of' }}
+    {{ i18n.trans.thirdParty.customjs.paginator.Page }} {{ page$ | async }}
+    {{ i18n.trans.thirdParty.customjs.paginator.of }}
     {{ totalPages$ | async }}
   </p>
 
@@ -34,7 +35,7 @@
       <button
         mat-stroked-button
         (click)="next()"
-        title="{{ 'label.Next_page' }}"
+        title="{{ i18n.trans.thirdParty.customjs.paginator.Next_page }}"
       >
         &#8250;
       </button>
@@ -42,7 +43,7 @@
       <button
         mat-stroked-button
         (click)="end()"
-        title="{{ 'label.Last_page' }}"
+        title="{{ i18n.trans.thirdParty.customjs.paginator.Last_page }}"
       >
         &#187;
       </button>

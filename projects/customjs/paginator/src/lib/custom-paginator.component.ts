@@ -1,6 +1,14 @@
-import { Component, ChangeDetectionStrategy, Input, EventEmitter, Output, OnInit } from '@angular/core';
-import { BehaviorSubject, ReplaySubject } from 'rxjs';
-import { distinctUntilChanged, tap, debounceTime, startWith } from 'rxjs/operators';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
+import { I18nService } from '@customjs/i18n';
+import { BehaviorSubject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import { CustomPaginatorTranslationKeysMap } from './custom-list-internal.i18n';
 
 const DEFAULT_PAGE_SIZE = 20;
 
@@ -15,10 +23,9 @@ export interface CustomPaginatorEvent {
   selector: 'custom-paginator',
   templateUrl: './custom-paginator.component.html',
   styleUrls: ['./custom-paginator.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomPaginatorComponent {
-
   totalPages$ = new BehaviorSubject<number>(1);
 
   private visibleItems$ = new EventEmitter<any[]>();
@@ -34,17 +41,19 @@ export class CustomPaginatorComponent {
 
   @Output() paginate = this.paginate$.pipe(
     distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b)),
-    debounceTime(0), // waits for all bindings to finish // TODO: resolve this weird behaviour
+    debounceTime(0) // waits for all bindings to finish // TODO: resolve this weird behaviour
   );
 
   @Output() visibleItems = this.visibleItems$.pipe(
     distinctUntilChanged((a = [], b = []) => {
       return JSON.stringify(a) === JSON.stringify(b);
-    }),
+    })
   );
 
   @Input()
-  get count() { return this.innerCount; }
+  get count() {
+    return this.innerCount;
+  }
   set count(v: number) {
     if (this.innerCount !== v) {
       this.innerCount = v;
@@ -53,22 +62,29 @@ export class CustomPaginatorComponent {
   }
 
   @Input()
-  get items() { return this.innerItems; }
+  get items() {
+    return this.innerItems;
+  }
   set items(v: any[]) {
     this.innerItems = v || [];
     this.refreshState();
   }
 
   @Input()
-  get page() { return this.pageStream$.getValue(); }
+  get page() {
+    return this.pageStream$.getValue();
+  }
   set page(v: number) {
     this.pageStream$.next(v);
   }
 
   @Input()
-  get pageSize() { return this.innerPageSize; }
+  get pageSize() {
+    return this.innerPageSize;
+  }
   set pageSize(v: number) {
-    this.innerPageSize = v === 0 ? MAX_PAGE_SIZE : (v > 0 ? v : DEFAULT_PAGE_SIZE);
+    this.innerPageSize =
+      v === 0 ? MAX_PAGE_SIZE : v > 0 ? v : DEFAULT_PAGE_SIZE;
     this.refreshState();
   }
 
@@ -78,7 +94,7 @@ export class CustomPaginatorComponent {
 
   private innerPageSize = 20;
 
-  constructor() { }
+  constructor(public i18n: I18nService<CustomPaginatorTranslationKeysMap>) {}
 
   prev() {
     const prev = this.page - 1;
@@ -112,12 +128,14 @@ export class CustomPaginatorComponent {
     const count = this.count || (this.items || []).length;
     const pageSize = this.pageSize || count;
     const totalPages = this.countPages(count, pageSize);
-    const visible = this.count ? this.items : this.selectVisible(this.items, this.page, pageSize);
+    const visible = this.count
+      ? this.items
+      : this.selectVisible(this.items, this.page, pageSize);
     this.totalPages$.next(totalPages);
     this.visibleItems$.emit(visible);
     this.paginate$.emit({
       page: this.page,
-      limit: this.pageSize
+      limit: this.pageSize,
     });
   }
 
@@ -126,7 +144,7 @@ export class CustomPaginatorComponent {
       const rest = total % max;
       const divisible = total - rest;
       if (rest) {
-        return (divisible / max) + 1;
+        return divisible / max + 1;
       } else {
         return divisible / max;
       }
@@ -138,9 +156,9 @@ export class CustomPaginatorComponent {
   private selectVisible(items: any[] = [], page: number, max: number) {
     const total = items.length;
     if (total > 1) {
-      const startAt = (page * max) - max;
+      const startAt = page * max - max;
       const stopAt = startAt + (max - 1);
-      const maxStopAt = stopAt < total ? stopAt : (total - 1);
+      const maxStopAt = stopAt < total ? stopAt : total - 1;
       return items.slice(startAt, maxStopAt + 1);
     } else {
       return items;
