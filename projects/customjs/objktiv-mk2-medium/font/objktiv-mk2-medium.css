@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'ObjektivMk2W03-Medium';
+  src: url(d536c65b8da90e4b32bdaa78b566987c.eot);
+  src: url(d536c65b8da90e4b32bdaa78b566987c.eot?-iefix)
+      format('embedded-opentype'),
+    url(d536c65b8da90e4b32bdaa78b566987c.woff2) format('woff2'),
+    url(d536c65b8da90e4b32bdaa78b566987c.woff) format('woff'),
+    url(d536c65b8da90e4b32bdaa78b566987c.ttf) format('truetype'),
+    url(d536c65b8da90e4b32bdaa78b566987c.svg#ObjektivMk2W03-Medium)
+      format('svg');
+}
