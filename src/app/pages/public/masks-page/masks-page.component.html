@@ -1,0 +1,14 @@
+<mat-form-field>
+  <input
+    #passwordField="ngModel"
+    customMaskDate
+    matInput
+    name="passwordText"
+    placeholder="date"
+    [(ngModel)]="componentData.password"
+    required
+  />
+  <mat-error *ngIf="!passwordField.valid">
+    {{ passwordField.errors | json }}
+  </mat-error>
+</mat-form-field>

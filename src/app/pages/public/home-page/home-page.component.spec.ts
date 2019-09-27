@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonModule, MatIconModule } from '@angular/material';
 import { I18nServiceTestingModule } from '@customjs/i18n';
 import { AppTranslationKeys } from '@i18n/i18n-translation-keys';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 import { HomePageComponent } from './home-page.component';
 
 describe('HomePageComponent', () => {
@@ -15,6 +16,7 @@ describe('HomePageComponent', () => {
         I18nServiceTestingModule.forRoot(AppTranslationKeys),
         MatIconModule,
         MatButtonModule,
+        AppRoutingModule,
       ],
     }).compileComponents();
   }));

@@ -102,6 +102,12 @@
       ],
       "@customjs/text/*": [
         "dist/customjs/text/*"
+      ],
+      "@customjs/mask": [
+        "dist/customjs/mask"
+      ],
+      "@customjs/mask/*": [
+        "dist/customjs/mask/*"
       ]
     }
   },

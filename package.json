@@ -31,6 +31,8 @@
     "build:list": "ng b @customjs/list && npm run build:list:i18n",
     "build:list:i18n": "tsc projects/customjs/list/src/lib/i18n/*.ts --outDir dist/customjs/list/i18n",
     "publish:list": "npm publish dist/customjs/list/ --access=public",
+    "build:mask": "ng b @customjs/mask",
+    "publish:mask": "npm publish dist/customjs/mask/ --access=public",
     "build:paginator": "ng b @customjs/paginator && npm run build:paginator:i18n",
     "build:paginator:i18n": "tsc projects/customjs/paginator/src/lib/i18n/*.ts --outDir dist/customjs/paginator/i18n",
     "publish:paginator": "npm publish dist/customjs/paginator/ --access=public",
