@@ -1,5 +1,5 @@
 {
-  "name": "@customjs/text",
+  "name": "@customjs/smart-layout",
   "version": "0.0.1-beta.1",
   "peerDependencies": {
     "@angular/common": "^8.2.0",

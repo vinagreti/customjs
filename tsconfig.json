@@ -97,17 +97,23 @@
       "@customjs/paginator/*": [
         "dist/customjs/paginator/*"
       ],
-      "@customjs/text": [
-        "dist/customjs/text"
-      ],
-      "@customjs/text/*": [
-        "dist/customjs/text/*"
-      ],
       "@customjs/mask": [
         "dist/customjs/mask"
       ],
       "@customjs/mask/*": [
         "dist/customjs/mask/*"
+      ],
+      "@customjs/smart-layout": [
+        "dist/customjs/smart-layout"
+      ],
+      "@customjs/smart-layout/*": [
+        "dist/customjs/smart-layout/*"
+      ],
+      "@customjs/select": [
+        "dist/customjs/select"
+      ],
+      "@customjs/select/*": [
+        "dist/customjs/select/*"
       ]
     }
   },

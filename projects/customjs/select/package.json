@@ -1,0 +1,11 @@
+{
+  "name": "@customjs/select",
+  "version": "0.0.1-beta.1",
+  "peerDependencies": {
+    "@angular/common": "^8.2.0",
+    "@angular/core": "^8.2.0",
+    "@angular/forms": "~8.2.4",
+    "@angular/cdk": "^8.1.4",
+    "@angular/material": "^8.1.4"
+  }
+}

@@ -300,9 +300,7 @@
               "projects/customjs/version/tsconfig.lib.json",
               "projects/customjs/version/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -335,9 +333,7 @@
               "projects/customjs/generic-http/tsconfig.lib.json",
               "projects/customjs/generic-http/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -370,9 +366,7 @@
               "projects/customjs/alert/tsconfig.lib.json",
               "projects/customjs/alert/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -405,9 +399,7 @@
               "projects/customjs/breadcrumb/tsconfig.lib.json",
               "projects/customjs/breadcrumb/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -440,9 +432,7 @@
               "projects/customjs/list/tsconfig.lib.json",
               "projects/customjs/list/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -475,9 +465,7 @@
               "projects/customjs/table/tsconfig.lib.json",
               "projects/customjs/table/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -510,44 +498,7 @@
               "projects/customjs/paginator/tsconfig.lib.json",
               "projects/customjs/paginator/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "@customjs/text": {
-      "projectType": "library",
-      "root": "projects/customjs/text",
-      "sourceRoot": "projects/customjs/text/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/customjs/text/tsconfig.lib.json",
-            "project": "projects/customjs/text/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/customjs/text/src/test.ts",
-            "tsConfig": "projects/customjs/text/tsconfig.spec.json",
-            "karmaConfig": "projects/customjs/text/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/customjs/text/tsconfig.lib.json",
-              "projects/customjs/text/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -579,6 +530,72 @@
             "tsConfig": [
               "projects/customjs/mask/tsconfig.lib.json",
               "projects/customjs/mask/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "@customjs/smart-layout": {
+      "projectType": "library",
+      "root": "projects/customjs/smart-layout",
+      "sourceRoot": "projects/customjs/smart-layout/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/customjs/smart-layout/tsconfig.lib.json",
+            "project": "projects/customjs/smart-layout/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/customjs/smart-layout/src/test.ts",
+            "tsConfig": "projects/customjs/smart-layout/tsconfig.spec.json",
+            "karmaConfig": "projects/customjs/smart-layout/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/customjs/smart-layout/tsconfig.lib.json",
+              "projects/customjs/smart-layout/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "@customjs/select": {
+      "projectType": "library",
+      "root": "projects/customjs/select",
+      "sourceRoot": "projects/customjs/select/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/customjs/select/tsconfig.lib.json",
+            "project": "projects/customjs/select/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/customjs/select/src/test.ts",
+            "tsConfig": "projects/customjs/select/tsconfig.spec.json",
+            "karmaConfig": "projects/customjs/select/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/customjs/select/tsconfig.lib.json",
+              "projects/customjs/select/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
