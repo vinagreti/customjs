@@ -24,6 +24,8 @@
     "publish:ask": "npm publish dist/customjs/ask/ --access=public",
     "build:breadcrumb": "ng b @customjs/breadcrumb",
     "publish:breadcrumb": "npm publish dist/customjs/breadcrumb/ --access=public",
+    "build:card": "ng b @customjs/card",
+    "publish:card": "npm publish dist/customjs/card/ --access=public",
     "build:generic-http": "ng b @customjs/generic-http",
     "publish:generic-http": "npm publish dist/customjs/generic-http/ --access=public",
     "build:i18n": "ng b @customjs/i18n",

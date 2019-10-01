@@ -603,6 +603,41 @@
           }
         }
       }
+    },
+    "@customjs/card": {
+      "projectType": "library",
+      "root": "projects/customjs/card",
+      "sourceRoot": "projects/customjs/card/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/customjs/card/tsconfig.lib.json",
+            "project": "projects/customjs/card/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/customjs/card/src/test.ts",
+            "tsConfig": "projects/customjs/card/tsconfig.spec.json",
+            "karmaConfig": "projects/customjs/card/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/customjs/card/tsconfig.lib.json",
+              "projects/customjs/card/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "customjs"

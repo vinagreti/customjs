@@ -114,6 +114,12 @@
       ],
       "@customjs/select/*": [
         "dist/customjs/select/*"
+      ],
+      "@customjs/card": [
+        "dist/customjs/card"
+      ],
+      "@customjs/card/*": [
+        "dist/customjs/card/*"
       ]
     }
   },
