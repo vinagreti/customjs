@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
+import { CustomSingleSelectTestingModule } from '../custom-single-select/testing/custom-single-select.testing.module';
 import { CustomSelectModule } from './../custom-select.module';
-import { CustomSingleSelectTestingModule } from './../custom-single-select/testing';
 
 @NgModule({
-  imports: [
-    CustomSelectModule,
-    CustomSingleSelectTestingModule,
-  ]
+  imports: [CustomSelectModule, CustomSingleSelectTestingModule],
 })
-export class CustomSelectTestingModule { }
+export class CustomSelectTestingModule {}

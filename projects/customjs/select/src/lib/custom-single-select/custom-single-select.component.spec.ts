@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CustomSingleSelectComponent } from './custom-single-select.component';
-import { CustomSingleSelectTestingModule } from './testing';
+import { CustomSingleSelectTestingModule } from './testing/custom-single-select.testing.module';
 
 describe('CustomSingleSelectComponent', () => {
   let component: CustomSingleSelectComponent;
@@ -9,11 +8,8 @@ describe('CustomSingleSelectComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        CustomSingleSelectTestingModule
-      ]
-    })
-    .compileComponents();
+      imports: [CustomSingleSelectTestingModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
