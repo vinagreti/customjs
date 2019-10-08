@@ -53,11 +53,15 @@ export class VersionService {
 
   private updateSw() {
     return new Promise(resolve => {
-      this.ngSw.checkForUpdate().then(() => {
-        this.ngSw.activateUpdate().then(() => {
-          resolve();
+      if (this.ngSw.isEnabled) {
+        this.ngSw.checkForUpdate().then(() => {
+          this.ngSw.activateUpdate().then(() => {
+            resolve();
+          });
         });
-      });
+      } else {
+        resolve();
+      }
     });
   }
 
