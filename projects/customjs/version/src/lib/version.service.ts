@@ -2,21 +2,23 @@ import { Injectable } from '@angular/core';
 import { AskService } from '@customjs/ask';
 import { I18nService } from '@customjs/i18n';
 import { WsService } from '@customjs/ws';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { VersionServiceTranslationKeysMap } from './version-internal.i18n';
 
 export const STORAGE_KEY = 'custmjsVersion';
 
 export interface VersionServiceData {
-  currentVersion?: string;
-  latestVersion?: string;
+  currentVersion: string;
+  latestVersion: string;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class VersionService {
+  data$ = new ReplaySubject<VersionServiceData>();
+
   online$: Observable<boolean>;
 
   private httpCallInternetConnectionStatus$ = new BehaviorSubject<boolean>(
@@ -30,7 +32,20 @@ export class VersionService {
     private wsService: WsService,
     private i18n: I18nService<VersionServiceTranslationKeysMap>
   ) {
+    this.connectToDataStream();
     this.initVersionService();
+  }
+
+  installLatestVersion() {
+    const currentVersion = this.getLatestVersionInMemory();
+    this.persistCurrentVersion(currentVersion);
+    this.reloadApp();
+  }
+
+  private connectToDataStream() {
+    this.data$.subscribe(data => {
+      this.setInMemory(data);
+    });
   }
 
   private initVersionService() {
@@ -65,8 +80,8 @@ export class VersionService {
   }
 
   private detectAndUpdateStoreVersion(latestVersion: string) {
-    const currentVersion = this.getCurrentVersion();
-    if (!currentVersion) {
+    const versionData = this.getCurrentVersionInMemory();
+    if (!versionData) {
       this.initVersionStates(latestVersion);
     } else {
       this.compareVersionsAndUpdateIfNeeded(latestVersion);
@@ -78,18 +93,19 @@ export class VersionService {
     const latestVersionIsUnknown = latestKnownVersion !== latestVersion;
     if (latestVersionIsUnknown) {
       this.persistLatestVersion(latestVersion);
-      this.askPermissionToInstallLatestVersion(latestVersion);
+      this.askPermissionToInstallLatestVersion();
     }
   }
 
   private initVersionStates(version: string) {
-    const newVersionData = this.getFromMemory();
-    newVersionData.latestVersion = version;
-    newVersionData.currentVersion = version;
-    this.setInMemory(newVersionData);
+    const newVersionData: VersionServiceData = {
+      currentVersion: version,
+      latestVersion: version,
+    };
+    this.data$.next(newVersionData);
   }
 
-  private getCurrentVersion() {
+  private getCurrentVersionInMemory() {
     return this.getFromMemory().currentVersion;
   }
 
@@ -97,7 +113,7 @@ export class VersionService {
     return this.getFromMemory().latestVersion;
   }
 
-  private askPermissionToInstallLatestVersion(latestVersion) {
+  private askPermissionToInstallLatestVersion() {
     this.askService
       .ask({
         title: this.i18n.trans.thirdParty.customjs.version.title,
@@ -107,8 +123,7 @@ export class VersionService {
       })
       .subscribe(confirmed => {
         if (confirmed) {
-          this.persistLatestVersion(latestVersion);
-          this.reloadApp();
+          this.installLatestVersion();
         }
       });
   }
@@ -116,7 +131,13 @@ export class VersionService {
   private persistLatestVersion(latestVersion) {
     const newVersionData = this.getFromMemory();
     newVersionData.latestVersion = latestVersion;
-    this.setInMemory(newVersionData);
+    this.data$.next(newVersionData);
+  }
+
+  private persistCurrentVersion(currentVersion) {
+    const newVersionData = this.getFromMemory();
+    newVersionData.currentVersion = currentVersion;
+    this.data$.next(newVersionData);
   }
 
   private reloadApp() {
@@ -143,19 +164,17 @@ export class VersionService {
     connection.error.subscribe(() => this.handleConnectionErrorResponse());
   }
 
-  private setInMemory(config) {
-    const stringConfig = JSON.stringify(config);
+  private setInMemory(data: VersionServiceData) {
+    const stringConfig = JSON.stringify(data);
     localStorage.setItem(STORAGE_KEY, stringConfig);
   }
 
   private getFromMemory(): VersionServiceData {
-    let versionServiceData: VersionServiceData = {};
     try {
       const stringConfig = localStorage.getItem(STORAGE_KEY);
-      if (stringConfig !== null) {
-        versionServiceData = JSON.parse(stringConfig);
-      }
-    } catch {}
-    return versionServiceData;
+      return JSON.parse(stringConfig);
+    } catch {
+      return undefined;
+    }
   }
 }

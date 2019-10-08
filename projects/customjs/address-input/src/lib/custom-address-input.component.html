@@ -1,0 +1,129 @@
+<form fxLayout="column" fxLayoutGap="16px" #customAddressForm="ngForm">
+  <div>
+    <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="space-between">
+      <div fxFlex>
+        <mat-form-field>
+          <input
+            matInput
+            required
+            #postalCodeField="ngModel"
+            name="postalCode"
+            [placeholder]="
+              i18n.trans.thirdParty.customjs.addressInput.postalCode
+            "
+            [(ngModel)]="addressData.postalCode"
+          />
+          <mat-error *ngIf="!postalCodeField.valid">
+            {{ i18n.trans.thirdParty.customjs.addressInput.postalCodeHint }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <button
+          mat-flat-button
+          color="primary"
+          type="button"
+          (click)="loadpostalCodeData(addressData.postalCode)"
+        >
+          {{ i18n.trans.thirdParty.customjs.addressInput.search }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+      <div fxFlex.lt-sm="75" fxFlex="60">
+        <mat-form-field>
+          <input
+            matInput
+            required
+            #publicPlaceField="ngModel"
+            name="publicPlace"
+            [placeholder]="
+              i18n.trans.thirdParty.customjs.addressInput.publicPlace
+            "
+            [(ngModel)]="addressData.publicPlace"
+          />
+          <mat-error *ngIf="!publicPlaceField.valid">
+            {{ i18n.trans.thirdParty.customjs.addressInput.publicPlaceHint }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex.lt-sm="25" fxFlex="20">
+        <mat-form-field>
+          <input
+            matInput
+            required
+            #numberField="ngModel"
+            name="number"
+            [placeholder]="i18n.trans.thirdParty.customjs.addressInput.number"
+            [(ngModel)]="addressData.number"
+          />
+          <mat-error *ngIf="!numberField.valid">
+            {{ i18n.trans.thirdParty.customjs.addressInput.numberHint }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex.lt-sm="50" fxFlex="20">
+        <mat-form-field>
+          <input
+            matInput
+            name="complement"
+            [placeholder]="
+              i18n.trans.thirdParty.customjs.addressInput.complement
+            "
+            [(ngModel)]="addressData.complement"
+          />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex.lt-sm="50" fxFlex="40">
+        <mat-form-field>
+          <input
+            matInput
+            name="neighborhood"
+            [placeholder]="
+              i18n.trans.thirdParty.customjs.addressInput.neighborhood
+            "
+            [(ngModel)]="addressData.neighborhood"
+          />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex.lt-sm="50" fxFlex="20">
+        <mat-form-field>
+          <input
+            matInput
+            required
+            #stateField="ngModel"
+            name="state"
+            [placeholder]="i18n.trans.thirdParty.customjs.addressInput.state"
+            [(ngModel)]="addressData.state"
+          />
+          <mat-error *ngIf="!stateField.valid">
+            {{ i18n.trans.thirdParty.customjs.addressInput.stateHint }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex.lt-sm="50" fxFlex="40">
+        <mat-form-field>
+          <input
+            matInput
+            required
+            #cityField="ngModel"
+            name="city"
+            [placeholder]="i18n.trans.thirdParty.customjs.addressInput.city"
+            [(ngModel)]="addressData.city"
+          />
+          <mat-error *ngIf="!cityField.valid">
+            {{ i18n.trans.thirdParty.customjs.addressInput.cityHint }}
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</form>

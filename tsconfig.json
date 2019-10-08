@@ -120,6 +120,12 @@
       ],
       "@customjs/card/*": [
         "dist/customjs/card/*"
+      ],
+      "@customjs/address-input": [
+        "dist/customjs/address-input"
+      ],
+      "@customjs/address-input/*": [
+        "dist/customjs/address-input/*"
       ]
     }
   },

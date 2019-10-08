@@ -638,6 +638,41 @@
           }
         }
       }
+    },
+    "@customjs/address-input": {
+      "projectType": "library",
+      "root": "projects/customjs/address-input",
+      "sourceRoot": "projects/customjs/address-input/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/customjs/address-input/tsconfig.lib.json",
+            "project": "projects/customjs/address-input/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/customjs/address-input/src/test.ts",
+            "tsConfig": "projects/customjs/address-input/tsconfig.spec.json",
+            "karmaConfig": "projects/customjs/address-input/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/customjs/address-input/tsconfig.lib.json",
+              "projects/customjs/address-input/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "customjs"
