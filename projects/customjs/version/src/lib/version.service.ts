@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
+import { SwUpdate } from '@angular/service-worker';
 import { AskService } from '@customjs/ask';
 import { I18nService } from '@customjs/i18n';
 import { WsService } from '@customjs/ws';
@@ -27,19 +28,37 @@ export class VersionService {
 
   private isBrowser: boolean;
 
+  private ngSw: SwUpdate;
+
   constructor(
     private askService: AskService,
     private wsService: WsService,
-    private i18n: I18nService<VersionServiceTranslationKeysMap>
+    private i18n: I18nService<VersionServiceTranslationKeysMap>,
+    private injector: Injector
   ) {
-    this.connectToDataStream();
     this.initVersionService();
   }
 
   installLatestVersion() {
     const currentVersion = this.getLatestVersionInMemory();
     this.persistCurrentVersion(currentVersion);
-    this.reloadApp();
+    this.updateSw().then(() => {
+      this.reloadApp();
+    });
+  }
+
+  private injectSwUpdate() {
+    this.ngSw = this.injector.get(SwUpdate);
+  }
+
+  private updateSw() {
+    return new Promise(resolve => {
+      this.ngSw.checkForUpdate().then(() => {
+        this.ngSw.activateUpdate().then(() => {
+          resolve();
+        });
+      });
+    });
   }
 
   private connectToDataStream() {
@@ -49,6 +68,8 @@ export class VersionService {
   }
 
   private initVersionService() {
+    this.injectSwUpdate();
+    this.connectToDataStream();
     this.detectPlatform();
     this.validateAndConnect();
   }
