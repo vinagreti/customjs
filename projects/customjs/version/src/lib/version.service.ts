@@ -72,10 +72,16 @@ export class VersionService {
   }
 
   private initVersionService() {
+    this.setCurrentData();
     this.injectSwUpdate();
     this.connectToDataStream();
     this.detectPlatform();
     this.validateAndConnect();
+  }
+
+  private setCurrentData() {
+    const data = this.getFromMemory();
+    this.data$.next(data);
   }
 
   private detectPlatform() {
@@ -195,11 +201,7 @@ export class VersionService {
   }
 
   private getFromMemory(): VersionServiceData {
-    try {
-      const stringConfig = localStorage.getItem(STORAGE_KEY);
-      return JSON.parse(stringConfig);
-    } catch {
-      return undefined;
-    }
+    const stringConfig = localStorage.getItem(STORAGE_KEY) || '{}';
+    return JSON.parse(stringConfig);
   }
 }

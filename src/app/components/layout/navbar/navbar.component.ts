@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { I18nLocale, I18nService } from '@customjs/i18n';
+import { VersionService } from '@customjs/version';
 import { AppTranslationKeysMap } from '@i18n/i18n-translation-keys';
 
 @Component({
@@ -16,15 +17,18 @@ export class NavbarComponent implements OnInit {
 
   @Input() routerPath = '/';
 
-  constructor(private i18nService: I18nService<AppTranslationKeysMap>) {
-    this.i18nLocales = this.i18nService.enabledLocales;
+  constructor(
+    public i18n: I18nService<AppTranslationKeysMap>,
+    public versionService: VersionService
+  ) {
+    this.i18nLocales = this.i18n.enabledLocales;
   }
 
   ngOnInit() {
-    this.locale = this.i18nService.locale;
+    this.locale = this.i18n.locale;
   }
 
   setLanguage(lang: I18nLocale) {
-    return this.i18nService.setLocale(lang);
+    return this.i18n.setLocale(lang);
   }
 }

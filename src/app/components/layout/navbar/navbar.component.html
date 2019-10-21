@@ -1,7 +1,15 @@
 <mat-toolbar color="accent">
-  <a [routerLink]="routerPath">
-    <h1>{{ title }}</h1>
-  </a>
+  <ng-container
+    *ngIf="versionService.data$ | async as versionData; else titleTemplate"
+  >
+    <ng-container
+      *ngIf="
+        versionData.currentVersion !== versionData.latestVersion;
+        then updateButtonTemplate;
+        else titleTemplate
+      "
+    ></ng-container>
+  </ng-container>
 
   <span class="center-space"></span>
 
@@ -9,10 +17,18 @@
     <ng-container *ngIf="i18nLocales.length > 1">
       <mat-menu #localeMenu="matMenu">
         <ng-container *ngFor="let i18nLocale of i18nLocales">
-          <button mat-menu-item *ngIf="locale !== i18nLocale" (click)="setLanguage(i18nLocale)">{{i18nLocale}}</button>
+          <button
+            mat-menu-item
+            *ngIf="locale !== i18nLocale"
+            (click)="setLanguage(i18nLocale)"
+          >
+            {{ i18nLocale }}
+          </button>
         </ng-container>
       </mat-menu>
-      <button mat-flat-button [matMenuTriggerFor]="localeMenu">{{locale}}</button>
+      <button mat-flat-button [matMenuTriggerFor]="localeMenu">
+        {{ locale }}
+      </button>
     </ng-container>
   </span>
 
@@ -21,5 +37,21 @@
   <span>
     <ng-content></ng-content>
   </span>
-
 </mat-toolbar>
+
+<ng-template #titleTemplate>
+  <a [routerLink]="routerPath">
+    <h1>{{ title }}</h1>
+  </a>
+</ng-template>
+
+<ng-template #updateButtonTemplate>
+  <button
+    mat-raised-button
+    color="warn"
+    (click)="versionService.installLatestVersion()"
+    type="button"
+  >
+    {{ i18n.trans.thirdParty.customjs.version.confirm }}
+  </button>
+</ng-template>
