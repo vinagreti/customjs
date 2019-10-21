@@ -197,11 +197,11 @@ export class VersionService {
 
   private setInMemory(data: VersionServiceData) {
     const stringConfig = JSON.stringify(data);
-    localStorage.setItem(STORAGE_KEY, stringConfig);
+    localStorage[STORAGE_KEY] = stringConfig;
   }
 
   private getFromMemory(): VersionServiceData {
-    const stringConfig = localStorage.getItem(STORAGE_KEY) || '{}';
+    const stringConfig = localStorage[STORAGE_KEY] || '{}';
     return JSON.parse(stringConfig);
   }
 }
