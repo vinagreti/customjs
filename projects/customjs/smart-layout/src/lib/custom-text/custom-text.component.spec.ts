@@ -8,9 +8,8 @@ describe('CustomTextComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CustomTextComponent ]
-    })
-    .compileComponents();
+      declarations: [CustomTextComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

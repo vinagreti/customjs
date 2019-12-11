@@ -20,10 +20,8 @@ export interface I18nLocalesConfig {
   getTranslation?: (locale: I18nLocale) => Promise<I18nTranslationKeys>;
 }
 
-export const I18N_LOCALES_CONFIG = new InjectionToken<I18nLocalesConfig>(
-  'I18N_LOCALES_CONFIG'
-);
+export const I18N_LOCALES_CONFIG = new InjectionToken<I18nLocalesConfig>('I18N_LOCALES_CONFIG');
 
 export const I18N_TRANSLATION_KEYS = new InjectionToken<I18nTranslationKeys>(
-  'I18N_TRANSLATION_KEYS'
+  'I18N_TRANSLATION_KEYS',
 );

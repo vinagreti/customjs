@@ -22,7 +22,7 @@ export class CustomMaskDateDirective implements OnInit, OnDestroy {
   constructor(
     private el: ElementRef,
     private renderer: Renderer2,
-    @Optional() private ngModel: NgModel
+    @Optional() private ngModel: NgModel,
   ) {}
 
   @HostListener('input', ['$event.target.value'])
@@ -74,11 +74,9 @@ export class CustomMaskDateDirective implements OnInit, OnDestroy {
   }
 
   private subscribeToValueChange() {
-    this.valueChangeSubscription = this.valuechange$
-      .pipe(debounceTime(200))
-      .subscribe(value => {
-        this.maskInputText(value);
-      });
+    this.valueChangeSubscription = this.valuechange$.pipe(debounceTime(200)).subscribe(value => {
+      this.maskInputText(value);
+    });
   }
 
   private unsubscribefromValueChange() {

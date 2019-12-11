@@ -8,15 +8,10 @@ import {
   SkipSelf,
 } from '@angular/core';
 import { I18nService } from './i18n.service';
-import {
-  I18nLocalesConfig,
-  I18N_LOCALES_CONFIG,
-} from './models/i18n-locales-config.interface';
+import { I18nLocalesConfig, I18N_LOCALES_CONFIG } from './models/i18n-locales-config.interface';
 import { I18nTranslationKeys } from './models/i18n-translation-keys';
 
-export function localeIdFactory(
-  localizationService: I18nService<I18nTranslationKeys>
-) {
+export function localeIdFactory(localizationService: I18nService<I18nTranslationKeys>) {
   return localizationService.locale;
 }
 
@@ -33,9 +28,7 @@ export function i18nServiceInitializer(i18n: I18nService<any>) {
 export class I18nModule {
   constructor(@Optional() @SkipSelf() parentModule: I18nModule) {
     if (parentModule) {
-      throw new Error(
-        'I18nModule is already loaded. Import it in the Core Module only'
-      );
+      throw new Error('I18nModule is already loaded. Import it in the Core Module only');
     }
   }
 

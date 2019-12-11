@@ -3,12 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { PrivatePagesRoutingModule } from './private-pages-routing.module';
 
-
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    PrivatePagesRoutingModule
-  ]
+  imports: [CommonModule, PrivatePagesRoutingModule],
 })
-export class PrivatePagesModule { }
+export class PrivatePagesModule {}

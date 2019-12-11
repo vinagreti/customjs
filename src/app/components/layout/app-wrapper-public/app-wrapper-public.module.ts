@@ -8,13 +8,7 @@ import { AppWrapperPublicComponent } from './app-wrapper-public.component';
 
 @NgModule({
   declarations: [AppWrapperPublicComponent],
-  imports: [
-    CommonModule,
-    RouterModule,
-    NavbarModule,
-    MatButtonModule,
-    AppWarpperContentModule,
-  ],
-  exports: [AppWrapperPublicComponent]
+  imports: [CommonModule, RouterModule, NavbarModule, MatButtonModule, AppWarpperContentModule],
+  exports: [AppWrapperPublicComponent],
 })
-export class AppWrapperPublicModule { }
+export class AppWrapperPublicModule {}

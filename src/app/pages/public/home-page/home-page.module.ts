@@ -5,14 +5,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { HomePageRoutingModule } from './home-page-routing.module';
 import { HomePageComponent } from './home-page.component';
 
-
 @NgModule({
   declarations: [HomePageComponent],
-  imports: [
-    CommonModule,
-    HomePageRoutingModule,
-    MatIconModule,
-    MatButtonModule,
-  ]
+  imports: [CommonModule, HomePageRoutingModule, MatIconModule, MatButtonModule],
 })
-export class HomePageModule { }
+export class HomePageModule {}

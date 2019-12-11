@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 export interface CustomListChangeEvent {
   page: number;
   limit: number;
-  filter: {[key: string]: string};
+  filter: { [key: string]: string };
   ordering?: string;
 }
 
@@ -31,12 +31,16 @@ export type CustomListObservableItems = Observable<any[]>;
 
 export type CustomListFunctionItems = (event: CustomListChangeEvent) => any[];
 
-export type CustomListFunctionPromiseItems = (event: CustomListChangeEvent) => CustomListPromiseItems;
+export type CustomListFunctionPromiseItems = (
+  event: CustomListChangeEvent,
+) => CustomListPromiseItems;
 
-export type CustomListFunctionObservableItems = (event: CustomListChangeEvent) => CustomListObservableItems;
+export type CustomListFunctionObservableItems = (
+  event: CustomListChangeEvent,
+) => CustomListObservableItems;
 
 export type CustomListItems =
-  any[]
+  | any[]
   | CustomListPromiseItems
   | CustomListObservableItems
   | CustomListFunctionItems

@@ -4,9 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
 
 @Component({
-  template: `<input customMaskFullName>`
+  template: `
+    <input customMaskFullName />
+  `,
 })
-class CustomMaskFullNameDirectiveTestComponent { }
+class CustomMaskFullNameDirectiveTestComponent {}
 
 describe('CustomMaskFullNameDirective', () => {
   let component: CustomMaskFullNameDirectiveTestComponent;
@@ -14,15 +16,9 @@ describe('CustomMaskFullNameDirective', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        CustomMaskFullNameDirective,
-        CustomMaskFullNameDirectiveTestComponent,
-      ],
-      imports: [
-        FormsModule,
-      ]
-    })
-    .compileComponents();
+      declarations: [CustomMaskFullNameDirective, CustomMaskFullNameDirectiveTestComponent],
+      imports: [FormsModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

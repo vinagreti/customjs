@@ -8,9 +8,7 @@
             required
             #postalCodeField="ngModel"
             name="postalCode"
-            [placeholder]="
-              i18n.trans.thirdParty.customjs.addressInput.postalCode
-            "
+            [placeholder]="i18n.trans.thirdParty.customjs.addressInput.postalCode"
             [(ngModel)]="addressData.postalCode"
           />
           <mat-error *ngIf="!postalCodeField.valid">
@@ -40,9 +38,7 @@
             required
             #publicPlaceField="ngModel"
             name="publicPlace"
-            [placeholder]="
-              i18n.trans.thirdParty.customjs.addressInput.publicPlace
-            "
+            [placeholder]="i18n.trans.thirdParty.customjs.addressInput.publicPlace"
             [(ngModel)]="addressData.publicPlace"
           />
           <mat-error *ngIf="!publicPlaceField.valid">
@@ -72,9 +68,7 @@
           <input
             matInput
             name="complement"
-            [placeholder]="
-              i18n.trans.thirdParty.customjs.addressInput.complement
-            "
+            [placeholder]="i18n.trans.thirdParty.customjs.addressInput.complement"
             [(ngModel)]="addressData.complement"
           />
         </mat-form-field>
@@ -85,9 +79,7 @@
           <input
             matInput
             name="neighborhood"
-            [placeholder]="
-              i18n.trans.thirdParty.customjs.addressInput.neighborhood
-            "
+            [placeholder]="i18n.trans.thirdParty.customjs.addressInput.neighborhood"
             [(ngModel)]="addressData.neighborhood"
           />
         </mat-form-field>

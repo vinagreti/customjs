@@ -4,9 +4,7 @@
 
 <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
   <div fxFlex>
-    <div
-      *ngIf="!hideTotal && ((items$ | async)?.length > 1 || (count$ | async))"
-    >
+    <div *ngIf="!hideTotal && ((items$ | async)?.length > 1 || (count$ | async))">
       <strong>{{ (visibleItems$ | async).length }} </strong>
       <span> / </span>
       <strong>{{ (items$ | async).length || (count$ | async) }} </strong>
@@ -21,11 +19,7 @@
     >
       <mat-icon>search</mat-icon>
     </button>
-    <button
-      mat-icon-button
-      (click)="clearAndRefreshItems()"
-      [disabled]="loading$ | async"
-    >
+    <button mat-icon-button (click)="clearAndRefreshItems()" [disabled]="loading$ | async">
       <mat-icon [ngClass]="{ looping: loading$ | async }">refresh</mat-icon>
     </button>
   </div>
@@ -40,10 +34,7 @@
     <ng-container *ngIf="card$ | async as card">
       <div *ngIf="card.template" fxLayout="column" fxLayoutGap="16px">
         <ng-container *ngFor="let item of visibleItems$ | async">
-          <div
-            (click)="onItemSelected(item)"
-            [style.cursor]="selectionDisabled ? '' : 'pointer'"
-          >
+          <div (click)="onItemSelected(item)" [style.cursor]="selectionDisabled ? '' : 'pointer'">
             <ng-container
               [ngTemplateOutlet]="card.template"
               [ngTemplateOutletContext]="{ item: item }"

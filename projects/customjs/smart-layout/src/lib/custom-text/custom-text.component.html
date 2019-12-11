@@ -1,4 +1,8 @@
-<div class="custom-text" [style.maxWidth]="maxLength ? maxLength + 'ch' : '100%'" [title]="title || (contentText$ | async)">
+<div
+  class="custom-text"
+  [style.maxWidth]="maxLength ? maxLength + 'ch' : '100%'"
+  [title]="title || (contentText$ | async)"
+>
   <div #customText>
     <ng-content></ng-content>
   </div>

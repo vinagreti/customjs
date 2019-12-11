@@ -3,9 +3,6 @@ import { CustomSingleSelectModule } from './../custom-single-select.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  imports: [
-    CustomSingleSelectModule,
-    NoopAnimationsModule,
-  ]
+  imports: [CustomSingleSelectModule, NoopAnimationsModule],
 })
-export class CustomSingleSelectTestingModule { }
+export class CustomSingleSelectTestingModule {}

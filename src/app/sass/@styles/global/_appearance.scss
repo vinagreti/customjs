@@ -8,16 +8,16 @@
 }
 
 .offline {
-  pointer-events:none;
+  pointer-events: none;
   opacity: 0.5 !important;
   cursor: not-allowed;
 }
 
 @keyframes loop {
   0% {
-    transform:rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
-    transform:rotate(360deg);
+    transform: rotate(360deg);
   }
 }

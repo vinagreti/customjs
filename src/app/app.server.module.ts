@@ -7,14 +7,10 @@ import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
 
 @NgModule({
-  imports: [
-    AppModule,
-    ServerModule,
-    ModuleMapLoaderModule,
-  ],
+  imports: [AppModule, ServerModule, ModuleMapLoaderModule],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: UniversalHttpInterceptorService, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: UniversalHttpInterceptorService, multi: true },
   ],
   bootstrap: [AppComponent],
 })
-export class AppServerModule { }
+export class AppServerModule {}

@@ -41,11 +41,7 @@ $customjs-accent: mat-palette($app-accent-pallet, default, lighter, darker);
 $customjs-warn: mat-palette($app-warn-pallet, default, lighter, darker);
 
 // theme
-$customjs-theme: mat-light-theme(
-  $customjs-primary,
-  $customjs-accent,
-  $customjs-warn
-);
+$customjs-theme: mat-light-theme($customjs-primary, $customjs-accent, $customjs-warn);
 
 @include mat-core();
 

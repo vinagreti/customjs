@@ -9,11 +9,8 @@ describe('CustomTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        CustomTableTestingModule,
-      ]
-    })
-    .compileComponents();
+      imports: [CustomTableTestingModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

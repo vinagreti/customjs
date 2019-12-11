@@ -22,8 +22,7 @@ export const ptBr: AppTranslationKeysMap = {
   },
   pages: {
     home: {
-      title: today =>
-        `Brazil <br> <small style="color: green;">${today}</small>`,
+      title: today => `Brazil <br> <small style="color: green;">${today}</small>`,
       subtitle: 'Aproveite sua estadia.',
     },
     login: {

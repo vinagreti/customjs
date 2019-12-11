@@ -12,10 +12,7 @@ import { AuthService } from '@services/auth';
 export class LoginPageComponent {
   form: any = {};
 
-  constructor(
-    private authService: AuthService,
-    public i18n: I18nService<AppTranslationKeysMap>
-  ) {}
+  constructor(private authService: AuthService, public i18n: I18nService<AppTranslationKeysMap>) {}
 
   login() {
     this.authService.login('tokenxyz');

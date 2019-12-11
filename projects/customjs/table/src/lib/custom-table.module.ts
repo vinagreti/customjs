@@ -7,12 +7,7 @@ import { CustomTableComponent } from './custom-table.component';
 
 @NgModule({
   declarations: [CustomTableComponent],
-  imports: [
-    CommonModule,
-    CustomTableColumnModule,
-    MatTableModule,
-    FlexLayoutModule,
-  ],
+  imports: [CommonModule, CustomTableColumnModule, MatTableModule, FlexLayoutModule],
   exports: [CustomTableComponent, CustomTableColumnModule],
 })
 export class CustomTableModule {}

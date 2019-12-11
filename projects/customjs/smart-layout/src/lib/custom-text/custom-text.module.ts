@@ -4,9 +4,7 @@ import { CustomTextComponent } from './custom-text.component';
 
 @NgModule({
   declarations: [CustomTextComponent],
-  imports: [
-    CommonModule
-  ],
-  exports: [CustomTextComponent]
+  imports: [CommonModule],
+  exports: [CustomTextComponent],
 })
-export class CustomTextModule { }
+export class CustomTextModule {}

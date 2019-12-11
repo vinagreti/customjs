@@ -18,20 +18,15 @@ export class AskService {
       panelClass,
     });
 
-    dialogRef.componentInstance.title =
-      config.title || dialogRef.componentInstance.title;
+    dialogRef.componentInstance.title = config.title || dialogRef.componentInstance.title;
 
-    dialogRef.componentInstance.question =
-      config.question || dialogRef.componentInstance.question;
+    dialogRef.componentInstance.question = config.question || dialogRef.componentInstance.question;
 
-    dialogRef.componentInstance.confirm =
-      config.confirm || dialogRef.componentInstance.confirm;
+    dialogRef.componentInstance.confirm = config.confirm || dialogRef.componentInstance.confirm;
 
-    dialogRef.componentInstance.reject =
-      config.reject || dialogRef.componentInstance.reject;
+    dialogRef.componentInstance.reject = config.reject || dialogRef.componentInstance.reject;
 
-    dialogRef.componentInstance.cancel =
-      config.cancel || dialogRef.componentInstance.cancel;
+    dialogRef.componentInstance.cancel = config.cancel || dialogRef.componentInstance.cancel;
 
     dialogRef.componentInstance.showReject = !!config.showReject;
 

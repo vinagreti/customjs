@@ -102,10 +102,7 @@ describe('VersionService', () => {
     const service: any = TestBed.get(VersionService);
     // when
     service.persistLatestVersion('1');
-    const spy = spyOn(
-      service,
-      'compareVersionsAndUpdateIfNeeded'
-    ).and.callThrough();
+    const spy = spyOn(service, 'compareVersionsAndUpdateIfNeeded').and.callThrough();
     service.detectAndUpdateStoreVersion();
     // then
     expect(spy).toHaveBeenCalled();

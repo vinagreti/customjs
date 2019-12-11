@@ -4,9 +4,7 @@ import { CustomActionsComponent } from './custom-actions.component';
 
 @NgModule({
   declarations: [CustomActionsComponent],
-  imports: [
-    CommonModule
-  ],
-  exports: [CustomActionsComponent]
+  imports: [CommonModule],
+  exports: [CustomActionsComponent],
 })
-export class CustomActionsModule { }
+export class CustomActionsModule {}

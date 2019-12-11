@@ -10,10 +10,7 @@ import { AuthService } from '@services/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppWrapperPrivateComponent {
-  constructor(
-    private authService: AuthService,
-    public i18n: I18nService<AppTranslationKeysMap>
-  ) {}
+  constructor(private authService: AuthService, public i18n: I18nService<AppTranslationKeysMap>) {}
 
   logout() {
     this.authService.logout();

@@ -8,9 +8,8 @@ describe('CustomTableColumnComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CustomTableColumnComponent ]
-    })
-    .compileComponents();
+      declarations: [CustomTableColumnComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

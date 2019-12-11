@@ -1,8 +1,5 @@
 import { I18nLocale } from './../models/i18n-locales.enum';
-import {
-  I18nMockService,
-  I18nServiceTestingModule,
-} from './i18n-service-testing.module';
+import { I18nMockService, I18nServiceTestingModule } from './i18n-service-testing.module';
 
 describe('I18nMockService', () => {
   it('should be created', () => {

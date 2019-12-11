@@ -6,13 +6,11 @@ describe('CustomAddressInputService', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
       imports: [I18nServiceTestingModule],
-    })
+    }),
   );
 
   it('should be created', () => {
-    const service: CustomAddressInputService = TestBed.get(
-      CustomAddressInputService
-    );
+    const service: CustomAddressInputService = TestBed.get(CustomAddressInputService);
     expect(service).toBeTruthy();
   });
 });

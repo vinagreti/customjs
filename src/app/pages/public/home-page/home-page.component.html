@@ -1,7 +1,5 @@
 <div style="text-align:center">
-  <h1
-    [innerHTML]="sanitize(i18n.trans.pages.home.title(today | date: 'short'))"
-  ></h1>
+  <h1 [innerHTML]="sanitize(i18n.trans.pages.home.title(today | date: 'short'))"></h1>
 
   <small>{{ i18n.trans.pages.home.subtitle }}</small>
 

@@ -9,11 +9,7 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import {
-  ControlValueAccessor,
-  NgModel,
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import { ControlValueAccessor, NgModel, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { filter, map, startWith } from 'rxjs/operators';
 import { CustomSelectOptionComponent } from './../custom-select-option/custom-select-option.component';
@@ -32,8 +28,7 @@ import { CustomOptionLabelFunction } from './../custom-select.helpers';
     },
   ],
 })
-export class CustomSingleSelectComponent
-  implements ControlValueAccessor, AfterViewInit {
+export class CustomSingleSelectComponent implements ControlValueAccessor, AfterViewInit {
   searchTerm = '';
 
   filteredOptions: Observable<any[]>;
@@ -122,10 +117,8 @@ export class CustomSingleSelectComponent
       startWith(''),
       filter(searchOption => typeof searchOption === 'string'),
       map(searchString =>
-        searchString
-          ? this.filterOptions(searchString)
-          : [...(this.options || [])]
-      )
+        searchString ? this.filterOptions(searchString) : [...(this.options || [])],
+      ),
     );
   }
 

@@ -11,5 +11,4 @@ describe('TestingFunctions', () => {
     const res = appTestingNoopMethod();
     expect(res).toEqual('');
   });
-
 });

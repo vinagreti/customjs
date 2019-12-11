@@ -9,7 +9,7 @@ export class I18nMockService<T> {
   trans: T;
   constructor(
     @Inject(I18N_TRANSLATION_KEYS)
-    i18nTranslationKeys: any
+    i18nTranslationKeys: any,
   ) {
     this.trans = i18nTranslationKeys;
   }

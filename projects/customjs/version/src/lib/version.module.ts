@@ -13,12 +13,10 @@ import { VersionService } from './version.service';
 export class VersionModule {
   constructor(
     private versionService: VersionService,
-    @Optional() @SkipSelf() parentModule: VersionModule
+    @Optional() @SkipSelf() parentModule: VersionModule,
   ) {
     if (parentModule) {
-      throw new Error(
-        'VersionModule is already loaded. Import it in the CoreModule only'
-      );
+      throw new Error('VersionModule is already loaded. Import it in the CoreModule only');
     }
   }
 }

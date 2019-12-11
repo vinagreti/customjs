@@ -1,14 +1,15 @@
-<custom-single-select [(ngModel)]="value"
-[optionTemplate]="optionTemplate"
-[options]="options"
-[labelFn]="labelFn"
-[required]="required"
-[disabled]="disabled"
-[name]="name"
-[multi]="multi"
-[notFoundMessage]="notFoundMessage"
-[placeholder]="placeholder"
-(blur)="blur.emit($event)"
+<custom-single-select
+  [(ngModel)]="value"
+  [optionTemplate]="optionTemplate"
+  [options]="options"
+  [labelFn]="labelFn"
+  [required]="required"
+  [disabled]="disabled"
+  [name]="name"
+  [multi]="multi"
+  [notFoundMessage]="notFoundMessage"
+  [placeholder]="placeholder"
+  (blur)="blur.emit($event)"
 >
   <ng-content></ng-content>
 </custom-single-select>

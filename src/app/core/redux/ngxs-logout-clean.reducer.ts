@@ -3,7 +3,7 @@ import { ClearStore } from '@services/store';
 
 export function ClearStoreReaducer(state, action, next) {
   if (getActionTypeFromInstance(action) === ClearStore.type) {
-    state = { };
+    state = {};
   }
   return next(state, action);
 }

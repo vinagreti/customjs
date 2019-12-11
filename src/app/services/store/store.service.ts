@@ -3,16 +3,12 @@ import { Store } from '@ngxs/store';
 import { ClearStore } from './store.actions';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StoreService {
-
-  constructor(
-    private store: Store,
-  ) { }
+  constructor(private store: Store) {}
 
   clear() {
     return this.store.dispatch(new ClearStore());
   }
-
 }

@@ -15,16 +15,14 @@ export interface VersionServiceData {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class VersionService {
   data$ = new ReplaySubject<VersionServiceData>();
 
   online$: Observable<boolean>;
 
-  private httpCallInternetConnectionStatus$ = new BehaviorSubject<boolean>(
-    true
-  );
+  private httpCallInternetConnectionStatus$ = new BehaviorSubject<boolean>(true);
 
   private isBrowser: boolean;
 
@@ -34,7 +32,7 @@ export class VersionService {
     private askService: AskService,
     private wsService: WsService,
     private i18n: I18nService<VersionServiceTranslationKeysMap>,
-    private injector: Injector
+    private injector: Injector,
   ) {
     this.initVersionService();
   }
@@ -131,7 +129,7 @@ export class VersionService {
   private initVersionStates(version: string) {
     const newVersionData: VersionServiceData = {
       currentVersion: version,
-      latestVersion: version
+      latestVersion: version,
     };
     this.data$.next(newVersionData);
   }
@@ -150,7 +148,7 @@ export class VersionService {
         title: this.i18n.trans.thirdParty.customjs.version.title,
         question: this.i18n.trans.thirdParty.customjs.version.question,
         confirm: this.i18n.trans.thirdParty.customjs.version.confirm,
-        cancel: this.i18n.trans.thirdParty.customjs.version.cancel
+        cancel: this.i18n.trans.thirdParty.customjs.version.cancel,
       })
       .subscribe(confirmed => {
         if (confirmed) {
@@ -179,14 +177,12 @@ export class VersionService {
     const host = document.location.origin;
     const url = `${host}/v`;
     const wsUrl = url.replace('http', 'ws');
-    const connection = this.wsService.connect<{ type: string; value: any }>(
-      wsUrl
-    );
+    const connection = this.wsService.connect<{ type: string; value: any }>(wsUrl);
 
     connection.message
       .pipe(
         filter(message => message.type === 'VERSION'),
-        map(message => message.value)
+        map(message => message.value),
       )
       .subscribe(version => {
         this.handleConnectionSuccessResponse(version);

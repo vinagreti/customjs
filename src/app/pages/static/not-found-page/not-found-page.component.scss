@@ -4,7 +4,8 @@
   text-align: center;
   padding: 80px 8px;
 
-  h1, .not-found-page-icon {
+  h1,
+  .not-found-page-icon {
     color: $app-color-warn;
   }
 
@@ -12,4 +13,3 @@
     font-size: 64px;
   }
 }
-

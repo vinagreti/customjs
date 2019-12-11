@@ -4,9 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
 
 @Component({
-  template: `<input customMaskPhone>`
+  template: `
+    <input customMaskPhone />
+  `,
 })
-class CustomMaskPhoneDirectiveTestComponent { }
+class CustomMaskPhoneDirectiveTestComponent {}
 
 describe('CustomMaskPhoneDirective', () => {
   let component: CustomMaskPhoneDirectiveTestComponent;
@@ -14,15 +16,9 @@ describe('CustomMaskPhoneDirective', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        CustomMaskPhoneDirective,
-        CustomMaskPhoneDirectiveTestComponent,
-      ],
-      imports: [
-        FormsModule,
-      ]
-    })
-    .compileComponents();
+      declarations: [CustomMaskPhoneDirective, CustomMaskPhoneDirectiveTestComponent],
+      imports: [FormsModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

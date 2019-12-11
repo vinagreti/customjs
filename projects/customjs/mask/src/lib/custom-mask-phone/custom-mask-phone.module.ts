@@ -5,10 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [CustomMaskPhoneDirective],
-  imports: [
-    CommonModule,
-    FormsModule,
-  ],
-  exports: [CustomMaskPhoneDirective]
+  imports: [CommonModule, FormsModule],
+  exports: [CustomMaskPhoneDirective],
 })
-export class CustomMaskPhoneModule { }
+export class CustomMaskPhoneModule {}

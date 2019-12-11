@@ -15,6 +15,6 @@ import { CustomSelectOptionModule } from './../custom-select-option/custom-selec
     FormsModule,
     CustomSelectOptionModule,
   ],
-  exports: [CustomSingleSelectComponent]
+  exports: [CustomSingleSelectComponent],
 })
-export class CustomSingleSelectModule { }
+export class CustomSingleSelectModule {}

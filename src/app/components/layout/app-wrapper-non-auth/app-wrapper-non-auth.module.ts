@@ -5,16 +5,9 @@ import { AppWarpperContentModule } from '../app-warpper-content/app-warpper-cont
 import { NavbarModule } from '../navbar';
 import { AppWrapperNonAuthComponent } from './app-wrapper-non-auth.component';
 
-
-
 @NgModule({
   declarations: [AppWrapperNonAuthComponent],
-  imports: [
-    CommonModule,
-    RouterModule,
-    NavbarModule,
-    AppWarpperContentModule,
-  ],
-  exports: [AppWrapperNonAuthComponent]
+  imports: [CommonModule, RouterModule, NavbarModule, AppWarpperContentModule],
+  exports: [AppWrapperNonAuthComponent],
 })
-export class AppWrapperNonAuthModule { }
+export class AppWrapperNonAuthModule {}

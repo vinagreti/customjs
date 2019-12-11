@@ -5,12 +5,7 @@ import { GenericHttpModule } from './../generic-http.module';
 
 @NgModule({
   declarations: [],
-  imports: [
-    GenericHttpModule,
-    HttpClientTestingModule,
-  ],
-  providers: [
-    GenericHttp,
-  ]
+  imports: [GenericHttpModule, HttpClientTestingModule],
+  providers: [GenericHttp],
 })
-export class GenericHttpTestingModule { }
+export class GenericHttpTestingModule {}

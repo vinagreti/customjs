@@ -7,15 +7,7 @@ import { CustomSelectOptionModule } from './custom-select-option/custom-select-o
 
 @NgModule({
   declarations: [CustomSelectComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    CustomSingleSelectModule,
-    CustomSelectOptionModule,
-  ],
-  exports: [
-    CustomSelectComponent,
-    CustomSelectOptionModule,
-  ]
+  imports: [CommonModule, FormsModule, CustomSingleSelectModule, CustomSelectOptionModule],
+  exports: [CustomSelectComponent, CustomSelectOptionModule],
 })
-export class CustomSelectModule { }
+export class CustomSelectModule {}

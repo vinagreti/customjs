@@ -17,6 +17,6 @@ import { AppWrapperPrivateComponent } from './app-wrapper-private.component';
     MatMenuModule,
     AppWarpperContentModule,
   ],
-  exports: [AppWrapperPrivateComponent]
+  exports: [AppWrapperPrivateComponent],
 })
-export class AppWrapperPrivateModule { }
+export class AppWrapperPrivateModule {}

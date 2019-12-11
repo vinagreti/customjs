@@ -6,7 +6,7 @@ describe('AskService', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
       imports: [AskTestingModule],
-    })
+    }),
   );
 
   it('should be created', () => {

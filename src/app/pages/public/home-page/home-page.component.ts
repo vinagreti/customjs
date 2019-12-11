@@ -16,10 +16,7 @@ export class HomePageComponent {
 
   locales = I18nLocale;
 
-  constructor(
-    public i18n: I18nService<AppTranslationKeysMap>,
-    public sanitizer: DomSanitizer
-  ) {
+  constructor(public i18n: I18nService<AppTranslationKeysMap>, public sanitizer: DomSanitizer) {
     this.locale = this.i18n.locale;
   }
 

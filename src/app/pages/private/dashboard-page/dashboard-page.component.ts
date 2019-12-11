@@ -17,7 +17,7 @@ export class DashboardPageComponent implements OnInit {
   constructor(
     private askService: AskService,
     private alertService: AlertService,
-    private wsClient: WsService
+    private wsClient: WsService,
   ) {}
 
   ngOnInit() {

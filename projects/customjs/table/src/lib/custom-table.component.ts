@@ -27,7 +27,7 @@ export class CustomTableComponent {
   color$ = new BehaviorSubject<ThemePalette>(DEFAULT_COLOR);
 
   columnsNames$: Observable<string[]> = this.columns$.pipe(
-    map(columns => columns.map(column => column.name))
+    map(columns => columns.map(column => column.name)),
   );
 
   items$ = new ReplaySubject<any>();

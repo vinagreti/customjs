@@ -4,9 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
 
 @Component({
-  template: `<input customMaskCpf>`
+  template: `
+    <input customMaskCpf />
+  `,
 })
-class CustomMaskCpfDirectiveTestComponent { }
+class CustomMaskCpfDirectiveTestComponent {}
 
 describe('CustomMaskCpfDirective', () => {
   let component: CustomMaskCpfDirectiveTestComponent;
@@ -14,15 +16,9 @@ describe('CustomMaskCpfDirective', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        CustomMaskCpfDirective,
-        CustomMaskCpfDirectiveTestComponent,
-      ],
-      imports: [
-        FormsModule,
-      ]
-    })
-    .compileComponents();
+      declarations: [CustomMaskCpfDirective, CustomMaskCpfDirectiveTestComponent],
+      imports: [FormsModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

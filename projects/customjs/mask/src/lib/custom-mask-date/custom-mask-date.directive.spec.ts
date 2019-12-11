@@ -4,9 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
 
 @Component({
-  template: `<input customMaskDate>`
+  template: `
+    <input customMaskDate />
+  `,
 })
-class CustomMaskDateDirectiveTestComponent { }
+class CustomMaskDateDirectiveTestComponent {}
 
 describe('CustomMaskDateDirective', () => {
   let component: CustomMaskDateDirectiveTestComponent;
@@ -14,15 +16,9 @@ describe('CustomMaskDateDirective', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        CustomMaskDateDirective,
-        CustomMaskDateDirectiveTestComponent,
-      ],
-      imports: [
-        FormsModule,
-      ]
-    })
-    .compileComponents();
+      declarations: [CustomMaskDateDirective, CustomMaskDateDirectiveTestComponent],
+      imports: [FormsModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

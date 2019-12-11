@@ -9,11 +9,8 @@ describe('CustomListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        CustomListTestingModule,
-      ]
-    })
-    .compileComponents();
+      imports: [CustomListTestingModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

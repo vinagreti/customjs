@@ -1,18 +1,30 @@
 <mat-form-field class="custom-select">
-  <input matInput placeholder="State" aria-label="State" [(ngModel)]="searchTerm"
-  [matAutocomplete]="auto"
-  #searchInputElement="ngModel"
-  [disabled]="disabled"
-  [required]="required"
-  [disabled]="disabled"
-  [name]="name"
-  [placeholder]="placeholder"
-  (blur)="blur.emit($event)">
-  <mat-autocomplete #auto="matAutocomplete" [displayWith]="labelFn" (optionSelected)="onOptionSelected($event)">
+  <input
+    matInput
+    placeholder="State"
+    aria-label="State"
+    [(ngModel)]="searchTerm"
+    [matAutocomplete]="auto"
+    #searchInputElement="ngModel"
+    [disabled]="disabled"
+    [required]="required"
+    [disabled]="disabled"
+    [name]="name"
+    [placeholder]="placeholder"
+    (blur)="blur.emit($event)"
+  />
+  <mat-autocomplete
+    #auto="matAutocomplete"
+    [displayWith]="labelFn"
+    (optionSelected)="onOptionSelected($event)"
+  >
     <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
       <ng-container [ngSwitch]="!!optionTemplate">
         <ng-container *ngSwitchCase="true">
-          <ng-container [ngTemplateOutlet]="optionTemplate" [ngTemplateOutletContext]="{option: option}"></ng-container>
+          <ng-container
+            [ngTemplateOutlet]="optionTemplate"
+            [ngTemplateOutletContext]="{ option: option }"
+          ></ng-container>
         </ng-container>
         <ng-container *ngSwitchCase="false">
           {{ labelFn(option || {}) }}
@@ -22,4 +34,4 @@
   </mat-autocomplete>
 </mat-form-field>
 
-<br>
+<br />

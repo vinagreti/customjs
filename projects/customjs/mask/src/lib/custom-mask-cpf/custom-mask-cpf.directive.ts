@@ -1,13 +1,20 @@
-import { Directive, OnInit, ElementRef, Renderer2, Optional, HostListener, OnDestroy } from '@angular/core';
+import {
+  Directive,
+  OnInit,
+  ElementRef,
+  Renderer2,
+  Optional,
+  HostListener,
+  OnDestroy,
+} from '@angular/core';
 import { NgModel, Validators } from '@angular/forms';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 @Directive({
-  selector: '[customMaskCpf]'
+  selector: '[customMaskCpf]',
 })
 export class CustomMaskCpfDirective implements OnInit, OnDestroy {
-
   private valuechange$ = new BehaviorSubject<string>(undefined);
 
   private valueChangeSubscription: Subscription;
@@ -16,7 +23,7 @@ export class CustomMaskCpfDirective implements OnInit, OnDestroy {
     private el: ElementRef,
     private renderer: Renderer2,
     @Optional() private ngModel: NgModel,
-  ) { }
+  ) {}
 
   @HostListener('input', ['$event.target.value'])
   inputChanged(value: string) {
@@ -34,7 +41,7 @@ export class CustomMaskCpfDirective implements OnInit, OnDestroy {
   }
 
   private configureInput() {
-    this.renderer.setAttribute(this.el.nativeElement, 'pattern', '\d{11}');
+    this.renderer.setAttribute(this.el.nativeElement, 'pattern', 'd{11}');
     this.renderer.setAttribute(this.el.nativeElement, 'maxlength', '11');
     this.renderer.setAttribute(this.el.nativeElement, 'minlength', '11');
     this.renderer.setAttribute(this.el.nativeElement, 'type', 'tel');
@@ -63,11 +70,7 @@ export class CustomMaskCpfDirective implements OnInit, OnDestroy {
   }
 
   private subscribeToValueChange() {
-    this.valueChangeSubscription = this.valuechange$
-    .pipe(
-      debounceTime(100)
-    )
-    .subscribe(value => {
+    this.valueChangeSubscription = this.valuechange$.pipe(debounceTime(100)).subscribe(value => {
       this.maskInputText(value);
     });
   }
@@ -75,5 +78,4 @@ export class CustomMaskCpfDirective implements OnInit, OnDestroy {
   private unsubscribefromValueChange() {
     this.valueChangeSubscription.unsubscribe();
   }
-
 }

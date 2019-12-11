@@ -3,9 +3,7 @@
     <ul class="custom-breadcrumb {{ color }}">
       <ng-container *ngFor="let section of sections">
         <li>
-          <a [routerLink]="[section.path]" [class]="color">{{
-            section.label
-          }}</a>
+          <a [routerLink]="[section.path]" [class]="color">{{ section.label }}</a>
         </li>
       </ng-container>
       <li>

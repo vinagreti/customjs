@@ -1,4 +1,3 @@
-
 export interface AppEnvironment {
   name: string;
   debug?: boolean;

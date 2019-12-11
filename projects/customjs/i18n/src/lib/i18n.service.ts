@@ -1,9 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
-import {
-  I18nLocalesConfig,
-  I18N_LOCALES_CONFIG,
-} from './models/i18n-locales-config.interface';
+import { I18nLocalesConfig, I18N_LOCALES_CONFIG } from './models/i18n-locales-config.interface';
 import { I18nLocale } from './models/i18n-locales.enum';
 
 const I18N_DEEFAULT_STORAGE_KEY = 'customjsLocale';
@@ -24,9 +21,7 @@ export class I18nService<T> {
 
   private storageKey: string;
 
-  constructor(
-    @Inject(I18N_LOCALES_CONFIG) private i18nLocalesConfig: I18nLocalesConfig
-  ) {
+  constructor(@Inject(I18N_LOCALES_CONFIG) private i18nLocalesConfig: I18nLocalesConfig) {
     this.mapTransçationKeys();
   }
 
@@ -58,8 +53,7 @@ export class I18nService<T> {
   }
 
   private setStorageKey() {
-    this.storageKey =
-      this.i18nLocalesConfig.storagePath || I18N_DEEFAULT_STORAGE_KEY;
+    this.storageKey = this.i18nLocalesConfig.storagePath || I18N_DEEFAULT_STORAGE_KEY;
   }
 
   private detectetEnabledLocales() {
@@ -86,7 +80,7 @@ export class I18nService<T> {
           this.setTranslations(content.default);
           resolve();
         },
-        err => reject
+        err => reject,
       );
     });
   }

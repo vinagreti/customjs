@@ -7,10 +7,8 @@ describe('StoreService', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
       imports: [NgxsModule.forRoot()],
-      providers: [
-        { provide: NGXS_PLUGINS, useValue: ClearStoreReaducer, multi: true },
-      ],
-    })
+      providers: [{ provide: NGXS_PLUGINS, useValue: ClearStoreReaducer, multi: true }],
+    }),
   );
 
   it('should be created', () => {

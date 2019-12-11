@@ -12,21 +12,23 @@ import { APP_GLOBAL_STATES } from './ngxs.global.states';
   imports: [
     CommonModule,
     NgxsModule.forRoot(APP_GLOBAL_STATES, {
-      developmentMode: !environment.production
+      developmentMode: !environment.production,
     }),
     NgxsStoragePluginModule.forRoot(),
-    NgxsReduxDevtoolsPluginModule.forRoot({ name: 'AppStore', disabled: !environment.debug || environment.production }),
-    NgxsLoggerPluginModule.forRoot({ disabled: !environment.debug || environment.production || true }),
+    NgxsReduxDevtoolsPluginModule.forRoot({
+      name: 'AppStore',
+      disabled: !environment.debug || environment.production,
+    }),
+    NgxsLoggerPluginModule.forRoot({
+      disabled: !environment.debug || environment.production || true,
+    }),
   ],
-  providers: [
-    { provide: NGXS_PLUGINS, useValue: ClearStoreReaducer, multi: true }
-  ]
+  providers: [{ provide: NGXS_PLUGINS, useValue: ClearStoreReaducer, multi: true }],
 })
 export class AppReduxModule {
   constructor(@Optional() @SkipSelf() parentModule: AppReduxModule) {
     if (parentModule) {
-      throw new Error(
-        'AppReduxModule is already loaded. Import it in the CoreModule only');
+      throw new Error('AppReduxModule is already loaded. Import it in the CoreModule only');
     }
   }
 }

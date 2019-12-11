@@ -1,12 +1,5 @@
-<app-navbar
-  [title]="i18n.trans.components.appWrapperPrivate.title"
-  routerPath="/dashboard"
->
-  <button
-    mat-flat-button
-    [matMenuTriggerFor]="appWarpperPrivateMenu"
-    class="menu-icon"
-  >
+<app-navbar [title]="i18n.trans.components.appWrapperPrivate.title" routerPath="/dashboard">
+  <button mat-flat-button [matMenuTriggerFor]="appWarpperPrivateMenu" class="menu-icon">
     &#9776;
   </button>
   <mat-menu #appWarpperPrivateMenu="matMenu">

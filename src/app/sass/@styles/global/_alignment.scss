@@ -1,8 +1,18 @@
 /* TEXT ALIGN */
-.text-left { text-align: left; }
-.text-center { text-align: center; }
-.text-right { text-align: right; }
-.text-justify { text-align: justify; }
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.text-justify {
+  text-align: justify;
+}
 
 /* FLEX LAYOUT */
-.fill-remaining-space { flex: 1 1 auto; }
+.fill-remaining-space {
+  flex: 1 1 auto;
+}

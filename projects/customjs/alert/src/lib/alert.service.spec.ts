@@ -6,7 +6,7 @@ describe('AlertService', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
       imports: [AlertTestingModule],
-    })
+    }),
   );
 
   it('should be created', () => {

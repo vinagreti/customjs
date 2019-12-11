@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     public i18n: I18nService<AppTranslationKeysMap>,
-    public versionService: VersionService
+    public versionService: VersionService,
   ) {
     this.i18nLocales = this.i18n.enabledLocales;
   }

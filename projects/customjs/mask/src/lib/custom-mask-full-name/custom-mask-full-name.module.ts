@@ -5,10 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [CustomMaskFullNameDirective],
-  imports: [
-    CommonModule,
-    FormsModule,
-  ],
-  exports: [CustomMaskFullNameDirective]
+  imports: [CommonModule, FormsModule],
+  exports: [CustomMaskFullNameDirective],
 })
-export class CustomMaskFullNameModule { }
+export class CustomMaskFullNameModule {}

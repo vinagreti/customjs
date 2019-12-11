@@ -4,9 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
 
 @Component({
-  template: `<input customMaskEmail>`
+  template: `
+    <input customMaskEmail />
+  `,
 })
-class CustomMaskEmailDirectiveTestComponent { }
+class CustomMaskEmailDirectiveTestComponent {}
 
 describe('CustomMaskEmailDirective', () => {
   let component: CustomMaskEmailDirectiveTestComponent;
@@ -14,15 +16,9 @@ describe('CustomMaskEmailDirective', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        CustomMaskEmailDirective,
-        CustomMaskEmailDirectiveTestComponent,
-      ],
-      imports: [
-        FormsModule,
-      ]
-    })
-    .compileComponents();
+      declarations: [CustomMaskEmailDirective, CustomMaskEmailDirectiveTestComponent],
+      imports: [FormsModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

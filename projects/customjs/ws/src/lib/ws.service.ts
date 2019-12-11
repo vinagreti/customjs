@@ -62,8 +62,7 @@ export class WsService {
   private configureConnectionEvents(url, connection: WsOpenConnection<any>) {
     connection.channel.onclose = () => this.handleOnClose(url, connection);
     connection.channel.onerror = error => this.handleError(error, connection);
-    connection.channel.onmessage = message =>
-      this.handleMessage(message, connection);
+    connection.channel.onmessage = message => this.handleMessage(message, connection);
   }
 
   private handleMessage(message, connection: WsOpenConnection<any>) {

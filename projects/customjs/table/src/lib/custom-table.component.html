@@ -5,13 +5,7 @@
         <th
           mat-header-cell
           *matHeaderCellDef
-          title="{{
-            column.description
-              ? column.description
-              : column.title
-              ? column.title
-              : ''
-          }}"
+          title="{{ column.description ? column.description : column.title ? column.title : '' }}"
           (click)="column.prop ? onSort(column.prop) : false"
           [ngClass]="column.prop ? 'click' : ''"
         >

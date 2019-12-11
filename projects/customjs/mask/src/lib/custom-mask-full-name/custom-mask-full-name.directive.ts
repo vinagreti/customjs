@@ -2,15 +2,14 @@ import { Directive, OnInit, ElementRef, Renderer2, Optional } from '@angular/cor
 import { NgModel, Validators } from '@angular/forms';
 
 @Directive({
-  selector: '[customMaskFullName]'
+  selector: '[customMaskFullName]',
 })
 export class CustomMaskFullNameDirective implements OnInit {
-
   constructor(
     private el: ElementRef,
     private renderer: Renderer2,
     @Optional() private ngModel: NgModel,
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.configureInput();
@@ -33,5 +32,4 @@ export class CustomMaskFullNameDirective implements OnInit {
       ]);
     }
   }
-
 }

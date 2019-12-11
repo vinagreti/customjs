@@ -22,8 +22,7 @@ export const es: AppTranslationKeysMap = {
   },
   pages: {
     home: {
-      title: today =>
-        `Spain <br> <small style="color: #FFC400;">${today}</small>`,
+      title: today => `Spain <br> <small style="color: #FFC400;">${today}</small>`,
       subtitle: 'Aprovecha tu estadia.',
     },
     login: {

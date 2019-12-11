@@ -5,10 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [CustomMaskEmailDirective],
-  imports: [
-    CommonModule,
-    FormsModule,
-  ],
-  exports: [CustomMaskEmailDirective]
+  imports: [CommonModule, FormsModule],
+  exports: [CustomMaskEmailDirective],
 })
-export class CustomMaskEmailModule { }
+export class CustomMaskEmailModule {}

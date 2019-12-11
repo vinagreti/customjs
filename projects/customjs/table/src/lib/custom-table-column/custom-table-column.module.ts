@@ -4,9 +4,7 @@ import { CustomTableColumnComponent } from './custom-table-column.component';
 
 @NgModule({
   declarations: [CustomTableColumnComponent],
-  imports: [
-    CommonModule
-  ],
-  exports: [CustomTableColumnComponent]
+  imports: [CommonModule],
+  exports: [CustomTableColumnComponent],
 })
-export class CustomTableColumnModule { }
+export class CustomTableColumnModule {}

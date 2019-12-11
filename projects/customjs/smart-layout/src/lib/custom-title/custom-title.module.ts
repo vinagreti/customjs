@@ -4,9 +4,7 @@ import { CustomTitleComponent } from './custom-title.component';
 
 @NgModule({
   declarations: [CustomTitleComponent],
-  imports: [
-    CommonModule
-  ],
-  exports: [CustomTitleComponent]
+  imports: [CommonModule],
+  exports: [CustomTitleComponent],
 })
-export class CustomTitleModule { }
+export class CustomTitleModule {}

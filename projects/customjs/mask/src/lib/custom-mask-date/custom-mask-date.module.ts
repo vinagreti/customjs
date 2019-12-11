@@ -5,10 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [CustomMaskDateDirective],
-  imports: [
-    CommonModule,
-    FormsModule,
-  ],
-  exports: [CustomMaskDateDirective]
+  imports: [CommonModule, FormsModule],
+  exports: [CustomMaskDateDirective],
 })
-export class CustomMaskDateModule { }
+export class CustomMaskDateModule {}

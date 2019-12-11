@@ -171,15 +171,13 @@ export class CustomListComponent implements OnDestroy {
   private watchFilterevents() {
     this.unwatchFilterEvents();
     if (this.innerFilter) {
-      this.tableFilterSubscription = this.innerFilter.filter.subscribe(
-        filter => {
-          if (this.paginatorComponent.page !== 1) {
-            this.paginatorComponent.page = 1;
-          } else {
-            this.refreshItems();
-          }
+      this.tableFilterSubscription = this.innerFilter.filter.subscribe(filter => {
+        if (this.paginatorComponent.page !== 1) {
+          this.paginatorComponent.page = 1;
+        } else {
+          this.refreshItems();
         }
-      );
+      });
       const closeFilterSubs = this.innerFilter.closefilter.subscribe(_ => {
         this.hideFilter$.next(true);
       });
@@ -228,11 +226,9 @@ export class CustomListComponent implements OnDestroy {
 
   private subscribeToTableItemSelectedEvent() {
     if (this.table) {
-      this.tableItemSelectedSubscription = this.table.itemSelected.subscribe(
-        item => {
-          this.itemSelected.emit(item);
-        }
-      );
+      this.tableItemSelectedSubscription = this.table.itemSelected.subscribe(item => {
+        this.itemSelected.emit(item);
+      });
     }
   }
 
@@ -275,12 +271,9 @@ export class CustomListComponent implements OnDestroy {
   }
 
   private setConfigBasedOnChangeResponse(result: CustomListItems) {
-    this.setItemsBasedOnItemsType(
-      result,
-      (response: CustomListChangeResponse) => {
-        this.setCurentStateItems(response.results, response.count);
-      }
-    );
+    this.setItemsBasedOnItemsType(result, (response: CustomListChangeResponse) => {
+      this.setCurentStateItems(response.results, response.count);
+    });
   }
 
   private setItemsBasedOnItemsType(items: CustomListItems, cbk) {

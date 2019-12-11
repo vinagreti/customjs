@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { I18nService } from '@customjs/i18n';
 import { BehaviorSubject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
@@ -36,18 +30,18 @@ export class CustomPaginatorComponent {
 
   page$ = this.pageStream$.pipe(
     distinctUntilChanged(),
-    tap(() => this.refreshState())
+    tap(() => this.refreshState()),
   );
 
   @Output() paginate = this.paginate$.pipe(
     distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b)),
-    debounceTime(0) // waits for all bindings to finish // TODO: resolve this weird behaviour
+    debounceTime(0), // waits for all bindings to finish // TODO: resolve this weird behaviour
   );
 
   @Output() visibleItems = this.visibleItems$.pipe(
     distinctUntilChanged((a = [], b = []) => {
       return JSON.stringify(a) === JSON.stringify(b);
-    })
+    }),
   );
 
   @Input()
@@ -83,8 +77,7 @@ export class CustomPaginatorComponent {
     return this.innerPageSize;
   }
   set pageSize(v: number) {
-    this.innerPageSize =
-      v === 0 ? MAX_PAGE_SIZE : v > 0 ? v : DEFAULT_PAGE_SIZE;
+    this.innerPageSize = v === 0 ? MAX_PAGE_SIZE : v > 0 ? v : DEFAULT_PAGE_SIZE;
     this.refreshState();
   }
 
@@ -128,9 +121,7 @@ export class CustomPaginatorComponent {
     const count = this.count || (this.items || []).length;
     const pageSize = this.pageSize || count;
     const totalPages = this.countPages(count, pageSize);
-    const visible = this.count
-      ? this.items
-      : this.selectVisible(this.items, this.page, pageSize);
+    const visible = this.count ? this.items : this.selectVisible(this.items, this.page, pageSize);
     this.totalPages$.next(totalPages);
     this.visibleItems$.emit(visible);
     this.paginate$.emit({

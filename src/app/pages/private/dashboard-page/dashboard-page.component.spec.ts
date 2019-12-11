@@ -29,9 +29,7 @@ describe('DashboardPageComponent', () => {
 
   it('should ask', () => {
     // given
-    const spy = spyOn((component as any).askService, 'ask').and.returnValue(
-      of('').pipe(take(1))
-    );
+    const spy = spyOn((component as any).askService, 'ask').and.returnValue(of('').pipe(take(1)));
     // when
     component.onAsk();
     // then
@@ -40,10 +38,7 @@ describe('DashboardPageComponent', () => {
 
   it('should sendMessage', () => {
     // given
-    const spy = spyOn(
-      (component as any).wsConnection.channel,
-      'send'
-    ).and.returnValue('');
+    const spy = spyOn((component as any).wsConnection.channel, 'send').and.returnValue('');
     // when
     component.sendMessage();
     // then

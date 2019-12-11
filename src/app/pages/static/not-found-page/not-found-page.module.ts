@@ -6,10 +6,6 @@ import { NotFoundPageComponent } from './not-found-page.component';
 
 @NgModule({
   declarations: [NotFoundPageComponent],
-  imports: [
-    CommonModule,
-    NotFoundPageRoutingModule,
-    MatButtonModule,
-  ]
+  imports: [CommonModule, NotFoundPageRoutingModule, MatButtonModule],
 })
-export class NotFoundPageModule { }
+export class NotFoundPageModule {}

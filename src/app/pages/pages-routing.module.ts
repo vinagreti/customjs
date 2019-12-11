@@ -15,21 +15,26 @@ const routes: Routes = [
   {
     path: '',
     component: AppWrapperPublicComponent,
-    loadChildren: () => import('./public/public-pages.module').then(mod => mod.PublicPagesModule)
-  }, {
+    loadChildren: () => import('./public/public-pages.module').then(mod => mod.PublicPagesModule),
+  },
+  {
     path: '',
     component: AppWrapperPrivateComponent,
     canActivate: [AuthGuard],
-    loadChildren: () => import('./private/private-pages.module').then(mod => mod.PrivatePagesModule)
-  }, {
+    loadChildren: () =>
+      import('./private/private-pages.module').then(mod => mod.PrivatePagesModule),
+  },
+  {
     path: '',
     component: AppWrapperNonAuthComponent,
     canActivate: [NonAuthGuard],
-    loadChildren: () => import('./non-auth/non-auth-pages.module').then(mod => mod.NonAuthPagesModule)
+    loadChildren: () =>
+      import('./non-auth/non-auth-pages.module').then(mod => mod.NonAuthPagesModule),
   },
   {
     path: '**',
-    loadChildren: () => import('./static/not-found-page/not-found-page.module').then(mod => mod.NotFoundPageModule)
+    loadChildren: () =>
+      import('./static/not-found-page/not-found-page.module').then(mod => mod.NotFoundPageModule),
   },
 ];
 
@@ -40,7 +45,8 @@ const routes: Routes = [
     AppWrapperNonAuthModule,
     AuthGuardModule,
     NonAuthGuardModule,
-    RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    RouterModule.forChild(routes),
+  ],
+  exports: [RouterModule],
 })
-export class PagesRoutingModule { }
+export class PagesRoutingModule {}

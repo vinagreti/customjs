@@ -34,15 +34,13 @@ export class CustomSelectComponent implements ControlValueAccessor, OnInit {
 
   @Input()
   get value() {
-    return this.innerValue && this.valueAttr
-      ? this.innerValue[this.valueAttr]
-      : this.innerValue;
+    return this.innerValue && this.valueAttr ? this.innerValue[this.valueAttr] : this.innerValue;
   }
 
   set value(v: any) {
     if (v !== this.innerValue) {
       const initialObj = (this.options || []).find(
-        option => (this.valueAttr ? option[this.valueAttr] : option) === v
+        option => (this.valueAttr ? option[this.valueAttr] : option) === v,
       );
 
       const initialValue = initialObj || v;

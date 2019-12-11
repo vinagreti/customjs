@@ -1,7 +1,5 @@
 <mat-toolbar color="accent">
-  <ng-container
-    *ngIf="versionService.data$ | async as versionData; else titleTemplate"
-  >
+  <ng-container *ngIf="versionService.data$ | async as versionData; else titleTemplate">
     <ng-container
       *ngIf="
         versionData.currentVersion !== versionData.latestVersion;
@@ -17,11 +15,7 @@
     <ng-container *ngIf="i18nLocales.length > 1">
       <mat-menu #localeMenu="matMenu">
         <ng-container *ngFor="let i18nLocale of i18nLocales">
-          <button
-            mat-menu-item
-            *ngIf="locale !== i18nLocale"
-            (click)="setLanguage(i18nLocale)"
-          >
+          <button mat-menu-item *ngIf="locale !== i18nLocale" (click)="setLanguage(i18nLocale)">
             {{ i18nLocale }}
           </button>
         </ng-container>

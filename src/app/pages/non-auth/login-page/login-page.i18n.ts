@@ -1,3 +1,3 @@
 export default {
-  login: 'login button and title'
+  login: 'login button and title',
 };

@@ -6,20 +6,16 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 const MEMORY_KEY = 'token';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   logged$: Observable<string>;
 
   private innerLoggedState$: Subject<string>;
 
   private isServer: boolean;
 
-  constructor(
-    private router: Router,
-    @Inject(PLATFORM_ID) private platformId,
-  ) {
+  constructor(private router: Router, @Inject(PLATFORM_ID) private platformId) {
     this.detectPlatform();
     this.createLoggedStatusStreams();
   }
@@ -60,5 +56,4 @@ export class AuthService {
       localStorage.setItem(MEMORY_KEY, token);
     }
   }
-
 }

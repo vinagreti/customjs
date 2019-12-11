@@ -34,7 +34,7 @@ export class CustomAddressInputComponent {
   constructor(
     private service: CustomAddressInputService,
     private cd: ChangeDetectorRef,
-    public i18n: I18nService<CustomAddressInputTranslationKeysMap>
+    public i18n: I18nService<CustomAddressInputTranslationKeysMap>,
   ) {}
 
   loadpostalCodeData(postalCode: string) {

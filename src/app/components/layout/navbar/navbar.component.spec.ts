@@ -28,9 +28,7 @@ describe('NavbarComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     const componentGeneric = component as any;
     // when
-    const spy = spyOn(componentGeneric.i18nService, 'setLocale').and.callFake(
-      () => {}
-    );
+    const spy = spyOn(componentGeneric.i18nService, 'setLocale').and.callFake(() => {});
     componentGeneric.setLanguage(I18nLocale.pt);
     // then
     expect(spy).toHaveBeenCalled();

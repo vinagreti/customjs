@@ -4,16 +4,12 @@ import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-  ]
+  imports: [CommonModule, HttpClientModule],
 })
 export class GenericHttpModule {
   constructor(@Optional() @SkipSelf() parentModule: GenericHttpModule) {
     if (parentModule) {
-      throw new Error(
-        'GenericHttpModule is already loaded. Import it in the CoreModule only');
+      throw new Error('GenericHttpModule is already loaded. Import it in the CoreModule only');
     }
   }
 }

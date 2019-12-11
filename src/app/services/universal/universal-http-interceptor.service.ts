@@ -5,10 +5,7 @@ import * as express from 'express';
 
 @Injectable()
 export class UniversalHttpInterceptorService implements HttpInterceptor {
-
-  constructor(
-    @Optional() @Inject(REQUEST) protected innerRequest: express.Request
-  ) { }
+  constructor(@Optional() @Inject(REQUEST) protected innerRequest: express.Request) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
     const isrelativePath = request.url.startsWith('/');
@@ -22,7 +19,7 @@ export class UniversalHttpInterceptorService implements HttpInterceptor {
 
   private changeRequestUrl(request) {
     return request.clone({
-      url: this.mountI18nFolderPath(request)
+      url: this.mountI18nFolderPath(request),
     });
   }
 
