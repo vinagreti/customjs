@@ -11,122 +11,45 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2018", "dom"],
     "paths": {
-      "@env/*": [
-        "src/environments/*"
-      ],
-      "@components/*": [
-        "src/app/components/*"
-      ],
-      "@core/*": [
-        "src/app/core/*"
-      ],
-      "@i18n/*": [
-        "src/app/i18n/*"
-      ],
-      "@models/*": [
-        "src/app/models/*"
-      ],
-      "@services/*": [
-        "src/app/services/*"
-      ],
-      "@testing/*": [
-        "src/app/testing/*"
-      ],
-      "@customjs/*": [
-        "dist/customjs/*"
-      ],
-      "@customjs/ask": [
-        "dist/customjs/ask"
-      ],
-      "@customjs/ask/*": [
-        "dist/customjs/ask/*"
-      ],
-      "@customjs/ws": [
-        "dist/customjs/ws"
-      ],
-      "@customjs/ws/*": [
-        "dist/customjs/ws/*"
-      ],
-      "@customjs/version": [
-        "dist/customjs/version"
-      ],
-      "@customjs/version/*": [
-        "dist/customjs/version/*"
-      ],
-      "@customjs/generic-http": [
-        "dist/customjs/generic-http"
-      ],
-      "@customjs/generic-http/*": [
-        "dist/customjs/generic-http/*"
-      ],
-      "@customjs/alert": [
-        "dist/customjs/alert"
-      ],
-      "@customjs/alert/*": [
-        "dist/customjs/alert/*"
-      ],
-      "@customjs/breadcrumb": [
-        "dist/customjs/breadcrumb"
-      ],
-      "@customjs/breadcrumb/*": [
-        "dist/customjs/breadcrumb/*"
-      ],
-      "@customjs/list": [
-        "dist/customjs/list"
-      ],
-      "@customjs/list/*": [
-        "dist/customjs/list/*"
-      ],
-      "@customjs/table": [
-        "dist/customjs/table"
-      ],
-      "@customjs/table/*": [
-        "dist/customjs/table/*"
-      ],
-      "@customjs/paginator": [
-        "dist/customjs/paginator"
-      ],
-      "@customjs/paginator/*": [
-        "dist/customjs/paginator/*"
-      ],
-      "@customjs/mask": [
-        "dist/customjs/mask"
-      ],
-      "@customjs/mask/*": [
-        "dist/customjs/mask/*"
-      ],
-      "@customjs/smart-layout": [
-        "dist/customjs/smart-layout"
-      ],
-      "@customjs/smart-layout/*": [
-        "dist/customjs/smart-layout/*"
-      ],
-      "@customjs/select": [
-        "dist/customjs/select"
-      ],
-      "@customjs/select/*": [
-        "dist/customjs/select/*"
-      ],
-      "@customjs/card": [
-        "dist/customjs/card"
-      ],
-      "@customjs/card/*": [
-        "dist/customjs/card/*"
-      ],
-      "@customjs/address-input": [
-        "dist/customjs/address-input"
-      ],
-      "@customjs/address-input/*": [
-        "dist/customjs/address-input/*"
-      ]
+      "@env/*": ["src/environments/*"],
+      "@components/*": ["src/app/components/*"],
+      "@core/*": ["src/app/core/*"],
+      "@i18n/*": ["src/app/i18n/*"],
+      "@models/*": ["src/app/models/*"],
+      "@services/*": ["src/app/services/*"],
+      "@testing/*": ["src/app/testing/*"],
+      "@customjs/*": ["dist/customjs/*"],
+      "@customjs/ask": ["dist/customjs/ask"],
+      "@customjs/ask/*": ["dist/customjs/ask/*"],
+      "@customjs/ws": ["dist/customjs/ws"],
+      "@customjs/ws/*": ["dist/customjs/ws/*"],
+      "@customjs/version": ["dist/customjs/version"],
+      "@customjs/version/*": ["dist/customjs/version/*"],
+      "@customjs/generic-http": ["dist/customjs/generic-http"],
+      "@customjs/generic-http/*": ["dist/customjs/generic-http/*"],
+      "@customjs/alert": ["dist/customjs/alert"],
+      "@customjs/alert/*": ["dist/customjs/alert/*"],
+      "@customjs/breadcrumb": ["dist/customjs/breadcrumb"],
+      "@customjs/breadcrumb/*": ["dist/customjs/breadcrumb/*"],
+      "@customjs/list": ["dist/customjs/list"],
+      "@customjs/list/*": ["dist/customjs/list/*"],
+      "@customjs/table": ["dist/customjs/table"],
+      "@customjs/table/*": ["dist/customjs/table/*"],
+      "@customjs/paginator": ["dist/customjs/paginator"],
+      "@customjs/paginator/*": ["dist/customjs/paginator/*"],
+      "@customjs/mask": ["dist/customjs/mask"],
+      "@customjs/mask/*": ["dist/customjs/mask/*"],
+      "@customjs/smart-layout": ["dist/customjs/smart-layout"],
+      "@customjs/smart-layout/*": ["dist/customjs/smart-layout/*"],
+      "@customjs/select": ["dist/customjs/select"],
+      "@customjs/select/*": ["dist/customjs/select/*"],
+      "@customjs/card": ["dist/customjs/card"],
+      "@customjs/card/*": ["dist/customjs/card/*"],
+      "@customjs/address-input": ["dist/customjs/address-input"],
+      "@customjs/address-input/*": ["dist/customjs/address-input/*"]
     }
   },
   "angularCompilerOptions": {
