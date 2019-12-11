@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, ContentChild, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'custom-actions',
@@ -6,11 +6,12 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./custom-actions.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CustomActionsComponent implements OnInit {
+export class CustomActionsComponent {
 
-  constructor() { }
+  @Input() title: string;
 
-  ngOnInit() {
-  }
+  @Input() description: string;
+
+  @ContentChild(TemplateRef, { static: true }) template: TemplateRef<any>;
 
 }

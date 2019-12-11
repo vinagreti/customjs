@@ -15,7 +15,7 @@ export interface VersionServiceData {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class VersionService {
   data$ = new ReplaySubject<VersionServiceData>();
@@ -131,7 +131,7 @@ export class VersionService {
   private initVersionStates(version: string) {
     const newVersionData: VersionServiceData = {
       currentVersion: version,
-      latestVersion: version,
+      latestVersion: version
     };
     this.data$.next(newVersionData);
   }
@@ -150,7 +150,7 @@ export class VersionService {
         title: this.i18n.trans.thirdParty.customjs.version.title,
         question: this.i18n.trans.thirdParty.customjs.version.question,
         confirm: this.i18n.trans.thirdParty.customjs.version.confirm,
-        cancel: this.i18n.trans.thirdParty.customjs.version.cancel,
+        cancel: this.i18n.trans.thirdParty.customjs.version.cancel
       })
       .subscribe(confirmed => {
         if (confirmed) {
