@@ -8,18 +8,18 @@
   $app-color-warn: mat-color($warn);
 
   .custom-card {
-    border-color: $app-color-primary;
+    border-color: $app-color-primary !important;
 
     &[color='primary'] {
-      border-color: $app-color-primary;
+      border-color: $app-color-primary !important;
     }
 
     &[color='accent'] {
-      border-color: $app-color-accent;
+      border-color: $app-color-accent !important;
     }
 
     &[color='warn'] {
-      border-color: $app-color-warn;
+      border-color: $app-color-warn !important;
     }
   }
 }
