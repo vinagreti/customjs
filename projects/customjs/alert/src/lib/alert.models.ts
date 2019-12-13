@@ -1,11 +1,11 @@
+import { ThemePalette } from '@angular/material';
+
 type Seconds = number;
 
 export const ALERT_CLASS_PREFIX = 'customjs-alert-';
 
-export type AlertColor = `primary` | `accent` | `warn`;
-
 export interface AlertConfig {
-  color: AlertColor;
+  color: ThemePalette;
   message: string;
   action?: string;
   duration?: Seconds;

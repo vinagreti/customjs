@@ -1,5 +1,6 @@
 @import '~@angular/material/theming';
 @import './../../../../../../dist/customjs/alert/sass/theming';
+@import './../../../../../../dist/customjs/card/sass/theming';
 @import '@styles/colors';
 
 $app-accent-pallet: (
@@ -48,3 +49,5 @@ $customjs-theme: mat-light-theme($customjs-primary, $customjs-accent, $customjs-
 @include angular-material-theme($customjs-theme);
 
 @include customj-alert-theming($customjs-theme);
+
+@include custom-card-theming($customjs-theme);

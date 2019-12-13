@@ -1,0 +1,25 @@
+@mixin custom-card-theming($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  $app-color-primary: mat-color($primary);
+  $app-color-accent: mat-color($accent);
+  $app-color-warn: mat-color($warn);
+
+  .custom-card {
+    border-color: $app-color-primary;
+
+    &[color='primary'] {
+      border-color: $app-color-primary;
+    }
+
+    &[color='accent'] {
+      border-color: $app-color-accent;
+    }
+
+    &[color='warn'] {
+      border-color: $app-color-warn;
+    }
+  }
+}
