@@ -34,28 +34,32 @@ export class CustomSelectComponent implements ControlValueAccessor, OnInit {
 
   @Input()
   get value() {
-    return this.innerValue && this.valueAttr ? this.innerValue[this.valueAttr] : this.innerValue;
+    return this.innerValue;
   }
 
   set value(v: any) {
     if (v !== this.innerValue) {
-      const initialObj = (this.options || []).find(
-        option => (this.valueAttr ? option[this.valueAttr] : option) === v,
-      );
-
-      const initialValue = initialObj || v;
-
-      this.innerValue = initialValue;
-
+      this.innerValue = v;
       this.onChangeCallback(this.value);
-
       this.optionSelected.emit();
     }
   }
 
-  @Input() valueAttr: string;
+  @Input()
+  set options(v: any[]) {
+    if (Array.isArray(v)) {
+      this.innerOptions = v;
+    } else {
+      this.innerOptions = [];
+    }
+    this.setOptionBasedOnValue();
+  }
 
-  @Input() options: any[] = [];
+  get options() {
+    return this.innerOptions;
+  }
+
+  @Input() valueAttr: string;
 
   @Input() labelFn = CustomOptionLabelFunction;
 
@@ -79,6 +83,10 @@ export class CustomSelectComponent implements ControlValueAccessor, OnInit {
 
   private innerValue: any;
 
+  private innerOption: any;
+
+  private innerOptions: any[] = [];
+
   private onTouchedCallback: () => void = () => {};
 
   private onChangeCallback: (_: any) => void = () => {};
@@ -101,11 +109,31 @@ export class CustomSelectComponent implements ControlValueAccessor, OnInit {
 
   writeValue(v: any) {
     if (`${v}` !== `${this.value}`) {
-      if (this.valueAttr) {
-        this.value = v;
-      } else {
-        this.value = v;
-      }
+      this.value = v;
     }
+    this.setOptionBasedOnValue();
+  }
+
+  set option(v: any[]) {
+    if (Array.isArray(v)) {
+      this.innerOption = v;
+    } else {
+      this.innerOption = undefined;
+    }
+  }
+
+  get option() {
+    return this.innerOption;
+  }
+
+  private setOptionBasedOnValue() {
+    this.option = this.getOptionBasedOnValue();
+  }
+
+  private getOptionBasedOnValue() {
+    return this.options.find(option => {
+      console.log('aqui', option, this.value, this.valueAttr);
+      return (this.valueAttr ? option[this.valueAttr] : option) === this.value;
+    });
   }
 }

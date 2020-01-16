@@ -1,5 +1,7 @@
+<p>{{ option | async }}</p>
+
 <custom-single-select
-  [(ngModel)]="value"
+  [(ngModel)]="option"
   [optionTemplate]="optionTemplate"
   [options]="options"
   [labelFn]="labelFn"

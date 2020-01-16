@@ -41,8 +41,11 @@ export class CustomSingleSelectComponent implements ControlValueAccessor, AfterV
   get options() {
     return this.innerOptions;
   }
-  set options(v: any) {
+  set options(v: any[]) {
     if (v !== this.innerOptions) {
+      if (!Array.isArray(v)) {
+        v = [];
+      }
       this.innerOptions = v;
       this.searchInputElement.control.setValue(this.searchTerm);
     }

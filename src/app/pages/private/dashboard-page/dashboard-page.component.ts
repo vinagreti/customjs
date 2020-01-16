@@ -14,6 +14,10 @@ const WS_HOST = 'wss://echo.websocket.org';
 export class DashboardPageComponent implements OnInit {
   wsConnection: WsOpenConnection<any>;
 
+  options = ['A', 'B'];
+
+  data = 'A';
+
   constructor(
     private askService: AskService,
     private alertService: AlertService,
