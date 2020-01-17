@@ -9,19 +9,17 @@
   $accent-color: mat-color($accent);
   $warn-color: mat-color($warn);
 
-  $primary-contrast: mat-contrast($primary, default);
-  $accent-contrast: mat-contrast($accent, default);
-  $warn-contrast: mat-contrast($warn, default);
+  .custom-note {
+    &.custom-note-primary {
+      border-color: $primary-color !important;
+    }
 
-  .customjs-note-primary {
-    border-color: $primary-contrast;
-  }
+    &.custom-note-accent {
+      border-color: $accent-color !important;
+    }
 
-  .customjs-note-accent {
-    border-color: $accent-contrast;
-  }
-
-  .customjs-note-warn {
-    border-color: $warn-contrast;
+    &.custom-note-warn {
+      border-color: $warn-color !important;
+    }
   }
 }
