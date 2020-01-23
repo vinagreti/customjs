@@ -1,4 +1,4 @@
-import { Directive, OnInit, ElementRef, Renderer2, Optional } from '@angular/core';
+import { Directive, ElementRef, OnInit, Optional, Renderer2 } from '@angular/core';
 import { NgModel, Validators } from '@angular/forms';
 
 @Directive({
@@ -20,7 +20,7 @@ export class CustomMaskEmailDirective implements OnInit {
     this.renderer.setAttribute(
       this.el.nativeElement,
       'pattern',
-      '^(([^<>()[]\\.,;:s@"]+(.[^<>()[]\\.,;:s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$',
+      '[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$',
     );
     this.renderer.setAttribute(this.el.nativeElement, 'minlength', '5');
     this.renderer.setAttribute(this.el.nativeElement, 'type', 'email');
@@ -28,12 +28,7 @@ export class CustomMaskEmailDirective implements OnInit {
 
   private configureNgModel() {
     if (this.ngModel) {
-      this.ngModel.control.setValidators([
-        Validators.minLength(5),
-        Validators.pattern(
-          /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-        ),
-      ]);
+      this.ngModel.control.setValidators([Validators.minLength(5), Validators.email]);
     }
   }
 }

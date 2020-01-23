@@ -132,7 +132,6 @@ export class CustomSelectComponent implements ControlValueAccessor, OnInit {
 
   private getOptionBasedOnValue() {
     return this.options.find(option => {
-      console.log('aqui', option, this.value, this.valueAttr);
       return (this.valueAttr ? option[this.valueAttr] : option) === this.value;
     });
   }

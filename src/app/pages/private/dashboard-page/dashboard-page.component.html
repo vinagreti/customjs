@@ -1,4 +1,12 @@
-<p>dashboard-page works!</p>
+<h1>CustomJs</h1>
+
+<div><small>Basic Reusable custom components to use in Angular 2+ and Js apps</small></div>
+
+<ul>
+  <li><a routerLink="/custom-list">List</a></li>
+</ul>
+
+<hr />
 
 <button (click)="onAsk()">ask</button>
 
@@ -19,4 +27,22 @@
     placeholder="teste"
     name="teste"
   ></custom-select>
+</p>
+
+<p>
+  <mat-form-field>
+    <input
+      customMaskEmail
+      #emailInput="ngModel"
+      matInput
+      type="email"
+      placeholder="label"
+      value="value"
+      required="true"
+      [(ngModel)]="testeEmail"
+    />
+    <mat-error *ngIf="!emailInput.valid">
+      ERRO
+    </mat-error>
+  </mat-form-field>
 </p>

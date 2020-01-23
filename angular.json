@@ -29,16 +29,29 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              {
+                "glob": "**/*.md",
+                "input": "projects/customjs",
+                "output": "assets/docs"
+              }
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/material-design-icons/iconfont/material-icons.css"
+              "node_modules/material-design-icons/iconfont/material-icons.css",
+              "node_modules/prismjs/themes/prism.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": ["src/app/sass"]
             },
-            "scripts": []
+            "scripts": [
+              "node_modules/marked/lib/marked.js",
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-javascript.min.js",
+              "node_modules/prismjs/components/prism-typescript.min.js",
+              "node_modules/prismjs/components/prism-css.min.js",
+              "node_modules/prismjs/components/prism-bash.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -95,11 +108,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "codeCoverage": true,
-            "codeCoverageExclude": [
-              "src/**/index.ts",
-              "src/assets/i18n",
-              "src/**/*.i18n.ts"
-            ],
+            "codeCoverageExclude": ["src/**/index.ts", "src/assets/i18n", "src/**/*.i18n.ts"],
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
@@ -107,26 +116,35 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              {
+                "glob": "**/*.md",
+                "input": "projects/customjs",
+                "output": "assets/docs"
+              }
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/material-design-icons/iconfont/material-icons.css"
+              "node_modules/material-design-icons/iconfont/material-icons.css",
+              "node_modules/prismjs/themes/prism.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": ["src/app/sass"]
             },
-            "scripts": []
+            "scripts": [
+              "node_modules/marked/lib/marked.js",
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-javascript.min.js",
+              "node_modules/prismjs/components/prism-typescript.min.js",
+              "node_modules/prismjs/components/prism-css.min.js",
+              "node_modules/prismjs/components/prism-bash.min.js"
+            ]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
-            ],
+            "tsConfig": ["tsconfig.app.json", "tsconfig.spec.json", "e2e/tsconfig.json"],
             "exclude": ["**/node_modules/**"]
           }
         },
@@ -597,9 +615,7 @@
               "projects/customjs/select/tsconfig.lib.json",
               "projects/customjs/select/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -632,9 +648,7 @@
               "projects/customjs/card/tsconfig.lib.json",
               "projects/customjs/card/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -667,9 +681,7 @@
               "projects/customjs/address-input/tsconfig.lib.json",
               "projects/customjs/address-input/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -702,9 +714,7 @@
               "projects/customjs/note/tsconfig.lib.json",
               "projects/customjs/note/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }

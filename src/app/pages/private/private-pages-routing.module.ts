@@ -7,6 +7,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./dashboard-page/dashboard-page.module').then(mod => mod.DashboardPageModule),
   },
+  {
+    path: 'custom-list',
+    loadChildren: () =>
+      import('./custom-list-page/custom-list-page.module').then(mod => mod.CustomListPageModule),
+  },
 ];
 
 @NgModule({

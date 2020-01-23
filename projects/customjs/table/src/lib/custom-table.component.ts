@@ -55,9 +55,11 @@ export class CustomTableComponent {
 
   @Output() itemSelected = new EventEmitter<any>(undefined);
 
-  @Output() sort = new BehaviorSubject<string>(undefined);
+  @Output() sort = new ReplaySubject<string>();
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
+  private currentSortProperty: string;
 
   constructor() {}
 
@@ -66,11 +68,11 @@ export class CustomTableComponent {
   }
 
   onSort(prop: string) {
-    const currentSortProperty = this.sort.value;
-    let nextSortProperty = prop;
-    if (currentSortProperty === prop) {
-      nextSortProperty = `-${prop}`;
+    if (this.currentSortProperty !== prop) {
+      this.currentSortProperty = prop;
+    } else {
+      this.currentSortProperty = `-${prop}`;
     }
-    this.sort.next(nextSortProperty);
+    this.sort.next(this.currentSortProperty);
   }
 }

@@ -1,0 +1,45 @@
+<h1>Custom List</h1>
+
+<app-demo-container readmeSrc="/assets/docs/list/README.md">
+  <h2>async</h2>
+  <custom-list [pageSize]="2" [items]="fetchItems">
+    <custom-table>
+      <custom-table-column name="id" title="id" prop="id">
+        <ng-template let-item="item">{{ item.id }}</ng-template>
+      </custom-table-column>
+
+      <custom-table-column name="name" title="name" prop="name">
+        <ng-template let-item="item">{{ item.name }}</ng-template>
+      </custom-table-column>
+    </custom-table>
+    <custom-list-card>
+      <ng-template let-item="item">
+        <div class="item-card">
+          <div>Id: {{ item.id }}</div>
+          <div>Name: {{ item.name }}</div>
+        </div>
+      </ng-template>
+    </custom-list-card>
+  </custom-list>
+
+  <h2>sync</h2>
+  <custom-list [pageSize]="2" [items]="stream$ | async">
+    <custom-table>
+      <custom-table-column name="id" title="id" prop="id">
+        <ng-template let-item="item">{{ item.id }}</ng-template>
+      </custom-table-column>
+
+      <custom-table-column name="name" title="name" prop="name">
+        <ng-template let-item="item">{{ item.name }}</ng-template>
+      </custom-table-column>
+    </custom-table>
+    <custom-list-card>
+      <ng-template let-item="item">
+        <div class="item-card">
+          <div>Id: {{ item.id }}</div>
+          <div>Name: {{ item.name }}</div>
+        </div>
+      </ng-template>
+    </custom-list-card>
+  </custom-list>
+</app-demo-container>

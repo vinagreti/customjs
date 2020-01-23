@@ -1,12 +1,10 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { I18nService } from '@customjs/i18n';
 import { BehaviorSubject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { CustomPaginatorTranslationKeysMap } from './custom-list-internal.i18n';
 
 const DEFAULT_PAGE_SIZE = 20;
-
-const MAX_PAGE_SIZE = 1000;
 
 export interface CustomPaginatorEvent {
   page: number;
@@ -26,12 +24,7 @@ export class CustomPaginatorComponent {
 
   private paginate$ = new EventEmitter<CustomPaginatorEvent>();
 
-  private pageStream$ = new BehaviorSubject<number>(1);
-
-  page$ = this.pageStream$.pipe(
-    distinctUntilChanged(),
-    tap(() => this.refreshState()),
-  );
+  page$ = new BehaviorSubject<number>(1);
 
   @Output() paginate = this.paginate$.pipe(
     distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b)),
@@ -45,13 +38,13 @@ export class CustomPaginatorComponent {
   );
 
   @Input()
-  get count() {
-    return this.innerCount;
+  get totalItems() {
+    return this.innerTotalItems;
   }
-  set count(v: number) {
-    if (this.innerCount !== v) {
-      this.innerCount = v;
-      this.refreshState();
+  set totalItems(v: number) {
+    if (this.innerTotalItems !== v) {
+      this.innerTotalItems = v;
+      this.refreshState(false);
     }
   }
 
@@ -61,15 +54,16 @@ export class CustomPaginatorComponent {
   }
   set items(v: any[]) {
     this.innerItems = v || [];
-    this.refreshState();
+    this.refreshState(false);
   }
 
   @Input()
   get page() {
-    return this.pageStream$.getValue();
+    return this.innerPage;
   }
   set page(v: number) {
-    this.pageStream$.next(v);
+    this.setPage(v);
+    this.refreshState();
   }
 
   @Input()
@@ -77,13 +71,19 @@ export class CustomPaginatorComponent {
     return this.innerPageSize;
   }
   set pageSize(v: number) {
-    this.innerPageSize = v === 0 ? MAX_PAGE_SIZE : v > 0 ? v : DEFAULT_PAGE_SIZE;
-    this.refreshState();
+    if (v > 0) {
+      this.innerPageSize = v;
+    } else {
+      this.innerPageSize = DEFAULT_PAGE_SIZE;
+    }
+    this.refreshState(false);
   }
 
   private innerItems: any[];
 
-  private innerCount: number;
+  private innerTotalItems: number;
+
+  private innerPage = 1;
 
   private innerPageSize = 20;
 
@@ -92,7 +92,8 @@ export class CustomPaginatorComponent {
   prev() {
     const prev = this.page - 1;
     if (prev > 0) {
-      this.pageStream$.next(prev);
+      this.setPage(prev);
+      this.refreshState();
     } else {
       this.start();
     }
@@ -102,32 +103,46 @@ export class CustomPaginatorComponent {
     const next = this.page + 1;
     const totalPages = this.totalPages$.getValue();
     if (next < totalPages) {
-      this.pageStream$.next(next);
+      this.setPage(next);
+      this.refreshState();
     } else {
       this.end();
     }
   }
 
   start() {
-    this.pageStream$.next(1);
+    this.setPage(1);
+    this.refreshState();
   }
 
   end() {
     const totalPages = this.totalPages$.getValue();
-    this.pageStream$.next(totalPages);
+    this.setPage(totalPages);
+    this.refreshState();
   }
 
-  private refreshState() {
-    const count = this.count || (this.items || []).length;
-    const pageSize = this.pageSize || count;
-    const totalPages = this.countPages(count, pageSize);
-    const visible = this.count ? this.items : this.selectVisible(this.items, this.page, pageSize);
+  private setPage(page: number) {
+    this.innerPage = page;
+    this.page$.next(page);
+  }
+
+  private refreshState(emitPaginate = true) {
+    const totalItems = this.totalItems || (this.items || []).length;
+    const pageSize = this.pageSize || totalItems;
+    const totalPages = this.countPages(totalItems, pageSize);
+    const visibleItems = this.totalItems
+      ? this.items
+      : this.selectVisible(this.items, this.page, pageSize);
     this.totalPages$.next(totalPages);
-    this.visibleItems$.emit(visible);
-    this.paginate$.emit({
-      page: this.page,
-      limit: this.pageSize,
-    });
+
+    this.visibleItems$.emit(visibleItems);
+
+    if (emitPaginate) {
+      this.paginate$.emit({
+        page: this.page,
+        limit: this.pageSize,
+      });
+    }
   }
 
   private countPages(total = 0, max = 1) {

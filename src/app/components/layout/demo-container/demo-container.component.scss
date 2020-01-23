@@ -1,0 +1,9 @@
+.demo-container {
+  padding: 16px 0;
+
+  ::ng-deep {
+    .mat-tab-body-content {
+      padding: 16px !important;
+    }
+  }
+}

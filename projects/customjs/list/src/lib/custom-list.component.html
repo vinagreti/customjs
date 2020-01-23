@@ -1,31 +1,101 @@
-<div [hidden]="hideFilter$ | async">
-  <ng-content select="custom-list-filter"></ng-content>
+<div>
+  <div [hidden]="hideFilter$ | async">
+    <ng-content select="custom-list-filter"></ng-content>
+  </div>
+
+  <div>
+    <ng-template [ngTemplateOutlet]="sumaryAndRefreshTemplate"></ng-template>
+  </div>
+
+  <div>
+    <!-- if SORTING shows sortingTemplate -->
+    <ng-container *ngIf="(sorting$ | async) === false; else sortingTemplate">
+      <!-- if REFRESHING shows refreshingTemplate -->
+      <ng-container *ngIf="(refreshing$ | async) === false; else refreshingTemplate">
+        <!-- if FILTERING shows filteringTemplate -->
+        <ng-container *ngIf="(filtering$ | async) === false; else filteringTemplate">
+          <!-- if PAGINATING shows paginatingTemplate -->
+          <ng-container *ngIf="(paginating$ | async) === false; else paginatingTemplate">
+            <!-- if LOADING shows loadingTemplate -->
+            <ng-container *ngIf="(loading$ | async) === false; else loadingTemplate">
+              <!-- if HAS NO ITEMS shows noItemsTemplate -->
+              <ng-container *ngIf="(visibleItems$ | async)?.length > 0; else noItemsTemplate">
+                <ng-template [ngTemplateOutlet]="contentTemplate"></ng-template>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <div>
+    <custom-paginator
+      [items]="items$ | async"
+      [pageSize]="pageSize"
+      [totalItems]="total$ | async"
+      (paginate)="onPaginate($event)"
+      (visibleItems)="onVisibleItemsChange($event)"
+    ></custom-paginator>
+  </div>
 </div>
 
-<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
-  <div fxFlex>
-    <div *ngIf="!hideTotal && ((items$ | async)?.length > 1 || (count$ | async))">
-      <strong>{{ (visibleItems$ | async).length }} </strong>
-      <span> / </span>
-      <strong>{{ (items$ | async).length || (count$ | async) }} </strong>
+<!-- TEMPLATES -->
+
+<!-- SUMMARY -->
+<ng-template #sumaryAndRefreshTemplate>
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+    <div fxFlex>
+      <div *ngIf="!hideTotal && ((visibleItems$ | async)?.length > 1 || (total$ | async))">
+        <strong>{{ (visibleItems$ | async)?.length }} </strong>
+        <span> / </span>
+        <strong>{{ total$ | async }} </strong>
+      </div>
+    </div>
+    <div>
+      <button
+        *ngIf="filterComponent && (hideFilter$ | async)"
+        mat-icon-button
+        (click)="hideFilter$.next(false)"
+        [disabled]="
+          (loading$ | async) ||
+          (sorting$ | async) ||
+          (refreshing$ | async) ||
+          (filtering$ | async) ||
+          (paginating$ | async)
+        "
+      >
+        <mat-icon>search</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        (click)="clearAndRefreshItems()"
+        [disabled]="
+          (loading$ | async) ||
+          (sorting$ | async) ||
+          (refreshing$ | async) ||
+          (filtering$ | async) ||
+          (paginating$ | async)
+        "
+      >
+        <mat-icon
+          [ngClass]="{
+            looping:
+              (loading$ | async) ||
+              (sorting$ | async) ||
+              (refreshing$ | async) ||
+              (filtering$ | async) ||
+              (paginating$ | async)
+          }"
+          >refresh</mat-icon
+        >
+      </button>
     </div>
   </div>
-  <div>
-    <button
-      *ngIf="filterComponent && (hideFilter$ | async)"
-      mat-icon-button
-      (click)="hideFilter$.next(false)"
-      [disabled]="loading$ | async"
-    >
-      <mat-icon>search</mat-icon>
-    </button>
-    <button mat-icon-button (click)="clearAndRefreshItems()" [disabled]="loading$ | async">
-      <mat-icon [ngClass]="{ looping: loading$ | async }">refresh</mat-icon>
-    </button>
-  </div>
-</div>
+</ng-template>
 
-<ng-container *ngIf="items$ | async; else noItems">
+<!-- CONTENT -->
+<ng-template #contentTemplate>
   <div fxHide.lt-md>
     <ng-content select="custom-table"></ng-content>
   </div>
@@ -44,16 +114,44 @@
       </div>
     </ng-container>
   </div>
-</ng-container>
+</ng-template>
 
-<custom-paginator
-  [items]="items$ | async"
-  [pageSize]="pageSize"
-  [count]="count$ | async"
-  (visibleItems)="onVisibleItemsChange($event)"
-  (paginate)="onPaginate($event)"
-></custom-paginator>
+<!-- NO ITEMS -->
+<ng-template #noItemsTemplate>
+  <div class="transition-message-cnotainer">
+    {{ noDataMessage || i18n.trans.thirdParty.customjs.list.Nothing_found }}
+  </div>
+</ng-template>
 
-<ng-template #noItems>{{
-  noDataMessage || i18n.trans.thirdParty.customjs.list.Nothing_found
-}}</ng-template>
+<!-- LOADING -->
+<ng-template #loadingTemplate>
+  <div class="transition-message-cnotainer">
+    {{ loadingMessage || i18n.trans.thirdParty.customjs.list.Loading }}
+  </div>
+</ng-template>
+
+<!-- SORTING -->
+<ng-template #sortingTemplate>
+  <div class="transition-message-cnotainer">{{ i18n.trans.thirdParty.customjs.list.Sorting }}</div>
+</ng-template>
+
+<!-- FILTERING -->
+<ng-template #filteringTemplate>
+  <div class="transition-message-cnotainer">
+    {{ i18n.trans.thirdParty.customjs.list.Filtering }}
+  </div>
+</ng-template>
+
+<!-- REFRESHING -->
+<ng-template #refreshingTemplate>
+  <div class="transition-message-cnotainer">
+    {{ i18n.trans.thirdParty.customjs.list.Refreshing }}
+  </div>
+</ng-template>
+
+<!-- PAGINATING -->
+<ng-template #paginatingTemplate>
+  <div class="transition-message-cnotainer">
+    {{ i18n.trans.thirdParty.customjs.list.Paginating }}
+  </div>
+</ng-template>

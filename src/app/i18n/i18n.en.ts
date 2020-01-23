@@ -1,5 +1,7 @@
-import * as version from '@customjs/version/i18n/i18n.en';
 import { AppTranslationKeysMap } from '@i18n/i18n-translation-keys';
+import * as list from 'projects/customjs/list/src/lib/i18n/i18n.en';
+import * as paginator from 'projects/customjs/paginator/src/lib/i18n/i18n.en';
+import * as version from 'projects/customjs/version/src/lib/i18n/i18n.en';
 
 export const enUs: AppTranslationKeysMap = {
   app: {
@@ -39,6 +41,8 @@ export const enUs: AppTranslationKeysMap = {
   thirdParty: {
     customjs: {
       version: version.default,
+      list: list.default,
+      paginator: paginator.default,
     },
   },
 };

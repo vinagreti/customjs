@@ -48,6 +48,6 @@ $customjs-theme: mat-light-theme($customjs-primary, $customjs-accent, $customjs-
 
 @include angular-material-theme($customjs-theme);
 
-@include customj-alert-theming($customjs-theme);
+@include customjs-alert-theming($customjs-theme);
 
 @include custom-card-theming($customjs-theme);

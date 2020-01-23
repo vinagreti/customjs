@@ -14,30 +14,34 @@ export interface CustomListChangeResponse {
   results: any[];
 }
 
+export type CustomListFetchResult =
+  | CustomListChangeResponse
+  | Promise<CustomListChangeResponse>
+  | Observable<CustomListChangeResponse>;
+
 export enum CustomListItemsTypes {
-  ARRAY = 'array',
-  OBSERVABLEARRAY = 'observablearray',
-  PROMISEARRAY = 'promisearray',
-  FUNCTIONARRAY = 'functionarray',
-  FUNCTIONOBSERVABLEARRAY = 'functionobservablearray',
-  FUNCTIONPROMISEARRAY = 'functionpromisearray',
+  ARRAY = 'ARRAY',
+  OBSERVABLEARRAY = 'OBSERVABLEARRAY',
+  PROMISEARRAY = 'PROMISEARRAY',
+  FUNCTIONCHANGERESPONSE = 'FUNCTIONCHANGERESPONSE',
+  FUNCTIONOBSERVABLECHANGERESPONSE = 'FUNCTIONOBSERVABLECHANGERESPONSE',
+  FUNCTIONPROMISECHANGERESPONSE = 'FUNCTIONPROMISECHANGERESPONSE',
 }
 
-export type CustomListFetchType = 'function' | 'direct';
+export enum CustomListFetchType {
+  FUNCTION = 'function',
+  DIRECT = 'direct',
+}
 
 export type CustomListPromiseItems = Promise<any[]>;
 
 export type CustomListObservableItems = Observable<any[]>;
 
-export type CustomListFunctionItems = (event: CustomListChangeEvent) => any[];
+export type CustomListFunctionItems = CustomListChangeResponse;
 
-export type CustomListFunctionPromiseItems = (
-  event: CustomListChangeEvent,
-) => CustomListPromiseItems;
+export type CustomListFunctionPromiseItems = Promise<CustomListChangeResponse>;
 
-export type CustomListFunctionObservableItems = (
-  event: CustomListChangeEvent,
-) => CustomListObservableItems;
+export type CustomListFunctionObservableItems = Observable<CustomListChangeResponse>;
 
 export type CustomListItems =
   | any[]

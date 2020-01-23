@@ -13,12 +13,17 @@ import { I18nService } from '@customjs/i18n';
 import { CustomPaginatorComponent } from '@customjs/paginator';
 import { CustomTableComponent } from '@customjs/table';
 import { BehaviorSubject, Observable, ReplaySubject, Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { CustomListCardComponent } from './custom-list-card/custom-list-card.component';
 import { CustomListFilterComponent } from './custom-list-filter/custom-list-filter.component';
 import { CustomListTranslationKeysMap } from './custom-list-internal.i18n';
 import {
   CustomListChangeEvent,
-  CustomListChangeResponse,
+  CustomListFetchResult,
+  CustomListFetchType,
+  CustomListFunctionItems,
+  CustomListFunctionObservableItems,
+  CustomListFunctionPromiseItems,
   CustomListItems,
   CustomListItemsTypes,
   CustomListObservableItems,
@@ -36,11 +41,19 @@ const DEFAULT_COLOR = 'accent';
 export class CustomListComponent implements OnDestroy {
   curentStateItems: any[];
 
-  loading$ = new BehaviorSubject<boolean>(true);
+  loading$ = new BehaviorSubject<boolean>(false);
+
+  refreshing$ = new BehaviorSubject<boolean>(false);
+
+  filtering$ = new BehaviorSubject<boolean>(false);
+
+  sorting$ = new BehaviorSubject<boolean>(false);
+
+  paginating$ = new BehaviorSubject<boolean>(false);
 
   card$ = new ReplaySubject<CustomListCardComponent>();
 
-  count$ = new ReplaySubject<number>();
+  total$ = new ReplaySubject<number>();
 
   hideFilter$ = new BehaviorSubject<boolean>(true);
 
@@ -105,9 +118,7 @@ export class CustomListComponent implements OnDestroy {
   }
   set items(v: any) {
     this.innerItems = v;
-    if (typeof v !== 'function') {
-      this.refreshItems();
-    }
+    this.onInputItemsChange();
   }
 
   @Input() hideTotal: boolean;
@@ -116,11 +127,13 @@ export class CustomListComponent implements OnDestroy {
 
   @Input() noDataMessage: string;
 
+  @Input() loadingMessage: string;
+
   @Output() itemSelected = new EventEmitter();
 
   @Output() refresh = new EventEmitter();
 
-  @Output() sort = new BehaviorSubject<string>(undefined);
+  private sortBy: string;
 
   private innerItems: any[];
 
@@ -140,7 +153,9 @@ export class CustomListComponent implements OnDestroy {
 
   private tableFilterSubscription: Subscription;
 
-  private fetchMethosSubscription: Subscription;
+  private fetchMethodSubscription: Subscription;
+
+  private fetchType: CustomListFetchType;
 
   constructor(public i18n: I18nService<CustomListTranslationKeysMap>) {}
 
@@ -154,20 +169,30 @@ export class CustomListComponent implements OnDestroy {
   }
 
   onPaginate($event) {
-    this.refreshItems();
+    if (this.fetchType === CustomListFetchType.FUNCTION) {
+      this.paginating$.next(true);
+      this.refreshItems().then(() => this.paginating$.next(false));
+    }
   }
 
-  onVisibleItemsChange(visibleItems: any[] = []) {
-    this.visibleItems$.next(visibleItems);
-    this.setTableItems();
+  onVisibleItemsChange(visibleItems: any[]) {
+    if (this.fetchType === CustomListFetchType.DIRECT) {
+      this.setVisibleItems(visibleItems);
+    }
   }
 
   clearAndRefreshItems() {
-    this.setCurentStateItems();
-    this.refreshItems();
+    if (this.fetchType === CustomListFetchType.FUNCTION) {
+      this.clearCurentStateItems();
+      this.refreshing$.next(true);
+      this.refreshItems().then(() => this.refreshing$.next(false));
+    }
     this.refresh.emit();
   }
 
+  ////////////
+  // FILTER //
+  ////////////
   private watchFilterevents() {
     this.unwatchFilterEvents();
     if (this.innerFilter) {
@@ -175,7 +200,8 @@ export class CustomListComponent implements OnDestroy {
         if (this.paginatorComponent.page !== 1) {
           this.paginatorComponent.page = 1;
         } else {
-          this.refreshItems();
+          this.filtering$.next(true);
+          this.refreshItems().then(() => this.filtering$.next(false));
         }
       });
       const closeFilterSubs = this.innerFilter.closefilter.subscribe(_ => {
@@ -191,6 +217,9 @@ export class CustomListComponent implements OnDestroy {
     }
   }
 
+  ///////////
+  // TABLE //
+  ///////////
   private setTableSelectionDisabled() {
     if (this.table) {
       this.table.selectionDisabled = this.innerSelectionDisabled;
@@ -241,12 +270,12 @@ export class CustomListComponent implements OnDestroy {
   private subscribeToTableSortEvent() {
     if (this.table) {
       this.tableItemSelectedSubscription = this.table.sort.subscribe(prop => {
-        this.sort.next(prop);
+        this.sortBy = prop;
         if (this.paginatorComponent.page !== 1) {
-          this.paginatorComponent.page = 1;
-        } else {
-          this.refreshItems();
+          (this.paginatorComponent as any).setPage(1);
         }
+        this.sorting$.next(true);
+        this.refreshItems().then(() => this.sorting$.next(false));
       });
     }
   }
@@ -257,74 +286,175 @@ export class CustomListComponent implements OnDestroy {
     }
   }
 
-  private refreshItems() {
-    this.loading$.next(true);
-    if (typeof this.items === 'function') {
-      const changeEvent = this.mountChangeEvent();
-      const result: CustomListItems = (this.items as any)(changeEvent);
-      this.setConfigBasedOnChangeResponse(result);
-    } else {
-      this.setItemsBasedOnItemsType(this.items, (items: any[]) => {
-        this.setCurentStateItems(items);
-      });
-    }
+  ///////////
+  // ITEMS //
+  ///////////
+
+  private setVisibleItems(visibleItems: any[] = []) {
+    this.visibleItems$.next(visibleItems);
+    this.setTableItems();
   }
 
-  private setConfigBasedOnChangeResponse(result: CustomListItems) {
-    this.setItemsBasedOnItemsType(result, (response: CustomListChangeResponse) => {
-      this.setCurentStateItems(response.results, response.count);
+  private onInputItemsChange() {
+    setTimeout(() => {
+      // wait for all initial input bindings bifdings
+      this.detectFetchType();
+      this.loading$.next(true);
+      this.refreshItems().then(() => this.loading$.next(false));
+    }, 0);
+  }
+
+  private refreshItems(): Promise<any> {
+    return new Promise(resolve => {
+      let itemsPromise: Promise<any[]>;
+      if (this.fetchType !== CustomListFetchType.FUNCTION) {
+        itemsPromise = this.refreshItemInDirectMode();
+      } else {
+        itemsPromise = this.refreshItemsInFunctionMode();
+      }
+      itemsPromise.then(items => {
+        this.setVisibleItems(items);
+        resolve(items);
+      });
     });
   }
 
-  private setItemsBasedOnItemsType(items: CustomListItems, cbk) {
+  private refreshItemInDirectMode(): Promise<any[]> {
+    return new Promise(resolve => {
+      this.setItemsBasedOnItemsType(this.items).then(items => {
+        this.setCurentStateItems(items);
+        resolve(items);
+      });
+    });
+  }
+
+  private refreshItemsInFunctionMode(): Promise<any> {
+    const result = this.callItemsFunction();
+    return this.setItemsBasedOnFetchFunctionResult(result);
+  }
+
+  private callItemsFunction() {
+    const changeEvent = this.mountChangeEvent();
+    return (this.items as (changeEvent: CustomListChangeEvent) => CustomListFetchResult)(
+      changeEvent,
+    );
+  }
+
+  private setItemsBasedOnFetchFunctionResult(result) {
+    const resultTypeType = this.detectFetchFunctionResultType(result);
+    switch (resultTypeType) {
+      case CustomListItemsTypes.FUNCTIONCHANGERESPONSE:
+        return this.parseChangeResponseDirectly(result as CustomListFunctionItems);
+      // RESOLVES OBSERVABLE //
+      case CustomListItemsTypes.FUNCTIONOBSERVABLECHANGERESPONSE:
+        return this.parseChangeResponseFromObservable(result as CustomListFunctionObservableItems);
+      // RESOLVES PROMISE //
+      case CustomListItemsTypes.FUNCTIONPROMISECHANGERESPONSE:
+        return this.parseChangeResponseFromPromise(result as CustomListFunctionPromiseItems);
+    }
+  }
+
+  private setTotal(total: number) {
+    this.total$.next(total);
+  }
+
+  private parseChangeResponseDirectly(response: CustomListFunctionItems) {
+    this.setTotal(response.count);
+    return new Promise<any[]>(resolve => {
+      resolve(response.results);
+    });
+  }
+
+  private parseChangeResponseFromObservable(observableItems: CustomListFunctionObservableItems) {
+    return new Promise<any[]>(resolve => {
+      if (this.fetchMethodSubscription) {
+        this.fetchMethodSubscription.unsubscribe();
+      }
+      this.fetchMethodSubscription = observableItems.pipe(take(1)).subscribe(response => {
+        this.total$.next(response.count);
+        resolve(response.results);
+      });
+    });
+  }
+
+  private parseChangeResponseFromPromise(response: CustomListFunctionPromiseItems) {
+    return new Promise<any[]>(resolve => {
+      response.then(res => {
+        this.total$.next(res.count);
+        resolve(res.results);
+      });
+    });
+  }
+
+  private setItemsBasedOnItemsType(items) {
     const itemType = this.detectItemsType(items);
     switch (itemType) {
       case CustomListItemsTypes.ARRAY:
-        cbk(items as any[]);
-        this.loading$.next(false);
-        break;
+        return this.getItemsFromArray(items as any[]);
       // RESOLVES OBSERVABLE //
       case CustomListItemsTypes.OBSERVABLEARRAY:
-        const observable = items as CustomListObservableItems;
-        if (this.fetchMethosSubscription) {
-          this.fetchMethosSubscription.unsubscribe();
-        }
-        this.fetchMethosSubscription = observable.subscribe(observablItems => {
-          cbk(observablItems);
-          this.loading$.next(false);
-        });
-        break;
+        return this.getItemsFromObservable(items as CustomListObservableItems);
       // RESOLVES PROMISE //
       case CustomListItemsTypes.PROMISEARRAY:
-        const promise = items as CustomListPromiseItems;
-        promise.then(promiseItems => {
-          cbk(promiseItems);
-          this.loading$.next(false);
-        });
-        break;
+        return this.getItemsFromPromise(items as CustomListPromiseItems);
     }
+  }
+
+  private detectFetchType() {
+    if (typeof this.items === 'function') {
+      this.fetchType = CustomListFetchType.FUNCTION;
+    } else {
+      this.fetchType = CustomListFetchType.DIRECT;
+    }
+  }
+
+  private getItemsFromArray(items: any[]) {
+    return new Promise<any[]>(resolve => {
+      this.setTotal(items.length);
+      resolve(items);
+    });
+  }
+
+  private getItemsFromObservable(observableItems: CustomListObservableItems) {
+    return new Promise<any[]>(resolve => {
+      if (this.fetchMethodSubscription) {
+        this.fetchMethodSubscription.unsubscribe();
+      }
+      this.fetchMethodSubscription = observableItems.pipe(take(1)).subscribe(items => {
+        this.setTotal(items.length);
+        resolve(items);
+      });
+    });
+  }
+
+  private getItemsFromPromise(promiseItems: CustomListPromiseItems) {
+    return new Promise<any[]>(resolve => {
+      promiseItems.then(items => {
+        this.setTotal(items.length);
+        resolve(items);
+      });
+    });
+  }
+
+  private clearCurentStateItems(items: any[] = [], count?: number) {
+    this.setCurentStateItems();
   }
 
   private setCurentStateItems(items: any[] = [], count?: number) {
     this.items$.next(items);
-    this.count$.next(count);
+    this.total$.next(count);
     if (count) {
       this.visibleItems$.next(items);
     }
   }
 
   private mountChangeEvent(): CustomListChangeEvent {
-    const event: CustomListChangeEvent = {
+    return {
       limit: this.paginatorComponent.pageSize,
       page: this.paginatorComponent.page || 1,
       filter: this.filterComponent ? this.filterComponent.form : {},
+      ordering: this.sortBy,
     };
-
-    if (this.sort.value) {
-      event.ordering = this.sort.value;
-    }
-
-    return event;
   }
 
   private detectItemsType(items: CustomListItems): CustomListItemsTypes {
@@ -335,6 +465,17 @@ export class CustomListComponent implements OnDestroy {
         return CustomListItemsTypes.OBSERVABLEARRAY;
       case items instanceof Promise:
         return CustomListItemsTypes.PROMISEARRAY;
+    }
+  }
+
+  private detectFetchFunctionResultType(result: CustomListFetchResult) {
+    switch (true) {
+      case result instanceof Observable:
+        return CustomListItemsTypes.FUNCTIONOBSERVABLECHANGERESPONSE;
+      case result instanceof Promise:
+        return CustomListItemsTypes.FUNCTIONPROMISECHANGERESPONSE;
+      case true:
+        return CustomListItemsTypes.FUNCTIONCHANGERESPONSE;
     }
   }
 }

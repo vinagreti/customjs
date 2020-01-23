@@ -3,4 +3,9 @@ export default {
   Clear: '',
   Close: '',
   Nothing_found: '',
+  Loading: '',
+  Sorting: '',
+  Filtering: '',
+  Refreshing: '',
+  Paginating: '',
 };

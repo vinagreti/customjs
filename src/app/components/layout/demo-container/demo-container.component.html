@@ -1,0 +1,12 @@
+<div class="demo-container">
+  <mat-tab-group>
+    <mat-tab name="examples" label="Examples">
+      <p></p>
+      <ng-content></ng-content>
+    </mat-tab>
+    <mat-tab name="overview" label="Overview">
+      <p></p>
+      <dec-markdown [src]="readmeSrc"></dec-markdown>
+    </mat-tab>
+  </mat-tab-group>
+</div>

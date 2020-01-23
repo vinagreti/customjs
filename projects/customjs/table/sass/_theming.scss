@@ -1,0 +1,35 @@
+@import '~@angular/material/theming';
+
+@mixin customjs-table-theming($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  $primary-color: mat-color($primary);
+  $accent-color: mat-color($accent);
+  $warn-color: mat-color($warn);
+
+  $primary-contrast: mat-contrast($primary, default);
+  $accent-contrast: mat-contrast($accent, default);
+  $warn-contrast: mat-contrast($warn, default);
+
+  .mat-row:nth-child(odd) {
+    color: white;
+    background-color: rgba(#5d5d5d, 0.25);
+  }
+
+  .mat-row[color='accent']:nth-child(odd) {
+    color: $accent-contrast;
+    background-color: rgba($accent-color, 0.25);
+  }
+
+  .mat-row[color='primary']:nth-child(odd) {
+    color: $primary-contrast;
+    background-color: rgba($primary-color, 0.25);
+  }
+
+  .mat-row[color='warn']:nth-child(odd) {
+    color: $warn-contrast;
+    background-color: rgba($warn-color, 0.25);
+  }
+}

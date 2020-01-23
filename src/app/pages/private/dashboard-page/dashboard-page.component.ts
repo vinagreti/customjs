@@ -18,6 +18,8 @@ export class DashboardPageComponent implements OnInit {
 
   data = 'A';
 
+  testeEmail;
+
   constructor(
     private askService: AskService,
     private alertService: AlertService,
