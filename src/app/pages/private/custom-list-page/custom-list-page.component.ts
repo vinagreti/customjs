@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CustomListChangeEvent } from 'projects/customjs/list/src/public-api';
+import { CustomListChangeEvent } from 'projects/customjs/list/src/lib/custom-list.models';
 import { BehaviorSubject, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 

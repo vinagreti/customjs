@@ -5,11 +5,11 @@ export const es: typeof customListI18n.default = {
   Clear: 'Limpiar',
   Close: 'Cerrar',
   Nothing_found: 'No se encontró registro',
-  Loading: 'Carregando',
+  Loading: 'Cargando',
   Sorting: 'Clasificación',
   Filtering: 'Filtración',
   Refreshing: 'Actualización',
-  Paginating: 'Paginación',
+  Paginating: 'Cargando nueva página',
 };
 
 export default es;

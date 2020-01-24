@@ -46,10 +46,10 @@
 <ng-template #sumaryAndRefreshTemplate>
   <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
     <div fxFlex>
-      <div *ngIf="!hideTotal && ((visibleItems$ | async)?.length > 1 || (total$ | async))">
+      <div *ngIf="!hideTotal && ((visibleItems$ | async)?.length > 0 || (total$ | async))">
         <strong>{{ (visibleItems$ | async)?.length }} </strong>
         <span> / </span>
-        <strong>{{ total$ | async }} </strong>
+        <strong>{{ (total$ | async) > 0 ? (total$ | async) : (items$ | async).length }} </strong>
       </div>
     </div>
     <div>

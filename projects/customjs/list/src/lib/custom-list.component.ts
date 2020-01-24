@@ -155,7 +155,7 @@ export class CustomListComponent implements OnDestroy {
 
   private fetchMethodSubscription: Subscription;
 
-  private fetchType: CustomListFetchType;
+  fetchType: CustomListFetchType;
 
   constructor(public i18n: I18nService<CustomListTranslationKeysMap>) {}
 
@@ -322,7 +322,8 @@ export class CustomListComponent implements OnDestroy {
   private refreshItemInDirectMode(): Promise<any[]> {
     return new Promise(resolve => {
       this.setItemsBasedOnItemsType(this.items).then(items => {
-        this.setCurentStateItems(items);
+        this.setItems(items);
+        this.setTotal(undefined);
         resolve(items);
       });
     });
@@ -354,6 +355,10 @@ export class CustomListComponent implements OnDestroy {
     }
   }
 
+  private setItems(items: any[]) {
+    this.items$.next(items);
+  }
+
   private setTotal(total: number) {
     this.total$.next(total);
   }
@@ -371,7 +376,7 @@ export class CustomListComponent implements OnDestroy {
         this.fetchMethodSubscription.unsubscribe();
       }
       this.fetchMethodSubscription = observableItems.pipe(take(1)).subscribe(response => {
-        this.total$.next(response.count);
+        this.setTotal(response.count);
         resolve(response.results);
       });
     });
@@ -380,7 +385,7 @@ export class CustomListComponent implements OnDestroy {
   private parseChangeResponseFromPromise(response: CustomListFunctionPromiseItems) {
     return new Promise<any[]>(resolve => {
       response.then(res => {
-        this.total$.next(res.count);
+        this.setTotal(res.count);
         resolve(res.results);
       });
     });
@@ -437,15 +442,8 @@ export class CustomListComponent implements OnDestroy {
   }
 
   private clearCurentStateItems(items: any[] = [], count?: number) {
-    this.setCurentStateItems();
-  }
-
-  private setCurentStateItems(items: any[] = [], count?: number) {
-    this.items$.next(items);
-    this.total$.next(count);
-    if (count) {
-      this.visibleItems$.next(items);
-    }
+    this.setItems([]);
+    this.setTotal(0);
   }
 
   private mountChangeEvent(): CustomListChangeEvent {

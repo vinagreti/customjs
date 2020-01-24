@@ -9,7 +9,7 @@ export const pt: typeof customListI18n.default = {
   Sorting: 'Ordenando',
   Filtering: 'Filtrando',
   Refreshing: 'Atualizando',
-  Paginating: 'Paginando',
+  Paginating: 'Carregando nova página',
 };
 
 export default pt;
