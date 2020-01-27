@@ -36,7 +36,7 @@
 
       <tr
         mat-row
-        [attr.color]="color$ | async"
+        [attr.color]="color"
         [style.cursor]="selectionDisabled ? 'default' : 'pointer'"
         (click)="onItemSelected(item)"
         *matRowDef="let item; columns: columnsNames$ | async"

@@ -13,8 +13,6 @@ import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CustomTableColumnComponent } from './custom-table-column/custom-table-column.component';
 
-const DEFAULT_COLOR = 'accent';
-
 @Component({
   selector: 'custom-table',
   templateUrl: './custom-table.component.html',
@@ -23,8 +21,6 @@ const DEFAULT_COLOR = 'accent';
 })
 export class CustomTableComponent {
   columns$ = new BehaviorSubject<CustomTableColumnComponent[]>([]);
-
-  color$ = new BehaviorSubject<ThemePalette>(DEFAULT_COLOR);
 
   columnsNames$: Observable<string[]> = this.columns$.pipe(
     map(columns => columns.map(column => column.name)),
@@ -38,10 +34,7 @@ export class CustomTableComponent {
 
   @Input() selectionDisabled: boolean;
 
-  @Input()
-  set color(color: ThemePalette) {
-    this.color$.next(color || DEFAULT_COLOR);
-  }
+  @Input() color: ThemePalette;
 
   @Input()
   set items(v: any) {
