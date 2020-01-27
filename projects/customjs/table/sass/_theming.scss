@@ -13,7 +13,7 @@
   $accent-contrast: mat-contrast($accent, default);
   $warn-contrast: mat-contrast($warn, default);
 
-  .mat-row:nth-child(odd) {
+  .mat-row:hover {
     color: white;
     background-color: rgba(#5d5d5d, 0.25);
   }
