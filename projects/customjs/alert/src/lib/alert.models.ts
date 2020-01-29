@@ -6,7 +6,7 @@ import {
 
 type Seconds = number;
 
-export const ALERT_CLASS_PREFIX = 'customjs-alert-';
+export const ALERT_CLASS_PREFIX = 'customjs-alert';
 
 export interface AlertConfig {
   color: ThemePalette;

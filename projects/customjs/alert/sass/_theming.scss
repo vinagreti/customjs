@@ -13,30 +13,34 @@
   $accent-contrast: mat-contrast($accent, default);
   $warn-contrast: mat-contrast($warn, default);
 
-  .customjs-alert-primary {
-    color: $primary-contrast !important;
-    background: $primary-color !important;
+  .customjs-alert {
+    width: 100vw;
 
-    .mat-simple-snackbar-action {
-      color: rgba($primary-contrast, 0.7) !important;
+    &.customjs-alert-primary {
+      color: $primary-contrast !important;
+      background: $primary-color !important;
+
+      .mat-simple-snackbar-action {
+        color: rgba($primary-contrast, 0.7) !important;
+      }
     }
-  }
 
-  .customjs-alert-accent {
-    color: $accent-contrast !important;
-    background: $accent-color !important;
+    &.customjs-alert-accent {
+      color: $accent-contrast !important;
+      background: $accent-color !important;
 
-    .mat-simple-snackbar-action {
-      color: rgba($accent-contrast, 0.7) !important;
+      .mat-simple-snackbar-action {
+        color: rgba($accent-contrast, 0.7) !important;
+      }
     }
-  }
 
-  .customjs-alert-warn {
-    color: $warn-contrast !important;
-    background: $warn-color !important;
+    &.customjs-alert-warn {
+      color: $warn-contrast !important;
+      background: $warn-color !important;
 
-    .mat-simple-snackbar-action {
-      color: rgba($warn-contrast, 0.7) !important;
+      .mat-simple-snackbar-action {
+        color: rgba($warn-contrast, 0.7) !important;
+      }
     }
   }
 }
