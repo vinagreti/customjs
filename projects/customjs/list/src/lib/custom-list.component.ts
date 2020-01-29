@@ -1,13 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ContentChild,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChild, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
 import { ThemePalette } from '@angular/material';
 import { I18nService } from '@customjs/i18n';
 import { CustomPaginatorComponent } from '@customjs/paginator';
@@ -17,20 +8,7 @@ import { take } from 'rxjs/operators';
 import { CustomListCardComponent } from './custom-list-card/custom-list-card.component';
 import { CustomListFilterComponent } from './custom-list-filter/custom-list-filter.component';
 import { CustomListTranslationKeysMap } from './custom-list-internal.i18n';
-import {
-  CustomListChangeEvent,
-  CustomListFetchResult,
-  CustomListFetchType,
-  CustomListFunctionItems,
-  CustomListFunctionObservableItems,
-  CustomListFunctionPromiseItems,
-  CustomListItems,
-  CustomListItemsTypes,
-  CustomListObservableItems,
-  CustomListPromiseItems,
-} from './custom-list.models';
-
-const DEFAULT_COLOR = 'accent';
+import { CustomListChangeEvent, CustomListFetchResult, CustomListFetchType, CustomListFunctionItems, CustomListFunctionObservableItems, CustomListFunctionPromiseItems, CustomListItems, CustomListItemsTypes, CustomListObservableItems, CustomListPromiseItems } from './custom-list.models';
 
 @Component({
   selector: 'custom-list',
@@ -108,7 +86,7 @@ export class CustomListComponent implements OnDestroy {
     return this.innerColor;
   }
   set color(v: any) {
-    this.innerColor = v || DEFAULT_COLOR;
+    this.innerColor = v;
     this.setTableColor();
   }
 
@@ -145,7 +123,7 @@ export class CustomListComponent implements OnDestroy {
 
   private innerSelectionDisabled: boolean;
 
-  private innerColor: ThemePalette = DEFAULT_COLOR;
+  private innerColor: ThemePalette;
 
   private tableItemSelectedSubscription: Subscription;
 

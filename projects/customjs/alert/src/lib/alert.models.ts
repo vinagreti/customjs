@@ -1,4 +1,8 @@
-import { ThemePalette } from '@angular/material';
+import {
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+  ThemePalette,
+} from '@angular/material';
 
 type Seconds = number;
 
@@ -9,4 +13,6 @@ export interface AlertConfig {
   message: string;
   action?: string;
   duration?: Seconds;
+  horizontalPosition?: MatSnackBarHorizontalPosition;
+  verticalPosition?: MatSnackBarVerticalPosition;
 }

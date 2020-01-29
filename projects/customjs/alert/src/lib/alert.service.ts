@@ -16,6 +16,8 @@ export class AlertService {
     return this.snackBar.open(config.message, action, {
       panelClass,
       duration,
+      horizontalPosition: config.horizontalPosition || 'start',
+      verticalPosition: config.verticalPosition || 'bottom',
     });
   }
 }
