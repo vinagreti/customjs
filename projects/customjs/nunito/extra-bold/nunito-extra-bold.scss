@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'Nunito ExtraBold';
+  src: url('/nunito-Extrabold.eot');
+  src: local('Nunito ExtraBold'), local('Nunito-ExtraBold'),
+    url('/nunito-Extrabold.eot?#iefix') format('embedded-opentype'),
+    url('/nunito-Extrabold.woff2') format('woff2'), url('/nunito-Extrabold.woff') format('woff'),
+    url('/nunito-Extrabold.ttf') format('truetype'),
+    url('/nunito-Extrabold.svg##{$variant}') format('svg');
+}
