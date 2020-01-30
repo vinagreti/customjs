@@ -1,8 +1,10 @@
 @font-face {
   font-family: 'Nunito';
-  src: url('/nunito-Regular.eot');
+  src: url(~@customjs/nunito/regular/nunito-Regular.eot);
   src: local('Nunito Regular'), local('Nunito-Regular'),
-    url('/nunito-Regular.eot?#iefix') format('embedded-opentype'),
-    url('/nunito-Regular.woff2') format('woff2'), url('/nunito-Regular.woff') format('woff'),
-    url('/nunito-Regular.ttf') format('truetype'), url('/nunito-Regular.svg#Regular') format('svg');
+    url(~@customjs/nunito/regular/nunito-Regular.eot?#iefix) format('embedded-opentype'),
+    url(~@customjs/nunito/regular/nunito-Regular.woff2) format('woff2'),
+    url(~@customjs/nunito/regular/nunito-Regular.woff) format('woff'),
+    url(~@customjs/nunito/regular/nunito-Regular.ttf) format('truetype'),
+    url(~@customjs/nunito/regular/nunito-Regular.svg#Regular) format('svg');
 }

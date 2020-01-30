@@ -1,9 +1,10 @@
 @font-face {
   font-family: 'Nunito Extrabold';
-  src: url('/nunito-Extrabold.eot');
+  src: url(~@customjs/nunito/extra-bold/nunito-Extrabold.eot);
   src: local('Nunito Extrabold'), local('Nunito-Extrabold'),
-    url('/nunito-Extrabold.eot?#iefix') format('embedded-opentype'),
-    url('/nunito-Extrabold.woff2') format('woff2'), url('/nunito-Extrabold.woff') format('woff'),
-    url('/nunito-Extrabold.ttf') format('truetype'),
-    url('/nunito-Extrabold.svg#Extrabold') format('svg');
+    url(~@customjs/nunito/extra-bold/nunito-Extrabold.eot?#iefix) format('embedded-opentype'),
+    url(~@customjs/nunito/extra-bold/nunito-Extrabold.woff2) format('woff2'),
+    url(~@customjs/nunito/extra-bold/nunito-Extrabold.woff) format('woff'),
+    url(~@customjs/nunito/extra-bold/nunito-Extrabold.ttf) format('truetype'),
+    url(~@customjs/nunito/extra-bold/nunito-Extrabold.svg#Extrabold) format('svg');
 }
