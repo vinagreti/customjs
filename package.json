@@ -48,7 +48,7 @@
     "publish:paginator": "npm publish dist/customjs/paginator/ --access=public",
     "build:select": "ng b @customjs/select",
     "publish:select": "npm publish dist/customjs/select/ --access=public",
-    "build:table": "ng b @customjs/table",
+    "build:table": "ng b @customjs/table && npm run build:table:sass",
     "build:table:sass": "cp -R projects/customjs/table/sass dist/customjs/table/sass",
     "publish:table": "npm publish dist/customjs/table/ --access=public",
     "build:smart-layout": "ng b @customjs/smart-layout",

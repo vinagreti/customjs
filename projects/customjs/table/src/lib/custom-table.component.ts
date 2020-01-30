@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ContentChild,
   ContentChildren,
   EventEmitter,
   Input,
@@ -9,8 +10,9 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatPaginator, ThemePalette } from '@angular/material';
+import { CustomActionsComponent } from '@customjs/smart-layout';
 import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { CustomTableColumnComponent } from './custom-table-column/custom-table-column.component';
 
 @Component({
@@ -20,10 +22,23 @@ import { CustomTableColumnComponent } from './custom-table-column/custom-table-c
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomTableComponent {
+  actions$ = new BehaviorSubject<CustomActionsComponent>(undefined);
+
   columns$ = new BehaviorSubject<CustomTableColumnComponent[]>([]);
 
   columnsNames$: Observable<string[]> = this.columns$.pipe(
-    map(columns => columns.map(column => column.name)),
+    switchMap(columns =>
+      this.actions$.pipe(
+        map(actions => {
+          const columnsNames = columns.map(column => column.name);
+          if (actions) {
+            return [...columnsNames, 'actions'];
+          } else {
+            return columnsNames;
+          }
+        }),
+      ),
+    ),
   );
 
   items$ = new ReplaySubject<any>();
@@ -44,6 +59,11 @@ export class CustomTableComponent {
   @ContentChildren(CustomTableColumnComponent)
   set innerColumns(v: QueryList<CustomTableColumnComponent>) {
     this.columns$.next(v.toArray());
+  }
+
+  @ContentChild(CustomActionsComponent, { static: false })
+  set actions(v: CustomTableColumnComponent) {
+    this.actions$.next(v);
   }
 
   @Output() itemSelected = new EventEmitter<any>(undefined);
