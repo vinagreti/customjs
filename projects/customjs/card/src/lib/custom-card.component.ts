@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'custom-card',
@@ -6,4 +6,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./custom-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CustomCardComponent {}
+export class CustomCardComponent {
+  @Input() border = true;
+}
