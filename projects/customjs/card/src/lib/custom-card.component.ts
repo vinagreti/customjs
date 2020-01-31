@@ -7,5 +7,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomCardComponent {
-  @Input() border = true;
+  @Input() hiddenBorder = false;
 }
