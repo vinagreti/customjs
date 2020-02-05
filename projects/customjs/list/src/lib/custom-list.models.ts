@@ -33,6 +33,12 @@ export enum CustomListFetchType {
   DIRECT = 'direct',
 }
 
+export enum CustomListMode {
+  CARD = 'card',
+  TABLE = 'table',
+  RESPONSIVE = 'responsive',
+}
+
 export type CustomListPromiseItems = Promise<any[]>;
 
 export type CustomListObservableItems = Observable<any[]>;

@@ -26,6 +26,7 @@ import {
   CustomListFunctionPromiseItems,
   CustomListItems,
   CustomListItemsTypes,
+  CustomListMode,
   CustomListObservableItems,
   CustomListPromiseItems,
 } from './custom-list.models';
@@ -37,6 +38,8 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomListComponent implements OnDestroy {
+  listModes = CustomListMode;
+
   curentStateItems: any[];
 
   loading$ = new BehaviorSubject<boolean>(false);
@@ -118,6 +121,8 @@ export class CustomListComponent implements OnDestroy {
     this.innerItems = v;
     this.onInputItemsChange();
   }
+
+  @Input() mode: CustomListMode;
 
   @Input() hideTotal: boolean;
 

@@ -96,11 +96,11 @@
 
 <!-- CONTENT -->
 <ng-template #contentTemplate>
-  <div fxHide.lt-md>
+  <div [fxHide.lt-md]="mode === listModes.RESPONSIVE" *ngIf="mode !== listModes.CARD">
     <ng-content select="custom-table"></ng-content>
   </div>
 
-  <div fxHide.gt-sm>
+  <div [fxHide.gt-sm]="mode === listModes.RESPONSIVE" *ngIf="mode !== listModes.TABLE">
     <ng-container *ngIf="card$ | async as card">
       <div *ngIf="card.template" fxLayout="column" fxLayoutGap="16px">
         <ng-container *ngFor="let item of visibleItems$ | async">
