@@ -122,7 +122,7 @@ export class CustomListComponent implements OnDestroy {
     this.onInputItemsChange();
   }
 
-  @Input() mode: CustomListMode;
+  @Input() mode: CustomListMode = CustomListMode.RESPONSIVE;
 
   @Input() hideTotal: boolean;
 
