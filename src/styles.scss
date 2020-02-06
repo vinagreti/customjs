@@ -1,2 +1,11 @@
 @import '@styles/global/app_global_style';
 @import '@styles/third-party/material/app_material_style';
+// THEMING
+@import 'projects/customjs/alert/sass/theming';
+@import 'projects/customjs/card/sass/theming';
+@import 'projects/customjs/note/sass/theming';
+@import 'projects/customjs/table/sass/theming';
+@include customjs-alert-theming($app-theme);
+@include customjs-table-theming($app-theme);
+@include customjs-note-theming($app-theme);
+@include customjs-card-theming($app-theme);

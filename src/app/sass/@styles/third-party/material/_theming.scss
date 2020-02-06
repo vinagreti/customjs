@@ -42,12 +42,12 @@ $customjs-accent: mat-palette($app-accent-pallet, default, lighter, darker);
 $customjs-warn: mat-palette($app-warn-pallet, default, lighter, darker);
 
 // theme
-$customjs-theme: mat-light-theme($customjs-primary, $customjs-accent, $customjs-warn);
+$app-theme: mat-light-theme($customjs-primary, $customjs-accent, $customjs-warn);
 
 @include mat-core();
 
-@include angular-material-theme($customjs-theme);
+@include angular-material-theme($app-theme);
 
-@include customjs-alert-theming($customjs-theme);
+@include customjs-alert-theming($app-theme);
 
-@include custom-card-theming($customjs-theme);
+@include customjs-card-theming($app-theme);

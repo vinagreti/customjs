@@ -3,7 +3,7 @@
 <app-demo-container readmeSrc="/assets/docs/list/README.md">
   <h2>async</h2>
   <custom-list [pageSize]="2" [items]="fetchItems">
-    <custom-table>
+    <custom-table color="primary">
       <custom-table-column name="id" title="id" prop="id">
         <ng-template let-item="item">{{ item.id }}</ng-template>
       </custom-table-column>
@@ -24,7 +24,7 @@
 
   <h2>sync</h2>
   <custom-list [pageSize]="2" [items]="stream$ | async">
-    <custom-table>
+    <custom-table color="primary">
       <custom-table-column name="id" title="id" prop="id">
         <ng-template let-item="item">{{ item.id }}</ng-template>
       </custom-table-column>

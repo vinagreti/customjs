@@ -1,6 +1,6 @@
 <ng-container *ngIf="columns$ | async as columns; else noColumnsDef">
   <ng-container *ngIf="items$ | async as items; else noItemsDef">
-    <table mat-table [dataSource]="items">
+    <table mat-table [dataSource]="items" class="custom-table" [attr.color]="color">
       <ng-container *ngFor="let column of columns" [matColumnDef]="column.name">
         <th
           mat-header-cell
