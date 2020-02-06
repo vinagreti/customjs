@@ -49,6 +49,8 @@ export class CustomTableComponent {
 
   @Input() selectionDisabled: boolean;
 
+  @Input() fixedHeader: boolean;
+
   @Input() color: ThemePalette;
 
   @Input()
