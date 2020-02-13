@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input, Output } from '@angular/core';
+import { I18nService } from '@customjs/i18n';
 import { EventEmitter } from 'events';
-import { ask as askI18n } from './ask.i18n';
+import { CustomAskTranslationKeysMap } from './ask.i18n';
 
 @Component({
   selector: 'lib-ask',
@@ -11,11 +12,11 @@ import { ask as askI18n } from './ask.i18n';
 export class AskComponent {
   @Input() question: string;
 
-  @Input() cancel = `${askI18n.cancel}`;
+  @Input() cancel;
 
-  @Input() confirm = `${askI18n.confirm}`;
+  @Input() confirm;
 
-  @Input() reject = `${askI18n.reject}`;
+  @Input() reject;
 
   @Input() title: string;
 
@@ -25,7 +26,7 @@ export class AskComponent {
 
   @Output() answer = new EventEmitter();
 
-  constructor() {}
+  constructor(public i18n: I18nService<CustomAskTranslationKeysMap>) {}
 
   doConfirm(confirmation) {
     this.answer.emit(confirmation);

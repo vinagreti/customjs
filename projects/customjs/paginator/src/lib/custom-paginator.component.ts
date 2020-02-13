@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { I18nService } from '@customjs/i18n';
 import { BehaviorSubject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { CustomPaginatorTranslationKeysMap } from './custom-list-internal.i18n';
+import { CustomPaginatorTranslationKeysMap } from './custom-paginator-internal.i18n';
 
 const DEFAULT_PAGE_SIZE = 20;
 

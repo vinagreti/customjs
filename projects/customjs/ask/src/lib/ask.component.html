@@ -7,18 +7,18 @@
 <mat-dialog-actions align="end">
   &nbsp;
   <button mat-flat-button color="accent" [mat-dialog-close]="true">
-    {{ confirm }}
+    {{ confirm || i18n.trans.thirdParty.customjs.ask.confirm }}
   </button>
   <ng-container *ngIf="showReject">
     &nbsp;
     <button mat-button color="warn" [mat-dialog-close]="false">
-      {{ reject }}
+      {{ reject || i18n.trans.thirdParty.customjs.ask.reject }}
     </button>
   </ng-container>
   <ng-container *ngIf="!hideCancel">
     &nbsp;
     <button mat-button [mat-dialog-close]="">
-      {{ cancel }}
+      {{ cancel || i18n.trans.thirdParty.customjs.ask.cancel }}
     </button>
   </ng-container>
 </mat-dialog-actions>
