@@ -8,6 +8,6 @@
     "@angular/forms": "~8.2.4",
     "@angular/material": "^8.1.4",
     "@customjs/paginator": "1.0.2",
-    "@customjs/table": "1.0.4"
+    "@customjs/table": "1.0.22"
   }
 }
