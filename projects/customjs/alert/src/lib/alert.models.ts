@@ -1,8 +1,8 @@
+import { ThemePalette } from '@angular/material/core';
 import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
-  ThemePalette,
-} from '@angular/material';
+} from '@angular/material/snack-bar';
 
 type Seconds = number;
 

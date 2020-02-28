@@ -7,9 +7,8 @@ import {
   Input,
   Output,
   QueryList,
-  ViewChild,
 } from '@angular/core';
-import { MatPaginator, ThemePalette } from '@angular/material';
+import { ThemePalette } from '@angular/material/core';
 import { CustomActionsComponent } from '@customjs/smart-layout';
 import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
@@ -69,8 +68,6 @@ export class CustomTableComponent {
   @Output() itemSelected = new EventEmitter<any>(undefined);
 
   @Output() sort = new ReplaySubject<string>();
-
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   private currentSortProperty: string;
 

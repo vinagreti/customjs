@@ -8,7 +8,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { ThemePalette } from '@angular/material';
+import { ThemePalette } from '@angular/material/core';
 import { I18nService } from '@customjs/i18n';
 import { CustomPaginatorComponent } from '@customjs/paginator';
 import { CustomTableComponent } from '@customjs/table';

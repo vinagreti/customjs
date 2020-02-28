@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatButtonModule } from '@angular/material';
 import { CustomPaginatorComponent } from './custom-paginator.component';
 
 describe('CustomPaginatorComponent', () => {
@@ -9,7 +8,6 @@ describe('CustomPaginatorComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CustomPaginatorComponent],
-      imports: [MatButtonModule],
     }).compileComponents();
   }));
 

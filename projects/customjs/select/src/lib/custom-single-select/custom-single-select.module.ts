@@ -1,9 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CustomSingleSelectComponent } from './custom-single-select.component';
-import { MatAutocompleteModule, MatInputModule, MatIconModule } from '@angular/material';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { CustomSelectOptionModule } from './../custom-select-option/custom-select-option.module';
+import { CustomSingleSelectComponent } from './custom-single-select.component';
 
 @NgModule({
   declarations: [CustomSingleSelectComponent],
