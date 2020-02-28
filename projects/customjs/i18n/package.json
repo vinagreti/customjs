@@ -1,9 +1,9 @@
 {
   "name": "@customjs/i18n",
-  "version": "0.0.1-beta.17",
+  "version": "1.0.0",
   "peerDependencies": {
-    "@angular/common": "^8.2.0",
-    "@angular/core": "^8.2.0"
+    "@angular/common": ">=8.2.0",
+    "@angular/core": ">=8.2.0"
   },
   "repository": {
     "type": "git",

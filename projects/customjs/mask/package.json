@@ -1,9 +1,9 @@
 {
   "name": "@customjs/mask",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "peerDependencies": {
-    "@angular/common": "^8.2.0",
-    "@angular/core": "^8.2.0",
-    "@angular/forms": "^8.2.0"
+    "@angular/common": ">=8.2.0",
+    "@angular/core": ">=8.2.0",
+    "@angular/forms": ">=8.2.0"
   }
 }
