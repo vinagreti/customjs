@@ -1,9 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Inject, ModuleWithProviders, NgModule } from '@angular/core';
+import { Inject, Injectable, ModuleWithProviders, NgModule } from '@angular/core';
 import { I18nService } from './../i18n.service';
 import { I18N_TRANSLATION_KEYS } from './../models/i18n-locales-config.interface';
 import { I18nLocale } from './../models/i18n-locales.enum';
 
+@Injectable({
+  providedIn: 'root',
+})
 export class I18nMockService<T> {
   locale = I18nLocale.en;
   trans: T;
@@ -25,17 +28,17 @@ export class I18nMockService<T> {
   imports: [CommonModule],
 })
 export class I18nServiceTestingModule {
-  static forRoot(translationKeys): ModuleWithProviders {
+  static forRoot(translationKeys): ModuleWithProviders<I18nServiceTestingModule> {
     return {
       ngModule: I18nServiceTestingModule,
       providers: [
         {
-          provide: I18nService,
-          useClass: I18nMockService,
-        },
-        {
           provide: I18N_TRANSLATION_KEYS,
           useValue: translationKeys,
+        },
+        {
+          provide: I18nService,
+          useClass: I18nMockService,
         },
       ],
     };

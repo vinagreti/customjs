@@ -32,7 +32,7 @@ export class I18nModule {
     }
   }
 
-  static forRoot(config: I18nLocalesConfig): ModuleWithProviders {
+  static forRoot(config: I18nLocalesConfig): ModuleWithProviders<I18nModule> {
     return {
       ngModule: I18nModule,
       providers: [
