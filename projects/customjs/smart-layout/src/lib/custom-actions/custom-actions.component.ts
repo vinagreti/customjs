@@ -17,7 +17,6 @@ export class CustomActionsComponent {
 
   @Input() description: string;
 
-  @Input()
   @ContentChild(TemplateRef, { static: true })
   template: TemplateRef<any>;
 }
