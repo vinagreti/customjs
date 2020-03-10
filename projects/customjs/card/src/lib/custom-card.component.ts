@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChild, Input } from '@angular/core';
+import { CustomCardBadgeComponent } from './custom-card-badge/custom-card-badge.component';
 
 @Component({
   selector: 'custom-card',
@@ -7,5 +8,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomCardComponent {
+  @ContentChild(CustomCardBadgeComponent, { static: false }) badge: CustomCardBadgeComponent;
+
   @Input() hiddenBorder = false;
 }

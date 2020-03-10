@@ -6,22 +6,42 @@
   $warn: map-get($theme, warn);
 
   $app-color-primary: mat-color($primary);
+  $app-color-primary-contrast: mat-color($primary, default-contrast);
   $app-color-accent: mat-color($accent);
+  $app-color-accent-contrast: mat-color($accent, default-contrast);
   $app-color-warn: mat-color($warn);
+  $app-color-warn-contrast: mat-color($warn, default-contrast);
 
   .custom-card {
     border-color: $app-color-primary !important;
 
+    .custom-card-badge {
+      background-color: $app-color-primary;
+      color: $app-color-primary-contrast;
+    }
+
     &[color='primary'] {
       border-color: $app-color-primary !important;
+      .custom-card-badge {
+        background-color: $app-color-primary;
+        color: $app-color-primary-contrast;
+      }
     }
 
     &[color='accent'] {
       border-color: $app-color-accent !important;
+      .custom-card-badge {
+        background-color: $app-color-accent;
+        color: $app-color-accent-contrast;
+      }
     }
 
     &[color='warn'] {
       border-color: $app-color-warn !important;
+      .custom-card-badge {
+        background-color: $app-color-warn;
+        color: $app-color-warn-contrast;
+      }
     }
   }
 }

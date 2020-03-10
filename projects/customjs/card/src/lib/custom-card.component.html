@@ -1,3 +1,6 @@
 <div class="custom-card" [ngClass]="hiddenBorder ? '' : 'custom-card-bordered'">
+  <div class="custom-card-badge" *ngIf="badge">
+    <ng-content select="custom-card-badge"></ng-content>
+  </div>
   <ng-content></ng-content>
 </div>
