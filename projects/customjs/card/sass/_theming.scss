@@ -15,13 +15,13 @@
   .custom-card {
     border-color: $app-color-primary !important;
 
-    .custom-card-badge {
-      background-color: $app-color-primary;
-      color: $app-color-primary-contrast;
-    }
-
     &[color='primary'] {
       border-color: $app-color-primary !important;
+      &.active {
+        background-color: $app-color-accent;
+        color: $app-color-accent-contrast;
+      }
+
       .custom-card-badge {
         background-color: $app-color-primary;
         color: $app-color-primary-contrast;
@@ -30,14 +30,22 @@
 
     &[color='accent'] {
       border-color: $app-color-accent !important;
-      .custom-card-badge {
+      &.active {
         background-color: $app-color-accent;
         color: $app-color-accent-contrast;
+      }
+      .custom-card-badge {
+        background-color: $app-color-primary;
+        color: $app-color-primary-contrast;
       }
     }
 
     &[color='warn'] {
       border-color: $app-color-warn !important;
+      &.active {
+        background-color: $app-color-accent;
+        color: $app-color-accent-contrast;
+      }
       .custom-card-badge {
         background-color: $app-color-warn;
         color: $app-color-warn-contrast;

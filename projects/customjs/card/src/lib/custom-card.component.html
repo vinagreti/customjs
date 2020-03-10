@@ -1,4 +1,8 @@
-<div class="custom-card" [ngClass]="hiddenBorder ? '' : 'custom-card-bordered'">
+<div
+  class="custom-card"
+  [attr.color]="color"
+  [ngClass]="{ 'custom-card-bordered': !hiddenBorder, active: active }"
+>
   <div class="custom-card-badge" *ngIf="badge">
     <ng-content select="custom-card-badge"></ng-content>
   </div>
