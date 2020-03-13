@@ -1,13 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ContentChild,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChild, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { I18nService } from '@customjs/i18n';
 import { CustomPaginatorComponent } from '@customjs/paginator';
@@ -17,19 +8,7 @@ import { take } from 'rxjs/operators';
 import { CustomListCardComponent } from './custom-list-card/custom-list-card.component';
 import { CustomListFilterComponent } from './custom-list-filter/custom-list-filter.component';
 import { CustomListTranslationKeysMap } from './custom-list-internal.i18n';
-import {
-  CustomListChangeEvent,
-  CustomListFetchResult,
-  CustomListFetchType,
-  CustomListFunctionItems,
-  CustomListFunctionObservableItems,
-  CustomListFunctionPromiseItems,
-  CustomListItems,
-  CustomListItemsTypes,
-  CustomListMode,
-  CustomListObservableItems,
-  CustomListPromiseItems,
-} from './custom-list.models';
+import { CustomListChangeEvent, CustomListFetchResult, CustomListFetchType, CustomListFunctionItems, CustomListFunctionObservableItems, CustomListFunctionPromiseItems, CustomListItems, CustomListItemsTypes, CustomListMode, CustomListObservableItems, CustomListPromiseItems } from './custom-list.models';
 
 @Component({
   selector: 'custom-list',
@@ -125,6 +104,8 @@ export class CustomListComponent implements OnDestroy {
   @Input() mode: CustomListMode = CustomListMode.RESPONSIVE;
 
   @Input() hideTotal: boolean;
+
+  @Input() hideRefresh: boolean;
 
   @Input() pageSize: number;
 

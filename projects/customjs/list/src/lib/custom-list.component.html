@@ -70,6 +70,7 @@
       <button
         mat-icon-button
         (click)="clearAndRefreshItems()"
+        *ngIf="!hideRefresh"
         [disabled]="
           (loading$ | async) ||
           (sorting$ | async) ||
