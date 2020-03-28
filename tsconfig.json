@@ -132,6 +132,12 @@
       ],
       "@customjs/note/*": [
         "dist/customjs/note/*"
+      ],
+      "@customjs/currency-input": [
+        "dist/customjs/currency-input"
+      ],
+      "@customjs/currency-input/*": [
+        "dist/customjs/currency-input/*"
       ]
     }
   },

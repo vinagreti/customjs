@@ -1,0 +1,16 @@
+<mat-form-field class="simulation-value">
+  <span matPrefix *ngIf="currency">{{ getCurrencySymbol(currency, 'wide') }} &nbsp;</span>
+  <input
+    name="value"
+    matInput
+    #inputField="ngModel"
+    type="text"
+    [(ngModel)]="inputValue"
+    (keyup)="onInputValueChanged()"
+    [disabled]="disabled"
+    [required]="required"
+  />
+</mat-form-field>
+<div class="error" *ngIf="matError">
+  <ng-content select="mat-error"></ng-content>
+</div>
