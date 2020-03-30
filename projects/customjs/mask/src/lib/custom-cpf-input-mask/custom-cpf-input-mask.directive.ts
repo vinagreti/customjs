@@ -1,20 +1,20 @@
 import {
   Directive,
-  OnInit,
   ElementRef,
-  Renderer2,
-  Optional,
   HostListener,
   OnDestroy,
+  OnInit,
+  Optional,
+  Renderer2,
 } from '@angular/core';
 import { NgModel, Validators } from '@angular/forms';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 @Directive({
-  selector: '[customMaskCpf]',
+  selector: '[customCpfInputMask]',
 })
-export class CustomMaskCpfDirective implements OnInit, OnDestroy {
+export class CustomCpfInputMaskDirective implements OnInit, OnDestroy {
   private valuechange$ = new BehaviorSubject<string>(undefined);
 
   private valueChangeSubscription: Subscription;
