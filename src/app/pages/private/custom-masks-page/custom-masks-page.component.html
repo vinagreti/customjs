@@ -1,0 +1,13 @@
+<h1>Custom Masks</h1>
+
+<h2>CPF - Social Security Number</h2>
+
+<h3>Input</h3>
+
+<input customCpfInputMask name="cpf" [(ngModel)]="cpf" />
+
+<div><label>Value:</label> {{ cpf }}</div>
+
+<h3>Mask</h3>
+
+<div>{{ cpf | customCpfMask }}</div>

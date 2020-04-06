@@ -30,6 +30,14 @@ export class CustomCpfInputMaskDirective implements OnInit, OnDestroy {
     this.valuechange$.next(value);
   }
 
+  @HostListener('paste', ['$event'])
+  inputPaste(event: ClipboardEvent) {
+    event.preventDefault();
+    event.stopPropagation();
+    const pastedData = (event.clipboardData || (window as any).clipboardData).getData('text');
+    this.valuechange$.next(pastedData);
+  }
+
   ngOnInit() {
     this.subscribeToValueChange();
     this.configureInput();
@@ -61,12 +69,12 @@ export class CustomCpfInputMaskDirective implements OnInit, OnDestroy {
     unmaskedValue = typeof unmaskedValue === 'string' ? unmaskedValue : '';
     const maskedValue = this.maskedvalue(unmaskedValue);
     if (unmaskedValue !== maskedValue) {
-      this.el.nativeElement.value = maskedValue;
+      this.setMaskedValue(maskedValue);
     }
   }
 
   private maskedvalue(unmaskedValue) {
-    return unmaskedValue.replace(/([^0-9])/g, '');
+    return unmaskedValue.replace(/\D/g, '');
   }
 
   private subscribeToValueChange() {
@@ -77,5 +85,11 @@ export class CustomCpfInputMaskDirective implements OnInit, OnDestroy {
 
   private unsubscribefromValueChange() {
     this.valueChangeSubscription.unsubscribe();
+  }
+
+  private setMaskedValue(maskedValue: string) {
+    if (this.ngModel) {
+      this.ngModel.control.setValue(maskedValue);
+    }
   }
 }

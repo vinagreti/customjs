@@ -12,6 +12,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./custom-list-page/custom-list-page.module').then(mod => mod.CustomListPageModule),
   },
+  {
+    path: 'custom-masks',
+    loadChildren: () =>
+      import('./custom-masks-page/custom-masks-page.module').then(mod => mod.CustomMasksPageModule),
+  },
 ];
 
 @NgModule({
