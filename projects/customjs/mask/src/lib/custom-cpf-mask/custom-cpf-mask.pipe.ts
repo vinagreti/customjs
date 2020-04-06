@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class CustomCpfMaskPipe implements PipeTransform {
   transform(value: string = ''): any {
-    if (value.length === 11) {
+    if (value && value.length === 11) {
       const part1 = value.slice(0, 3);
       const part2 = value.slice(3, 6);
       const part3 = value.slice(6, 9);
