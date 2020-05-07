@@ -3,7 +3,7 @@ import { ThemePalette } from '@angular/material/core';
 import { CustomCardBadgeComponent } from './custom-card-badge/custom-card-badge.component';
 
 @Component({
-  selector: 'custom-card',
+  selector: 'custom-card, [custom-card]',
   templateUrl: './custom-card.component.html',
   styleUrls: ['./custom-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

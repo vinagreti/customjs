@@ -33,6 +33,8 @@ export class CustomjsCurrencyInputComponent implements ControlValueAccessor {
 
   @Input() required: boolean;
 
+  @Input() placeholder: string;
+
   @Input() min: number;
 
   @Input() max: number;
