@@ -3,6 +3,10 @@
   [attr.color]="color"
   [ngClass]="{ 'custom-card-bordered': !hiddenBorder, active: active }"
 >
+  <ng-container *ngIf="title">
+    <strong><ng-content select="custom-title"></ng-content></strong>
+    <hr [color]="color">
+  </ng-container>
   <div class="custom-card-badge" *ngIf="badge">
     <ng-content select="custom-card-badge"></ng-content>
   </div>

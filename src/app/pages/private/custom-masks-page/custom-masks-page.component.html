@@ -4,10 +4,26 @@
 
 <h3>Input</h3>
 
-<input customCpfInputMask name="cpf" [(ngModel)]="cpf" />
+<mat-form-field>
+  <input matInput placeholder="CPF" customCpfInputMask name="cpf" [(ngModel)]="cpf" required />
+</mat-form-field>
 
 <div><label>Value:</label> {{ cpf }}</div>
 
 <h3>Mask</h3>
 
 <div>{{ cpf | customCpfMask }}</div>
+
+<h2>CEP - Postal Code</h2>
+
+<h3>Input</h3>
+
+<mat-form-field>
+  <input matInput placeholder="CEP" customCepInputMask name="cep" [(ngModel)]="cep" required />
+</mat-form-field>
+
+<div><label>Value:</label> {{ cep }}</div>
+
+<h3>Mask</h3>
+
+<div>{{ cep | customCepMask }}</div>

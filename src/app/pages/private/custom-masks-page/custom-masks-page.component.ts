@@ -9,6 +9,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 export class CustomMasksPageComponent implements OnInit {
   cpf: number;
 
+  cep: number;
+
   constructor() {}
 
   ngOnInit() {}

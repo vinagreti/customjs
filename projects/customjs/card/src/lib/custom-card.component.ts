@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, ContentChild, Input } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
+import { CustomTitleComponent } from '@customjs/smart-layout';
 import { CustomCardBadgeComponent } from './custom-card-badge/custom-card-badge.component';
 
 @Component({
@@ -11,9 +12,11 @@ import { CustomCardBadgeComponent } from './custom-card-badge/custom-card-badge.
 export class CustomCardComponent {
   @ContentChild(CustomCardBadgeComponent, { static: false }) badge: CustomCardBadgeComponent;
 
-  @Input() hiddenBorder = false;
+  @Input() hiddenBorder = true;
 
   @Input() active: boolean;
 
   @Input() color: ThemePalette = 'primary';
+
+  @ContentChild(CustomTitleComponent, { static: false }) title: CustomTitleComponent;
 }

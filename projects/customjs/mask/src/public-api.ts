@@ -1,6 +1,8 @@
 /*
  * Public API Surface of mask
  */
+export * from './lib/custom-cep-mask/custom-cep-mask.module';
+export * from './lib/custom-cep-mask/custom-cep-mask.pipe';
 export * from './lib/custom-cpf-input-mask/custom-cpf-input-mask.directive';
 export * from './lib/custom-cpf-input-mask/custom-cpf-input-mask.module';
 export * from './lib/custom-cpf-mask/custom-cpf-mask.module';
