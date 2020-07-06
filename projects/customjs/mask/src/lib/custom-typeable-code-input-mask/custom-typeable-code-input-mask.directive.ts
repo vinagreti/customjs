@@ -2,15 +2,15 @@ import { Directive, ElementRef, Optional, Renderer2 } from '@angular/core';
 import { NgModel, Validators } from '@angular/forms';
 import { CustomInputMaskDirective } from '../custom-input-mask';
 
-const minLength = 8;
-const maxLength = 8;
+const minLength = 47;
+const maxLength = 48;
 const maskPattern = `[0-9]{${minLength},${maxLength}}`;
 
 @Directive({
-  selector: '[customCepInputMask]',
+  selector: '[customTypeableCodeInputMask]',
 })
-export class CustomCepInputMaskDirective extends CustomInputMaskDirective {
-  protected ngModelValidations = [
+export class CustomTypeableCodeInputMaskDirective extends CustomInputMaskDirective {
+  protected ngModelValidators = [
     Validators.maxLength(maxLength),
     Validators.minLength(minLength),
     Validators.pattern(maskPattern),

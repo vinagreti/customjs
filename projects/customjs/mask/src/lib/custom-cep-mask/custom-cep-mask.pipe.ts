@@ -5,7 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class CustomCepMaskPipe implements PipeTransform {
   transform(value: string = ''): any {
-    console.log('transform', value);
     if (value && value.length > 5) {
       const part1 = value.slice(0, 5);
       const part2 = value.slice(5, 8);

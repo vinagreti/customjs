@@ -6,6 +6,7 @@ import { CustomCepInputMaskModule } from 'projects/customjs/mask/src/lib/custom-
 import { CustomCepMaskModule } from 'projects/customjs/mask/src/lib/custom-cep-mask';
 import { CustomCpfInputMaskModule } from 'projects/customjs/mask/src/lib/custom-cpf-input-mask';
 import { CustomCpfMaskModule } from 'projects/customjs/mask/src/lib/custom-cpf-mask';
+import { CustomTypeableCodeInputMaskModule } from 'projects/customjs/mask/src/public-api';
 import { CustomMasksPageRoutingModule } from './custom-masks-page-routing.module';
 import { CustomMasksPageComponent } from './custom-masks-page.component';
 
@@ -18,6 +19,7 @@ import { CustomMasksPageComponent } from './custom-masks-page.component';
     CustomCepInputMaskModule,
     CustomCpfMaskModule,
     CustomCepMaskModule,
+    CustomTypeableCodeInputMaskModule,
     MatInputModule,
     FormsModule,
   ],

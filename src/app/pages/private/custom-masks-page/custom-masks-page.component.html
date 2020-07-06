@@ -5,7 +5,17 @@
 <h3>Input</h3>
 
 <mat-form-field>
-  <input matInput placeholder="CPF" customCpfInputMask name="cpf" [(ngModel)]="cpf" required />
+  <input
+    matInput
+    required
+    placeholder="CPF"
+    customCpfInputMask
+    name="cpf"
+    [(ngModel)]="cpf"
+    #customCpfInputMaskControl="ngModel"
+  />
+
+  <mat-error>{{ customCpfInputMaskControl.errors | json }}</mat-error>
 </mat-form-field>
 
 <div><label>Value:</label> {{ cpf }}</div>
@@ -19,7 +29,17 @@
 <h3>Input</h3>
 
 <mat-form-field>
-  <input matInput placeholder="CEP" customCepInputMask name="cep" [(ngModel)]="cep" required />
+  <input
+    matInput
+    required
+    placeholder="CEP"
+    customCepInputMask
+    name="cep"
+    [(ngModel)]="cep"
+    #customCepInputMaskControl="ngModel"
+  />
+
+  <mat-error>{{ customCepInputMaskControl.errors | json }}</mat-error>
 </mat-form-field>
 
 <div><label>Value:</label> {{ cep }}</div>
@@ -27,3 +47,27 @@
 <h3>Mask</h3>
 
 <div>{{ cep | customCepMask }}</div>
+
+<h2>Typeable code</h2>
+
+<h3>Input</h3>
+
+<mat-form-field>
+  <input
+    matInput
+    required
+    placeholder="Typeable Code"
+    customTypeableCodeInputMask
+    name="typeableCode"
+    [(ngModel)]="invoice"
+    #customTypeableCodeInputMaskControl="ngModel"
+  />
+
+  <mat-error>{{ customTypeableCodeInputMaskControl.errors | json }}</mat-error>
+</mat-form-field>
+
+<div><label>Value:</label> {{ invoice }}</div>
+
+<h3>Mask</h3>
+
+<div>{{ invoice | json }}</div>

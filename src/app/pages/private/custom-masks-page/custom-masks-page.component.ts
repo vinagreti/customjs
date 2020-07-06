@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-custom-masks-page',
@@ -6,12 +6,12 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   styleUrls: ['./custom-masks-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CustomMasksPageComponent implements OnInit {
+export class CustomMasksPageComponent {
   cpf: number;
 
   cep: number;
 
-  constructor() {}
+  invoice: number;
 
-  ngOnInit() {}
+  constructor() {}
 }

@@ -2,9 +2,9 @@ import { CustomCepMaskPipe } from './custom-cep-mask.pipe';
 
 describe('CustomCepMaskPipe', () => {
   const emptyCep = '';
-  const cepSmallerLength = '111';
-  const cepGreaterLength = '111111111111';
-  const cepMock = '11111111111';
+  const cepSmallerLength = '1234';
+  const cepGreaterLength = '123456789';
+  const cepMock = '12345678';
 
   it('create an instance', () => {
     const pipe = new CustomCepMaskPipe();
@@ -14,7 +14,7 @@ describe('CustomCepMaskPipe', () => {
   it('create should transform', () => {
     // given
     const pipe = new CustomCepMaskPipe();
-    const expected = '111.111.111-11';
+    const expected = '12345-678';
     // when
     const result = pipe.transform(cepMock);
     // then
@@ -31,7 +31,7 @@ describe('CustomCepMaskPipe', () => {
     expect(result).toEqual(expected);
   });
 
-  it('create should not transform string with lenght smaller than 11', () => {
+  it('create should not transform string with lenght smaller than 5', () => {
     // given
     const pipe = new CustomCepMaskPipe();
     const expected = cepSmallerLength;
@@ -41,10 +41,10 @@ describe('CustomCepMaskPipe', () => {
     expect(result).toEqual(expected);
   });
 
-  it('create should not transform string with lenght greater than 11', () => {
+  it('create should transform string with lenght greater than 11', () => {
     // given
     const pipe = new CustomCepMaskPipe();
-    const expected = cepGreaterLength;
+    const expected = '12345-678';
     // when
     const result = pipe.transform(cepGreaterLength);
     // then
