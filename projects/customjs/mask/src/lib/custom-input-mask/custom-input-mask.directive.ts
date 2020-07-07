@@ -32,14 +32,6 @@ export class CustomInputMaskDirective implements OnInit, OnDestroy {
     this.valuechange$.next(value);
   }
 
-  @HostListener('paste', ['$event'])
-  inputPaste(event: ClipboardEvent) {
-    event.preventDefault();
-    event.stopPropagation();
-    const pastedData = this.getClipboardData(event);
-    this.valuechange$.next(pastedData);
-  }
-
   ngOnInit() {
     this.subscribeToValueChange();
     this.configureInput();

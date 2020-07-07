@@ -29,10 +29,6 @@ export class CustomjsCurrencyInputComponent implements ControlValueAccessor {
 
   @ViewChild('inputField', { static: true }) inputField: NgModel;
 
-  @Input() disabled: boolean;
-
-  @Input() required: boolean;
-
   @Input() placeholder: string;
 
   @Input() min: number;
@@ -42,8 +38,6 @@ export class CustomjsCurrencyInputComponent implements ControlValueAccessor {
   @Input() currency: string;
 
   @ContentChild(MatError, { static: false }) matError: MatError;
-
-  getCurrencySymbol = getCurrencySymbol;
 
   /*
    ** ngModel propertie
@@ -56,7 +50,13 @@ export class CustomjsCurrencyInputComponent implements ControlValueAccessor {
   //  Placeholders for the callbacks which are later provided by the Control Value Accessor
   private onChangeCallback: (_: any) => void = () => {};
 
+  private innerDisabled: boolean;
+
+  private innerRequired: boolean;
+
   constructor(private currencyPipe: CurrencyPipe) {}
+
+  getCurrencySymbol = getCurrencySymbol;
 
   @Input()
   set value(v: number) {
@@ -67,6 +67,24 @@ export class CustomjsCurrencyInputComponent implements ControlValueAccessor {
 
   get value() {
     return this.innerValue;
+  }
+
+  @Input()
+  set disabled(v: boolean) {
+    this.innerDisabled = v !== false;
+  }
+
+  get disabled() {
+    return this.innerDisabled;
+  }
+
+  @Input()
+  set required(v: boolean) {
+    this.innerRequired = v !== false;
+  }
+
+  get required() {
+    return this.innerRequired;
   }
 
   // From ControlValueAccessor interface
