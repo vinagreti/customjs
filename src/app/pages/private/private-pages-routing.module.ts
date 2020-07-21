@@ -17,6 +17,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./custom-masks-page/custom-masks-page.module').then(mod => mod.CustomMasksPageModule),
   },
+  {
+    path: 'filter-paginate-sort',
+    loadChildren: () =>
+      import('./custom-filter-paginate-sort-page/custom-filter-paginate-sort-page.module').then(
+        mod => mod.CustomFilterPaginateSortPageModule,
+      ),
+  },
 ];
 
 @NgModule({

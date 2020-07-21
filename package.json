@@ -33,6 +33,8 @@
     "publish:card": "npm publish dist/customjs/card/ --access=public",
     "build:currency-input": "ng b @customjs/currency-input",
     "publish:currency-input": "npm publish dist/customjs/currency-input/ --access=public",
+    "build:fps": "ng b @customjs/fps",
+    "publish:fps": "npm publish dist/customjs/fps/ --access=public",
     "build:generic-http": "ng b @customjs/generic-http",
     "publish:generic-http": "npm publish dist/customjs/generic-http/ --access=public",
     "build:i18n": "ng b @customjs/i18n",

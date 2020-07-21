@@ -138,6 +138,12 @@
       ],
       "@customjs/currency-input/*": [
         "dist/customjs/currency-input/*"
+      ],
+      "@customjs/fps": [
+        "dist/customjs/fps"
+      ],
+      "@customjs/fps/*": [
+        "dist/customjs/fps/*"
       ]
     }
   },

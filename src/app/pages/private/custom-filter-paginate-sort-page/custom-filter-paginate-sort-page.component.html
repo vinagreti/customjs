@@ -1,0 +1,37 @@
+<h1>Filter Paginate Sort</h1>
+
+<h3>Raw data</h3>
+
+<custom-list [items]="filterSortPaginate" [pageSize]="2">
+  <custom-list-filter>
+    <ng-template let-form="form">
+      <mat-form-field>
+        <input matInput placeholder="Nome" [(ngModel)]="form[filterKeys.NAME]" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Rua" [(ngModel)]="form[filterKeys.STREET]" />
+      </mat-form-field>
+    </ng-template>
+  </custom-list-filter>
+
+  <custom-table>
+    <custom-table-column title="Nome" [name]="filterKeys.NAME" [prop]="filterKeys.NAME">
+      <ng-template let-item="item">
+        {{ item.user?.name }}
+      </ng-template>
+    </custom-table-column>
+
+    <custom-table-column title="Data" [name]="filterKeys.CREATED" [prop]="filterKeys.CREATED">
+      <ng-template let-item="item">
+        {{ item.created | date: 'short' }}
+      </ng-template>
+    </custom-table-column>
+
+    <custom-table-column title="Rua" [name]="filterKeys.STREET" [prop]="filterKeys.STREET">
+      <ng-template let-item="item">
+        {{ item.user?.address?.street }}
+      </ng-template>
+    </custom-table-column>
+  </custom-table>
+</custom-list>
