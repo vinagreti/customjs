@@ -144,6 +144,12 @@
       ],
       "@customjs/fps/*": [
         "dist/customjs/fps/*"
+      ],
+      "@customjs/file": [
+        "dist/customjs/file"
+      ],
+      "@customjs/file/*": [
+        "dist/customjs/file/*"
       ]
     }
   },
