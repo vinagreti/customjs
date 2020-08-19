@@ -12,7 +12,7 @@ import { CustomCardBadgeComponent } from './custom-card-badge/custom-card-badge.
 export class CustomCardComponent {
   @ContentChild(CustomCardBadgeComponent, { static: false }) badge: CustomCardBadgeComponent;
 
-  @Input() hiddenBorder = true;
+  @Input() hiddenBorder = false;
 
   @Input() active: boolean;
 
