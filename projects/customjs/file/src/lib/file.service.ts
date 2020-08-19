@@ -1,63 +1,79 @@
-import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { CustomjsLoadedFilesMap } from './file.models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CustomjsFileService {
-  constructor(@Inject(DOCUMENT) private document: any) {
-    this.document.decoraScriptService = this.document.decoraScriptService || {};
-  }
+  private loadedFiles: CustomjsLoadedFilesMap = {
+    js: {},
+    style: {},
+  };
 
-  load(url: string, scriptName: string) {
+  private innerWindow = window;
+
+  constructor() {}
+
+  loadJs(url: string, scriptName: string) {
     return new Promise((resolve, reject) => {
-      const scriptLoaded = this.document.customjsScriptService[scriptName];
-
+      const scriptLoaded = this.loadedFiles.js[scriptName];
       if (scriptLoaded) {
-        const script = this.document[scriptName];
-
+        const script = this.innerWindow[scriptName];
         resolve(script);
       } else {
-        const scriptTag = this.document.createElement('script');
+        const scriptTag = this.innerWindow.document.createElement('script');
+        scriptTag.setAttribute('async', '1');
         scriptTag.setAttribute('src', url);
         scriptTag.setAttribute('type', 'text/javascript');
-        scriptTag.onload = () => {
-          this.document.customjsScriptService[scriptName] = true;
-          const script = this.document[scriptName];
-          resolve(script);
-        };
         scriptTag.onerror = reject;
-        this.document.getElementsByTagName('head')[0].appendChild(scriptTag);
+
+        if ((scriptTag as any).readyState) {
+          // IE
+          const ieScriptTag: any = scriptTag;
+          ieScriptTag.onreadystatechange = () => {
+            const loaded = ['loaded', 'complete'].includes(ieScriptTag.readyState);
+            if (loaded) {
+              this.loadedFiles.style[url] = true;
+              resolve();
+            }
+          };
+        } else {
+          scriptTag.onload = () => {
+            this.loadedFiles.js[scriptName] = true;
+            const script = this.innerWindow[scriptName];
+            resolve(script);
+          };
+        }
+
+        this.innerWindow.document.getElementsByTagName('head')[0].appendChild(scriptTag);
       }
     });
   }
 
   loadStyle(url: string) {
     return new Promise((resolve, reject) => {
-      this.document.scriptServiceLoadedStylesArray =
-        this.document.scriptServiceLoadedStylesArray || {};
-      const styleLoaded = this.document.scriptServiceLoadedStylesArray[url];
+      const styleLoaded = this.loadedFiles.style[url];
       if (styleLoaded) {
         resolve();
       } else {
-        const linkTag = this.document.createElement('link');
+        const linkTag = this.innerWindow.document.createElement('link');
         linkTag.setAttribute('rel', 'stylesheet');
         linkTag.setAttribute('type', 'text/css');
         linkTag.setAttribute('media', 'all');
         linkTag.setAttribute('href', url);
         linkTag.onerror = reject;
         linkTag.onload = () => {
-          this.document.scriptServiceLoadedStylesArray[url] = true;
+          this.loadedFiles.style[url] = true;
           resolve();
         };
-        this.document.getElementsByTagName('head')[0].appendChild(linkTag);
+        this.innerWindow.document.getElementsByTagName('head')[0].appendChild(linkTag);
       }
     });
   }
 
   loadStyleAndScript(styleUrl, scriptUrl, scriptNamespace) {
     return this.loadStyle(styleUrl).then(() => {
-      return this.load(scriptUrl, scriptNamespace);
+      return this.loadJs(scriptUrl, scriptNamespace);
     });
   }
 }
