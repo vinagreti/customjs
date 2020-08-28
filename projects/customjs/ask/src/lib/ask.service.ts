@@ -16,6 +16,7 @@ export class AskService {
     const panelClass: string = this.getDialogClassBasedOnType(config.type);
 
     const dialogRef = this.dialog.open(AskComponent, {
+      ...config.dialogConfig,
       panelClass,
     });
 

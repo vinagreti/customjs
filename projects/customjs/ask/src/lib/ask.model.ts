@@ -1,3 +1,5 @@
+import { MatDialogConfig } from '@angular/material';
+
 export type AskType = 'error' | 'success' | 'info';
 
 export interface AskConfig {
@@ -9,4 +11,5 @@ export interface AskConfig {
   showReject?: boolean;
   hideCancel?: boolean;
   type?: AskType;
+  dialogConfig?: MatDialogConfig;
 }
