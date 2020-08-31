@@ -11,7 +11,7 @@ import { NonAuthGuard, NonAuthGuardModule } from '@services/guards/non-auth';
 
 /* NOTE: Add the pages routes here */
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   {
     path: '',
     component: AppWrapperPublicComponent,

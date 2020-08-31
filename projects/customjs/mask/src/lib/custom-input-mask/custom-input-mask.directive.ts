@@ -8,7 +8,7 @@ import {
   Renderer2,
 } from '@angular/core';
 import { NgModel, ValidatorFn } from '@angular/forms';
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { ReplaySubject, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 @Directive({
@@ -17,7 +17,7 @@ import { debounceTime } from 'rxjs/operators';
 export class CustomInputMaskDirective implements OnInit, OnDestroy {
   protected ngModelValidators: ValidatorFn[] = [];
 
-  protected valuechange$ = new BehaviorSubject<string>(undefined);
+  protected valuechange$ = new ReplaySubject<string>();
 
   private valueChangeSubscription: Subscription;
 

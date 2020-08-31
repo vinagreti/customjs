@@ -1,0 +1,8 @@
+<h1>Customjs WS - Web Socket</h1>
+
+<button (click)="sendMessage()">sendMessage</button>
+
+<div *ngIf="wsConnection.message | async as message">
+  <h3>Last message</h3>
+  {{ message }}
+</div>

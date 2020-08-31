@@ -7,11 +7,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomMasksPageComponent {
-  cpf: number;
-
-  cep: number;
-
-  invoice: number;
+  maskInitialData = {
+    cpf: '04504504545',
+    cep: '88000000',
+    invoice: '321654987321654987321654987321654987321654987000',
+    email: 'test@test.com',
+  };
 
   constructor() {}
 }
