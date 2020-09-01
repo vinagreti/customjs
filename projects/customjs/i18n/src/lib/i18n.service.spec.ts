@@ -21,7 +21,7 @@ describe('I18nService', () => {
   });
 
   it('should be created', () => {
-    const service = TestBed.get(I18nService);
+    const service = TestBed.inject(I18nService);
     service.appService = {
       reloadMainApp: () => {},
     };
@@ -29,7 +29,7 @@ describe('I18nService', () => {
   });
 
   it('should set fake store if in server side', () => {
-    const service = TestBed.get(I18nService);
+    const service = TestBed.inject(I18nService);
     service.appService = {
       reloadMainApp: () => {},
     };
@@ -45,7 +45,7 @@ describe('I18nService', () => {
   });
 
   it('should get locale', () => {
-    const service = TestBed.get(I18nService);
+    const service = TestBed.inject(I18nService);
     service.appService = {
       reloadMainApp: () => {},
     };
@@ -56,7 +56,7 @@ describe('I18nService', () => {
   });
 
   it('should set locale', () => {
-    const service = TestBed.get(I18nService);
+    const service = TestBed.inject(I18nService);
     service.appService = {
       reloadMainApp: () => {},
     };
@@ -70,7 +70,7 @@ describe('I18nService', () => {
   });
 
   it('should reload app if new location is set from outside', () => {
-    const service = TestBed.get(I18nService);
+    const service = TestBed.inject(I18nService);
     service.appService = {
       reloadMainApp: () => {},
     };
@@ -87,7 +87,7 @@ describe('I18nService', () => {
   });
 
   it('should set stored in setStoredOrDefaultLocale', () => {
-    const service = TestBed.get(I18nService);
+    const service = TestBed.inject(I18nService);
     service.appService = {
       reloadMainApp: () => {},
     };
@@ -102,7 +102,7 @@ describe('I18nService', () => {
   });
 
   it('should set default locale in setStoredOrDefaultLocale', () => {
-    const service = TestBed.get(I18nService);
+    const service = TestBed.inject(I18nService);
     service.appService = {
       reloadMainApp: () => {},
     };
@@ -116,7 +116,7 @@ describe('I18nService', () => {
   });
 
   it('should return undefined from memory', () => {
-    const service = TestBed.get(I18nService);
+    const service = TestBed.inject(I18nService);
     service.appService = {
       reloadMainApp: () => {},
     };
@@ -132,7 +132,7 @@ describe('I18nService', () => {
   });
 
   it('should return locale from memory', () => {
-    const service = TestBed.get(I18nService);
+    const service = TestBed.inject(I18nService);
     service.appService = {
       reloadMainApp: () => {},
     };
@@ -149,7 +149,7 @@ describe('I18nService', () => {
   });
 
   it('should not reload if in server', () => {
-    const service = TestBed.get(I18nService);
+    const service = TestBed.inject(I18nService);
     service.appService = {
       reloadMainApp: () => {},
     };

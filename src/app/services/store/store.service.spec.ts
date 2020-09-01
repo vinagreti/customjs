@@ -12,13 +12,13 @@ describe('StoreService', () => {
   );
 
   it('should be created', () => {
-    const service: StoreService = TestBed.get(StoreService);
+    const service: StoreService = TestBed.inject(StoreService);
     expect(service).toBeTruthy();
   });
 
   it('should clear the store', async(() => {
-    const store: Store = TestBed.get(Store);
-    const service: StoreService = TestBed.get(StoreService);
+    const store: Store = TestBed.inject(Store);
+    const service: StoreService = TestBed.inject(StoreService);
     service.clear();
     const localization = store.snapshot();
     expect(localization).toBeUndefined();

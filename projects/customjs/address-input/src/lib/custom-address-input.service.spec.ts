@@ -10,7 +10,7 @@ describe('CustomAddressInputService', () => {
   );
 
   it('should be created', () => {
-    const service: CustomAddressInputService = TestBed.get(CustomAddressInputService);
+    const service: CustomAddressInputService = TestBed.inject(CustomAddressInputService);
     expect(service).toBeTruthy();
   });
 });

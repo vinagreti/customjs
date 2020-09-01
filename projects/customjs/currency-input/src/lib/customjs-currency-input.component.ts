@@ -37,7 +37,7 @@ export class CustomjsCurrencyInputComponent implements ControlValueAccessor {
 
   @Input() currency: string;
 
-  @ContentChild(MatError, { static: false }) matError: MatError;
+  @ContentChild(MatError) matError: MatError;
 
   /*
    ** ngModel propertie

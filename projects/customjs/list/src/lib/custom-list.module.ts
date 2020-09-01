@@ -23,9 +23,9 @@ import { CustomListComponent } from './custom-list.component';
   ],
   exports: [
     CustomListComponent,
-    CustomTableModule,
     CustomListCardModule,
     CustomListFilterModule,
+    CustomTableModule,
     CustomPaginatorModule,
   ],
 })

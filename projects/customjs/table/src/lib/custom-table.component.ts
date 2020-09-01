@@ -60,8 +60,8 @@ export class CustomTableComponent {
     this.columns$.next(v.toArray());
   }
 
-  @ContentChild(CustomActionsComponent, { static: false })
-  set actions(v: CustomTableColumnComponent) {
+  @ContentChild(CustomActionsComponent)
+  set actions(v: CustomActionsComponent) {
     this.actions$.next(v);
   }
 

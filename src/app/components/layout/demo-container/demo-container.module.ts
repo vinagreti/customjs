@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatTabsModule } from '@angular/material';
+import { MatTabsModule } from '@angular/material/tabs';
 import { CustomJsMarkdownModule } from './../markdown/markdown.module';
 import { DemoContainerComponent } from './demo-container.component';
 

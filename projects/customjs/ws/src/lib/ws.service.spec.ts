@@ -11,7 +11,7 @@ describe('WsService', () => {
 
   it('should be created', () => {
     // given
-    const service: any = TestBed.get(WsService);
+    const service: any = TestBed.inject(WsService);
     // when
     spyOn(service, 'createWebSocket').and.returnValue({
       onclose: of(),
@@ -25,7 +25,7 @@ describe('WsService', () => {
 
   it('should return open connection for the same url', () => {
     // given
-    const service: any = TestBed.get(WsService);
+    const service: any = TestBed.inject(WsService);
     const url = 'wss://abc';
     // when
     const spy = spyOn(service, 'connectToWs').and.callFake(() => {
@@ -39,7 +39,7 @@ describe('WsService', () => {
 
   it('should not create new connection if already exists', () => {
     // given
-    const service: any = TestBed.get(WsService);
+    const service: any = TestBed.inject(WsService);
     const url = 'wss://abc';
     // when
     spyOn(service, 'createWebSocket').and.callFake(() => {});
@@ -52,7 +52,7 @@ describe('WsService', () => {
 
   it('should open new connection if previous was closed or has thrown an error', () => {
     // given
-    const service: any = TestBed.get(WsService);
+    const service: any = TestBed.inject(WsService);
     const url = 'wss://abc';
     // when
     const spy = spyOn(service, 'openConnection').and.callFake(() => {});
@@ -68,7 +68,7 @@ describe('WsService', () => {
 
   it('should configure connection events', () => {
     // given
-    const service: any = TestBed.get(WsService);
+    const service: any = TestBed.inject(WsService);
     const url = 'wss://abc';
     const channel: any = {};
     const message = { next: () => {} };
@@ -83,7 +83,7 @@ describe('WsService', () => {
 
   it('should handle error', () => {
     // given
-    const service: any = TestBed.get(WsService);
+    const service: any = TestBed.inject(WsService);
     let called: boolean;
     const url = 'wss://abc';
     const channel: any = {};
@@ -102,7 +102,7 @@ describe('WsService', () => {
 
   it('should handle on close', () => {
     // given
-    const service: any = TestBed.get(WsService);
+    const service: any = TestBed.inject(WsService);
     let called: boolean;
     const url = 'wss://abc';
     const channel: any = {};
@@ -121,7 +121,7 @@ describe('WsService', () => {
 
   it('should handle message', () => {
     // given
-    const service: any = TestBed.get(WsService);
+    const service: any = TestBed.inject(WsService);
     let called: boolean;
     const url = 'wss://abc';
     const channel: any = {};
@@ -141,7 +141,7 @@ describe('WsService', () => {
 
   it('should handle empty message', () => {
     // given
-    const service: any = TestBed.get(WsService);
+    const service: any = TestBed.inject(WsService);
     let called: boolean;
     const url = 'wss://abc';
     const channel: any = {};
@@ -161,7 +161,7 @@ describe('WsService', () => {
 
   it('should create new websocket', () => {
     // given
-    const service: any = TestBed.get(WsService);
+    const service: any = TestBed.inject(WsService);
     const url = 'wss://abc';
     // when
     const websocket = service.createWebSocket(url);
@@ -171,7 +171,7 @@ describe('WsService', () => {
 
   it('should get raw data if not parseable', () => {
     // given
-    const service: any = TestBed.get(WsService);
+    const service: any = TestBed.inject(WsService);
     const message = {
       data: 'teste',
     };

@@ -10,13 +10,13 @@ describe('AuthService', () => {
   );
 
   it('should be created', () => {
-    const service: AuthService = TestBed.get(AuthService);
+    const service: AuthService = TestBed.inject(AuthService);
     expect(service).toBeTruthy();
   });
 
   it('should not set token in memory if in server side', () => {
     // given
-    const service: any = TestBed.get(AuthService);
+    const service: any = TestBed.inject(AuthService);
     // when
     const spy = spyOn(localStorage, 'getItem');
     service.isServer = true;
@@ -27,7 +27,7 @@ describe('AuthService', () => {
 
   it('should not get token from memory if in server side', () => {
     // given
-    const service: any = TestBed.get(AuthService);
+    const service: any = TestBed.inject(AuthService);
     // when
     const spy = spyOn(localStorage, 'setItem');
     service.isServer = true;
@@ -39,7 +39,7 @@ describe('AuthService', () => {
   it('should log in', () => {
     // given
     const token = 'xyz';
-    const service: any = TestBed.get(AuthService);
+    const service: any = TestBed.inject(AuthService);
     const spy = spyOn(service.router, 'navigate').and.returnValue(true);
     // when
     service.login(token);
@@ -49,7 +49,7 @@ describe('AuthService', () => {
 
   it('should log out', () => {
     // given
-    const service: any = TestBed.get(AuthService);
+    const service: any = TestBed.inject(AuthService);
     const spy = spyOn(service.router, 'navigate').and.returnValue(true);
     // when
     service.logout();

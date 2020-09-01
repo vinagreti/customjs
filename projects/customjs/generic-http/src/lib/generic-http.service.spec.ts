@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { GenericHttp } from './generic-http.service';
 import { GenericHttpTestingModule } from './testing';
 
@@ -11,7 +10,7 @@ describe('GenericHttp', () => {
   );
 
   it('should be created', () => {
-    const service: GenericHttp = TestBed.get(GenericHttp);
+    const service: GenericHttp = TestBed.inject(GenericHttp);
     expect(service).toBeTruthy();
   });
 });

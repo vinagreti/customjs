@@ -9,7 +9,6 @@ import { AskService } from './ask.service';
   declarations: [AskComponent],
   imports: [CommonModule, MatDialogModule, MatButtonModule],
   exports: [AskComponent],
-  entryComponents: [AskComponent],
   providers: [AskService],
 })
 export class AskModule {}

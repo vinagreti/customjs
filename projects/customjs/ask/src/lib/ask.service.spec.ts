@@ -10,13 +10,13 @@ describe('AskService', () => {
   );
 
   it('should be created', () => {
-    const service: AskService = TestBed.get(AskService);
+    const service: AskService = TestBed.inject(AskService);
     expect(service).toBeTruthy();
   });
 
   it('should emit confirmation', () => {
     // given component
-    const service: any = TestBed.get(AskService);
+    const service: any = TestBed.inject(AskService);
     const dialogRef = { componentInstance: {}, afterClosed: () => {} };
     const spy = spyOn(service.dialog, 'open').and.returnValue(dialogRef);
     // when
@@ -27,7 +27,7 @@ describe('AskService', () => {
 
   it('should set error type class', () => {
     // given component
-    const service: any = TestBed.get(AskService);
+    const service: any = TestBed.inject(AskService);
     const type = 'error';
     // when
     const dialogClass = service.getDialogClassBasedOnType(type);
@@ -37,7 +37,7 @@ describe('AskService', () => {
 
   it('should set no type class', () => {
     // given component
-    const service: any = TestBed.get(AskService);
+    const service: any = TestBed.inject(AskService);
     const type = '';
     // when
     const dialogClass = service.getDialogClassBasedOnType(type);

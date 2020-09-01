@@ -5,7 +5,7 @@ describe('CustomFpsService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: CustomFpsService = TestBed.get(CustomFpsService);
+    const service: CustomFpsService = TestBed.inject(CustomFpsService);
     expect(service).toBeTruthy();
   });
 });

@@ -11,17 +11,17 @@ describe('VersionService', () => {
     TestBed.configureTestingModule({
       imports: [VersionServiceTestingModule],
     });
-    store = TestBed.get(Store);
+    store = TestBed.inject(Store);
   });
 
   it('should be created', () => {
-    const service: VersionService = TestBed.get(VersionService);
+    const service: VersionService = TestBed.inject(VersionService);
     expect(service).toBeTruthy();
   });
 
   it('should handle connection success if connection went well', () => {
     // given
-    const service: any = TestBed.get(VersionService);
+    const service: any = TestBed.inject(VersionService);
     const message = { type: 'VERSION', value: 1 };
     // when
     spyOn(service.ws, 'connect').and.returnValue({
@@ -37,7 +37,7 @@ describe('VersionService', () => {
 
   it('should handle connection error if connection did not went well', () => {
     // given
-    const service: any = TestBed.get(VersionService);
+    const service: any = TestBed.inject(VersionService);
     const message = { type: 'VERSION', value: 1 };
     // when
     spyOn(service.ws, 'connect').and.returnValue({
@@ -53,7 +53,7 @@ describe('VersionService', () => {
 
   it('should connect if is running on browser and the environment are enabled', () => {
     // given
-    const service: any = TestBed.get(VersionService);
+    const service: any = TestBed.inject(VersionService);
     // when
     service.isBrowser = true;
     service.envNotDisabled = true;
@@ -65,7 +65,7 @@ describe('VersionService', () => {
 
   it('should not connect if is running on server', () => {
     // given
-    const service: any = TestBed.get(VersionService);
+    const service: any = TestBed.inject(VersionService);
     // when
     service.isBrowser = false;
     const spy = spyOn(service, 'connectToVersionWs').and.callFake(() => {});
@@ -76,7 +76,7 @@ describe('VersionService', () => {
 
   it('should not update when client and ws have the same version', () => {
     // given
-    const service: any = TestBed.get(VersionService);
+    const service: any = TestBed.inject(VersionService);
     // when
     const spy = spyOn(service, 'saveLatestVersionInMemory').and.callThrough();
     spyOn(service, 'askPermissionToInstallLatestVersion').and.callThrough();
@@ -88,7 +88,7 @@ describe('VersionService', () => {
 
   it('should update when client and ws have different versions', () => {
     // given
-    const service: any = TestBed.get(VersionService);
+    const service: any = TestBed.inject(VersionService);
     // when
     const spy = spyOn(service, 'saveLatestVersionInMemory').and.callThrough();
     spyOn(service, 'askPermissionToInstallLatestVersion').and.callThrough();
@@ -99,7 +99,7 @@ describe('VersionService', () => {
 
   it('should compareVersionsAndUpdateIfNeeded if already have an version in memory', () => {
     // given
-    const service: any = TestBed.get(VersionService);
+    const service: any = TestBed.inject(VersionService);
     // when
     service.persistLatestVersion('1');
     const spy = spyOn(service, 'compareVersionsAndUpdateIfNeeded').and.callThrough();
@@ -110,7 +110,7 @@ describe('VersionService', () => {
 
   it('should not persist version if user not confirms installation', () => {
     // given
-    const service: any = TestBed.get(VersionService);
+    const service: any = TestBed.inject(VersionService);
     // when
     spyOn(service.confirmService, 'confirm').and.returnValue(of(false));
     const spy = spyOn(service, 'persistLatestVersion').and.callThrough();
@@ -121,7 +121,7 @@ describe('VersionService', () => {
 
   it('should persist version if user confirms installation', () => {
     // given
-    const service: any = TestBed.get(VersionService);
+    const service: any = TestBed.inject(VersionService);
     // when
     service.document = {
       location: {
@@ -137,7 +137,7 @@ describe('VersionService', () => {
 
   it('should init VersionStates if nothing is already', () => {
     // given
-    const service: any = TestBed.get(VersionService);
+    const service: any = TestBed.inject(VersionService);
     // when
     service.document = {
       location: {

@@ -10,7 +10,7 @@ import { CustomCardBadgeComponent } from './custom-card-badge/custom-card-badge.
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomCardComponent {
-  @ContentChild(CustomCardBadgeComponent, { static: false }) badge: CustomCardBadgeComponent;
+  @ContentChild(CustomCardBadgeComponent) badge: CustomCardBadgeComponent;
 
   @Input() hiddenBorder = false;
 
@@ -18,5 +18,5 @@ export class CustomCardComponent {
 
   @Input() color: ThemePalette = 'primary';
 
-  @ContentChild(CustomTitleComponent, { static: false }) title: CustomTitleComponent;
+  @ContentChild(CustomTitleComponent) title: CustomTitleComponent;
 }

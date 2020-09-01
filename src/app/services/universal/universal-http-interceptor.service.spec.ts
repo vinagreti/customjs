@@ -35,12 +35,14 @@ describe('UniversalHttpInterceptorService', () => {
   );
 
   it('should create', () => {
-    const service: UniversalHttpInterceptorService = TestBed.get(UniversalHttpInterceptorService);
+    const service: UniversalHttpInterceptorService = TestBed.inject(
+      UniversalHttpInterceptorService,
+    );
     expect(service).toBeTruthy();
   });
 
   it('should mountI18nFolderPath', () => {
-    const service: any = TestBed.get(UniversalHttpInterceptorService);
+    const service: any = TestBed.inject(UniversalHttpInterceptorService);
     service.innerRequest = RELATIVE_PATH_REQUEST_TOKEN;
     service.port = undefined;
     const baseUrl = service.mountI18nFolderPath(RELATIVE_PATH_REQUEST_TOKEN);
@@ -50,21 +52,21 @@ describe('UniversalHttpInterceptorService', () => {
   it('should use the default port', done => {
     const processEnv = process.env;
     appTestingMockReadOnlyProperties(process, 'env', undefined);
-    const service: any = TestBed.get(UniversalHttpInterceptorService);
+    const service: any = TestBed.inject(UniversalHttpInterceptorService);
     expect(service.port).toEqual(environment.serverPort);
     appTestingMockReadOnlyProperties(process, 'env', processEnv);
     done();
   });
 
   it('should intercept and not change assets url', () => {
-    const service: any = TestBed.get(UniversalHttpInterceptorService);
+    const service: any = TestBed.inject(UniversalHttpInterceptorService);
     const incrementSpy = spyOn(service, 'changeRequestUrl').and.callThrough();
     service.intercept(ABSOLUTE_URL_REQUEST_TOKEN, NEXT);
     expect(incrementSpy).not.toHaveBeenCalled();
   });
 
   it('should intercept and change assets url', () => {
-    const service: any = TestBed.get(UniversalHttpInterceptorService);
+    const service: any = TestBed.inject(UniversalHttpInterceptorService);
     const incrementSpy = spyOn(service, 'changeRequestUrl').and.callThrough();
     service.intercept(RELATIVE_PATH_REQUEST_TOKEN, NEXT);
     expect(incrementSpy).toHaveBeenCalled();
