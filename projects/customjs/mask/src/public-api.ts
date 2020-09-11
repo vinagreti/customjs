@@ -21,3 +21,4 @@ export * from './lib/custom-mask-phone/custom-mask-phone.directive';
 export * from './lib/custom-mask-phone/custom-mask-phone.module';
 export * from './lib/custom-typeable-code-input-mask/custom-typeable-code-input-mask.directive';
 export * from './lib/custom-typeable-code-input-mask/custom-typeable-code-input-mask.module';
+export * from './lib/custom-validators/custom-validators';

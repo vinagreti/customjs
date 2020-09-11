@@ -3,9 +3,36 @@
   [attr.color]="color"
   [ngClass]="{ 'custom-card-bordered': !hiddenBorder, active: active }"
 >
+  <div
+    *ngIf="selectable || (actions$ | async)"
+    class="custom-card-toolbar"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    fxLayoutGap="8px"
+  >
+    <div fxFlex>
+      <mat-checkbox
+        *ngIf="selectable"
+        [disabled]="selectionDisabled"
+        [color]="color"
+        (change)="selection.toggle(selectionItem)"
+        [checked]="!!(selection.items$ | async).includes(selectionItem)"
+      >
+      </mat-checkbox>
+    </div>
+
+    <div>
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
+        <div *ngIf="actions$ | async">
+          <ng-content select="custom-actions"></ng-content>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <ng-container *ngIf="title">
     <strong><ng-content select="custom-title"></ng-content></strong>
-    <hr [color]="color">
+    <hr [color]="color" />
   </ng-container>
   <div class="custom-card-badge" *ngIf="badge">
     <ng-content select="custom-card-badge"></ng-content>

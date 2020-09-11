@@ -1,0 +1,48 @@
+<h1>Custom Table</h1>
+<p>SELECTED: {{ myCustomTable.selection.selected | json }}</p>
+<p>ALL SELECTED: {{ myCustomTable.isAllSelected }}</p>
+
+<custom-actions *ngIf="myCustomTable.selection.hasValue()">
+  Batch Actions
+</custom-actions>
+
+<custom-table [items]="items" color="warn" #myCustomTable [selectable]="true">
+  <custom-table-column title="title" name="name1" prop="prop">
+    <ng-template let-item="item">
+      {{ item.name }}
+    </ng-template>
+  </custom-table-column>
+
+  <custom-table-column title="title" name="name2" prop="prop">
+    <ng-template let-item="item">
+      {{ item.age }}
+    </ng-template>
+  </custom-table-column>
+
+  <custom-table-column title="title" name="name3" prop="prop">
+    <ng-template let-item="item">
+      {{ item.hobby }}
+    </ng-template>
+  </custom-table-column>
+
+  <custom-table-column title="title" name="name4" prop="prop">
+    <ng-template let-item="item">
+      {{ item.gender }}
+    </ng-template>
+  </custom-table-column>
+
+  <custom-table-column title="title" name="name5" prop="prop">
+    <ng-template let-item="item">
+      {{ item.country }}
+    </ng-template>
+  </custom-table-column>
+
+  <custom-actions title="actions" description="table actions">
+    <custom-actions-option>
+      <ng-template let-data="data">option 1 {{ data | json }} </ng-template>
+    </custom-actions-option>
+    <custom-actions-option>
+      <ng-template let-data="data">option 2 {{ data | json }} </ng-template>
+    </custom-actions-option>
+  </custom-actions>
+</custom-table>

@@ -44,12 +44,28 @@
 
 <!-- SUMMARY -->
 <ng-template #sumaryAndRefreshTemplate>
-  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+  <div
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    fxLayoutGap="8px"
+    class="custom-list-sumary-and-refresh"
+  >
     <div fxFlex>
       <div *ngIf="!hideTotal && ((visibleItems$ | async)?.length > 0 || (total$ | async))">
         <strong>{{ (visibleItems$ | async)?.length }} </strong>
         <span> / </span>
         <strong>{{ (total$ | async) > 0 ? (total$ | async) : (items$ | async).length }} </strong>
+      </div>
+
+      <div
+        *ngIf="batchActions"
+        class="batch-actions-wrapper"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        fxLayoutGap="8px"
+      >
+        <div><ng-container [ngTemplateOutlet]="selectAllCheckboxTemplate"></ng-container></div>
+        <div><ng-content select="custom-actions"></ng-content></div>
       </div>
     </div>
     <div>
@@ -95,20 +111,48 @@
   </div>
 </ng-template>
 
+<!-- BATCH SELECTION -->
+<ng-template #selectAllCheckboxTemplate>
+  <mat-checkbox
+    *ngIf="visibleItems$ | async as visibleItems"
+    [disabled]="
+      selectionDisabled ||
+      (loading$ | async) ||
+      (sorting$ | async) ||
+      (refreshing$ | async) ||
+      (filtering$ | async) ||
+      (paginating$ | async)
+    "
+    [color]="color"
+    (change)="$event.checked ? selection.selectAll(visibleItems) : selection.unselectAll()"
+    [checked]="!!((selection.items$ | async).length && areAllSelected)"
+    [indeterminate]="!!((selection.items$ | async).length && !areAllSelected)"
+  >
+  </mat-checkbox>
+</ng-template>
 <!-- CONTENT -->
 <ng-template #contentTemplate>
   <div [fxHide.lt-md]="mode === listModes.RESPONSIVE" *ngIf="mode !== listModes.CARD">
     <ng-content select="custom-table"></ng-content>
   </div>
 
-  <div [fxHide.gt-sm]="mode === listModes.RESPONSIVE" *ngIf="mode !== listModes.TABLE">
+  <div
+    [fxHide.gt-sm]="mode === listModes.RESPONSIVE"
+    *ngIf="mode !== listModes.TABLE"
+    class="custom-list-cards-container"
+  >
     <ng-container *ngIf="card$ | async as card">
       <div *ngIf="card.template" fxLayout="column" fxLayoutGap="16px">
         <ng-container *ngFor="let item of visibleItems$ | async">
-          <div (click)="onItemSelected(item)" [style.cursor]="selectionDisabled ? '' : 'pointer'">
+          <div [style.cursor]="{ pointer: selectable }">
             <ng-container
               [ngTemplateOutlet]="card.template"
-              [ngTemplateOutletContext]="{ item: item }"
+              [ngTemplateOutletContext]="{
+                item: item,
+                selection: selection,
+                selectionDisabled: selectionDisabled,
+                selectable: selectable
+              }"
             ></ng-container>
           </div>
         </ng-container>

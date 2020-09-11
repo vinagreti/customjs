@@ -58,4 +58,8 @@ export class CustomListPageComponent {
     const result = of(response).pipe(delay(1e3));
     return result;
   }
+
+  onOptionSelected(selectedItems: any[]) {
+    console.log('onOptionSelected', selectedItems);
+  }
 }

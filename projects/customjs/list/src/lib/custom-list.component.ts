@@ -1,14 +1,38 @@
-import { ChangeDetectionStrategy, Component, ContentChild, EventEmitter, Input, OnDestroy, Output, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ContentChild,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { I18nService } from '@customjs/i18n';
 import { CustomPaginatorComponent } from '@customjs/paginator';
+import { CustomActionsComponent } from '@customjs/smart-layout';
 import { CustomTableComponent } from '@customjs/table';
+//import { CustomTableComponent } from 'projects/customjs/table/src/public-api';
 import { BehaviorSubject, Observable, ReplaySubject, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { CustomListCardComponent } from './custom-list-card/custom-list-card.component';
 import { CustomListFilterComponent } from './custom-list-filter/custom-list-filter.component';
 import { CustomListTranslationKeysMap } from './custom-list-internal.i18n';
-import { CustomListChangeEvent, CustomListFetchResult, CustomListFetchType, CustomListFunctionItems, CustomListFunctionObservableItems, CustomListFunctionPromiseItems, CustomListItems, CustomListItemsTypes, CustomListMode, CustomListObservableItems, CustomListPromiseItems } from './custom-list.models';
+import { CustomListSelection, ICustomListSelection } from './custom-list-selection.model';
+import {
+  CustomListChangeEvent,
+  CustomListFetchResult,
+  CustomListFetchType,
+  CustomListFunctionItems,
+  CustomListFunctionObservableItems,
+  CustomListFunctionPromiseItems,
+  CustomListItems,
+  CustomListItemsTypes,
+  CustomListMode,
+  CustomListObservableItems,
+  CustomListPromiseItems,
+} from './custom-list.models';
 
 @Component({
   selector: 'custom-list',
@@ -24,6 +48,8 @@ export class CustomListComponent implements OnDestroy {
   loading$ = new BehaviorSubject<boolean>(false);
 
   refreshing$ = new BehaviorSubject<boolean>(false);
+
+  fetchType: CustomListFetchType;
 
   filtering$ = new BehaviorSubject<boolean>(false);
 
@@ -41,14 +67,27 @@ export class CustomListComponent implements OnDestroy {
 
   visibleItems$ = new BehaviorSubject<any[]>([]);
 
+  @ContentChild(CustomActionsComponent, { static: false })
+  get batchActions() {
+    return this.innerBatchActions;
+  }
+  set batchActions(v: CustomActionsComponent) {
+    this.innerBatchActions = v;
+    this.connectSelectedItemsToBatchActionsData();
+    this.setTableSelectable();
+  }
+
   @ContentChild(CustomTableComponent, { static: true })
   get table() {
     return this.innerTable;
   }
   set table(v: CustomTableComponent) {
     this.innerTable = v;
+    this.hideTableBatchSelection();
     this.setTableItems();
     this.setTableColor();
+    this.setTableSelectable();
+    this.setTableSelectionModel();
     this.watchTableEvents();
   }
 
@@ -75,6 +114,17 @@ export class CustomListComponent implements OnDestroy {
   }
 
   @Input()
+  get selectable() {
+    return this.innerSelectable;
+  }
+  set selectable(v: any) {
+    this.innerSelectable = v;
+    this.setTableSelectable();
+    this.setTableSelectionModel();
+    this.connectSelectedItemsToBatchActionsData();
+  }
+
+  @Input()
   get selectionDisabled() {
     return this.innerSelectionDisabled;
   }
@@ -87,8 +137,8 @@ export class CustomListComponent implements OnDestroy {
   get color() {
     return this.innerColor;
   }
-  set color(v: any) {
-    this.innerColor = v;
+  set color(v: ThemePalette) {
+    this.innerColor = v || 'primary';
     this.setTableColor();
   }
 
@@ -113,9 +163,9 @@ export class CustomListComponent implements OnDestroy {
 
   @Input() loadingMessage: string;
 
-  @Output() itemSelected = new EventEmitter();
-
   @Output() refresh = new EventEmitter();
+
+  @Input() selection: ICustomListSelection = new CustomListSelection();
 
   private sortBy: string;
 
@@ -127,11 +177,13 @@ export class CustomListComponent implements OnDestroy {
 
   private innerTable: CustomTableComponent;
 
+  private innerSelectable: boolean;
+
   private innerSelectionDisabled: boolean;
 
-  private innerColor: ThemePalette;
+  private innerColor: ThemePalette = 'primary';
 
-  private tableItemSelectedSubscription: Subscription;
+  private selectedSubscription: Subscription;
 
   private tableSortSubscription: Subscription;
 
@@ -139,17 +191,14 @@ export class CustomListComponent implements OnDestroy {
 
   private fetchMethodSubscription: Subscription;
 
-  fetchType: CustomListFetchType;
+  private innerBatchActions: CustomActionsComponent;
 
   constructor(public i18n: I18nService<CustomListTranslationKeysMap>) {}
 
   ngOnDestroy(): void {
     this.unwatchTableEvents();
     this.unwatchFilterEvents();
-  }
-
-  onItemSelected(item) {
-    this.itemSelected.emit(item);
+    this.disconnectSelectedItemsFromBatchActionsData();
   }
 
   onPaginate($event) {
@@ -174,9 +223,14 @@ export class CustomListComponent implements OnDestroy {
     this.refresh.emit();
   }
 
+  get areAllSelected() {
+    return this.selection.areAllSelected(this.visibleItems$.getValue());
+  }
+
   ////////////
   // FILTER //
   ////////////
+
   private watchFilterevents() {
     this.unwatchFilterEvents();
     if (this.innerFilter) {
@@ -204,9 +258,21 @@ export class CustomListComponent implements OnDestroy {
   ///////////
   // TABLE //
   ///////////
+  private setTableSelectable() {
+    if (this.table) {
+      this.table.selectable = this.innerSelectable || !!this.innerBatchActions;
+    }
+  }
+
   private setTableSelectionDisabled() {
     if (this.table) {
       this.table.selectionDisabled = this.innerSelectionDisabled;
+    }
+  }
+
+  private hideTableBatchSelection() {
+    if (this.table) {
+      this.table.hideBatchSelection = true;
     }
   }
 
@@ -222,9 +288,27 @@ export class CustomListComponent implements OnDestroy {
     }
   }
 
+  private connectSelectedItemsToBatchActionsData() {
+    if (this.batchActions) {
+      this.batchActions.data = this.selection.itemsSnapshot;
+      this.selectedSubscription = this.selection.items$.subscribe(items => {
+        this.batchActions.data = items;
+      });
+    }
+  }
+
+  private disconnectSelectedItemsFromBatchActionsData() {
+    this.selectedSubscription?.unsubscribe();
+  }
+
+  private setTableSelectionModel() {
+    if (this.table) {
+      this.table.selection = this.selection;
+    }
+  }
+
   private watchTableEvents() {
     this.unwatchPreviousTableEvents();
-    this.subscribeToTableItemSelectedEvent();
     this.subscribeToTableSortEvent();
   }
 
@@ -233,27 +317,12 @@ export class CustomListComponent implements OnDestroy {
   }
 
   private unwatchTableEvents() {
-    this.unsubscribeFromTableItemSelectedEvent();
     this.unsubscribeFromTableSortEvent();
-  }
-
-  private subscribeToTableItemSelectedEvent() {
-    if (this.table) {
-      this.tableItemSelectedSubscription = this.table.itemSelected.subscribe(item => {
-        this.itemSelected.emit(item);
-      });
-    }
-  }
-
-  private unsubscribeFromTableItemSelectedEvent() {
-    if (this.tableItemSelectedSubscription) {
-      this.tableItemSelectedSubscription.unsubscribe();
-    }
   }
 
   private subscribeToTableSortEvent() {
     if (this.table) {
-      this.tableItemSelectedSubscription = this.table.sort.subscribe(prop => {
+      this.tableSortSubscription = this.table.sort.subscribe(prop => {
         this.sortBy = prop;
         if (this.paginatorComponent.page !== 1) {
           (this.paginatorComponent as any).setPage(1);
@@ -265,9 +334,7 @@ export class CustomListComponent implements OnDestroy {
   }
 
   private unsubscribeFromTableSortEvent() {
-    if (this.tableSortSubscription) {
-      this.tableSortSubscription.unsubscribe();
-    }
+    this.tableSortSubscription?.unsubscribe();
   }
 
   ///////////
@@ -356,9 +423,7 @@ export class CustomListComponent implements OnDestroy {
 
   private parseChangeResponseFromObservable(observableItems: CustomListFunctionObservableItems) {
     return new Promise<any[]>(resolve => {
-      if (this.fetchMethodSubscription) {
-        this.fetchMethodSubscription.unsubscribe();
-      }
+      this.fetchMethodSubscription?.unsubscribe();
       this.fetchMethodSubscription = observableItems.pipe(take(1)).subscribe(response => {
         this.setTotal(response.count);
         resolve(response.results);
@@ -408,9 +473,7 @@ export class CustomListComponent implements OnDestroy {
 
   private getItemsFromObservable(observableItems: CustomListObservableItems) {
     return new Promise<any[]>(resolve => {
-      if (this.fetchMethodSubscription) {
-        this.fetchMethodSubscription.unsubscribe();
-      }
+      this.fetchMethodSubscription?.unsubscribe();
       this.fetchMethodSubscription = observableItems.pipe(take(1)).subscribe(items => {
         this.setTotal(items.length);
         resolve(items);
