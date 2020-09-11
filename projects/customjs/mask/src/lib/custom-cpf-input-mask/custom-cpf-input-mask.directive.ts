@@ -1,6 +1,7 @@
 import { Directive, ElementRef, Optional, Renderer2 } from '@angular/core';
 import { NgModel, Validators } from '@angular/forms';
 import { CustomInputMaskDirective } from '../custom-input-mask';
+import { CustomValidators } from '../custom-validators/custom-validators';
 
 const minLength = 11;
 const maxLength = 11;
@@ -10,10 +11,11 @@ const maskPattern = `[0-9]{${minLength},${maxLength}}`;
   selector: '[customCpfInputMask]',
 })
 export class CustomCpfInputMaskDirective extends CustomInputMaskDirective {
-  protected ngModelValidations = [
+  protected ngModelValidators = [
     Validators.maxLength(maxLength),
     Validators.minLength(minLength),
     Validators.pattern(maskPattern),
+    CustomValidators.validateCpf(),
   ];
 
   constructor(
