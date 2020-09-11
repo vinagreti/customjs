@@ -42,9 +42,21 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'custom-smart-layout',
+    loadChildren: () =>
+      import('./custom-smart-layout-page/custom-smart-layout-page.module').then(
+        mod => mod.CustomSmartLayoutPageModule,
+      ),
+  },
+  {
     path: 'custom-ws',
     loadChildren: () =>
       import('./custom-ws-page/custom-ws-page.module').then(mod => mod.CustomWsPageModule),
+  },
+  {
+    path: 'custom-table',
+    loadChildren: () =>
+      import('./custom-table-page/custom-table-page.module').then(mod => mod.CustomTablePageModule),
   },
 ];
 

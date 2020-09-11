@@ -1,4 +1,20 @@
-.sort-arrow {
-  font-size: 16px;
-  font-weight: 800;
+.custom-table {
+  .sort-arrow {
+    font-size: 16px;
+    font-weight: 800;
+  }
+
+  .actions-column {
+    text-align: right;
+  }
+
+  .mat-checkbox {
+    padding: 0px 8px;
+  }
+
+  .mat-cell,
+  .mat-header-cell {
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+  }
 }

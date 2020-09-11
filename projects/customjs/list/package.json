@@ -1,6 +1,6 @@
 {
   "name": "@customjs/list",
-  "version": "1.0.11",
+  "version": "1.0.20",
   "peerDependencies": {
     "@angular/common": ">=8.2.0",
     "@angular/core": ">=8.2.0",
@@ -8,6 +8,6 @@
     "@angular/forms": ">=8.2.4",
     "@angular/material": ">=8.1.4",
     "@customjs/paginator": ">=1.0.6",
-    "@customjs/table": ">=1.0.25"
+    "@customjs/table": ">=1.0.31"
   }
 }

@@ -1,1 +1,44 @@
-<ng-content></ng-content>
+<ng-template #actionsTemplate let-templateData="data">
+  <div class="custom-actions">
+    <ng-container *ngIf="(options$ | async)?.length">
+      <button
+        class="custom-actions-trigger-button"
+        mat-icon-button
+        [matMenuTriggerFor]="customActionsMenu"
+        [disabled]="disabled"
+        [attr.loading]="loading"
+        aria-label="Example icon-button with a menu"
+      >
+        <mat-icon>more_horiz</mat-icon>
+      </button>
+
+      <mat-menu #customActionsMenu="matMenu">
+        <button
+          mat-menu-item
+          *ngFor="let option of options$ | async"
+          [disabled]="option.disabled"
+          [attr.loading]="option.loading"
+          (click)="option.onOptionSelected(data || templateData)"
+        >
+          <ng-container
+            [ngTemplateOutlet]="option.template"
+            [ngTemplateOutletContext]="{ data: data || templateData }"
+          ></ng-container>
+        </button>
+      </mat-menu>
+    </ng-container>
+
+    <ng-container *ngIf="template$ | async">
+      <ng-container
+        [ngTemplateOutlet]="template$ | async"
+        [ngTemplateOutletContext]="{ data: data || templateData }"
+      ></ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="!(template$ | async) && (options$ | async)?.length === 0">
+      <ng-content></ng-content>
+    </ng-container>
+  </div>
+</ng-template>
+
+<ng-container [ngTemplateOutlet]="actionsTemplate"></ng-container>

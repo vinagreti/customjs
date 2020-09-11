@@ -1,7 +1,22 @@
 .transition-message-cnotainer {
-  background-color: white;
   width: 100%;
   height: 100%;
   padding: 16px 4px;
   font-size: small;
+}
+
+.batch-actions-wrapper {
+  margin-left: 2px;
+}
+
+.mat-checkbox {
+  margin-left: 12px;
+}
+
+.custom-list-sumary-and-refresh {
+  margin-bottom: -16px;
+}
+
+.custom-list-cards-container {
+  margin-top: 16px;
 }

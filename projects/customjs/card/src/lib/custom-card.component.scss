@@ -1,7 +1,7 @@
 $border-size: 1px;
 
 .custom-card {
-  padding: 8px;
+  padding: 12px;
 
   &.custom-card-bordered {
     margin: $border-size;
@@ -15,5 +15,14 @@ $border-size: 1px;
     margin-top: -16px;
     padding: 0px 8px;
     border-radius: 2px;
+  }
+
+  .custom-card-toolbar {
+    margin-top: -12px;
+    min-height: 40px;
+  }
+
+  .mat-checkbox {
+    margin-left: 4px 0px;
   }
 }

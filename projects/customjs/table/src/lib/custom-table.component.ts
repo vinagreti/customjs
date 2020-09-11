@@ -3,7 +3,6 @@ import {
   Component,
   ContentChild,
   ContentChildren,
-  EventEmitter,
   Input,
   Output,
   QueryList,
@@ -13,6 +12,12 @@ import { CustomActionsComponent } from '@customjs/smart-layout';
 import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { CustomTableColumnComponent } from './custom-table-column/custom-table-column.component';
+import { CustomTableSelection, ICustomTableSelection } from './custom-table-selection.model';
+
+enum STATIC_COLUMNS {
+  ACTIONS = 'ACTIONS',
+  SELECT = 'SELECT',
+}
 
 @Component({
   selector: 'custom-table',
@@ -30,29 +35,49 @@ export class CustomTableComponent {
       this.actions$.pipe(
         map(actions => {
           const columnsNames = columns.map(column => column.name);
+          const finalColumns = [...columnsNames];
           if (actions) {
-            return [...columnsNames, 'actions'];
-          } else {
-            return columnsNames;
+            finalColumns.push(STATIC_COLUMNS.ACTIONS);
           }
+          if (this.selectable) {
+            finalColumns.unshift(STATIC_COLUMNS.SELECT);
+          }
+          return finalColumns;
         }),
       ),
     ),
   );
 
-  items$ = new ReplaySubject<any>();
+  items$ = new BehaviorSubject<any>([]);
+
+  staticColumnNames = STATIC_COLUMNS;
+
+  @Input() selection: ICustomTableSelection = new CustomTableSelection();
+
+  @Input() selectable: boolean;
+
+  @Input() selectionDisabled: boolean;
+
+  @Input() hideBatchSelection: boolean;
 
   @Input() noDataMessage = 'label.No_data';
 
   @Input() noColumnsMessage = 'label.No_data';
 
-  @Input() selectionDisabled: boolean;
-
-  @Input() color: ThemePalette;
+  @Input()
+  set color(v: ThemePalette) {
+    this.innerColor = v || 'primary';
+  }
+  get color() {
+    return this.innerColor;
+  }
 
   @Input()
   set items(v: any) {
     this.items$.next(v);
+  }
+  get items() {
+    return this.items$.getValue();
   }
 
   @ContentChildren(CustomTableColumnComponent)
@@ -65,17 +90,13 @@ export class CustomTableComponent {
     this.actions$.next(v);
   }
 
-  @Output() itemSelected = new EventEmitter<any>(undefined);
-
   @Output() sort = new ReplaySubject<string>();
 
   private currentSortProperty: string;
 
-  constructor() {}
+  private innerColor: ThemePalette = 'primary';
 
-  onItemSelected(item) {
-    this.itemSelected.next(item);
-  }
+  constructor() {}
 
   onSort(prop: string) {
     if (this.currentSortProperty !== prop) {

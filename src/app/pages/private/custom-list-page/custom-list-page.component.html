@@ -1,6 +1,113 @@
 <h1>Custom List</h1>
 
 <app-demo-container readmeSrc="/assets/docs/list/README.md">
+  <h2>Row Actions</h2>
+  <custom-list [pageSize]="2" [items]="stream$ | async" [selectable]="true" #customList>
+    <!-- BATCH ACTIONS -->
+    <custom-actions>
+      <ng-template let-data="data">
+        <custom-actions>
+          <custom-actions-option
+            (optionSelected)="onOptionSelected($event)"
+            [disabled]="!customList.areAllSelected"
+            ><ng-template let-data="data">Options</ng-template></custom-actions-option
+          >
+        </custom-actions>
+      </ng-template>
+    </custom-actions>
+
+    <custom-table color="primary">
+      <!-- LINE ACTIONS -->
+      <custom-actions>
+        <ng-template let-data="data">
+          <div fxLayout="row" fxLayoutAlign="end center">
+            <div>
+              <a mat-icon-button [routerLink]="['/']">
+                <mat-icon>open_in_new</mat-icon>
+              </a>
+            </div>
+            <div>
+              <custom-actions>
+                <custom-actions-option (optionSelected)="onOptionSelected($event)"
+                  ><ng-template>Options + {{ data | json }}</ng-template></custom-actions-option
+                >
+              </custom-actions>
+            </div>
+          </div>
+        </ng-template>
+      </custom-actions>
+
+      <custom-table-column name="id" title="id" prop="id">
+        <ng-template let-item="item">{{ item.id }}</ng-template>
+      </custom-table-column>
+
+      <custom-table-column name="name" title="name" prop="name">
+        <ng-template let-item="item">{{ item.name }}</ng-template>
+      </custom-table-column>
+    </custom-table>
+
+    <custom-list-card>
+      <ng-template
+        let-item="item"
+        let-selection="selection"
+        let-selectable="selectable"
+        let-selectionDisabled="selectionDisabled"
+      >
+        <custom-card
+          [selection]="selection"
+          [selectionItem]="item"
+          [selectable]="selectable"
+          [selectionDisabled]="selectionDisabled"
+        >
+          <div class="item-card">
+            <div>Id: {{ item.id }}</div>
+            <div>Name: {{ item.name }}</div>
+          </div>
+
+          <custom-actions>
+            <ng-template let-data="data">
+              <div fxLayout="row" fxLayoutAlign="end center">
+                <div>
+                  <a mat-icon-button [routerLink]="['/']">
+                    <mat-icon>open_in_new</mat-icon>
+                  </a>
+                </div>
+                <div>
+                  <custom-actions>
+                    <custom-actions-option (optionSelected)="onOptionSelected($event)"
+                      ><ng-template>Options + {{ data | json }}</ng-template></custom-actions-option
+                    >
+                  </custom-actions>
+                </div>
+              </div>
+            </ng-template>
+          </custom-actions>
+        </custom-card>
+      </ng-template>
+    </custom-list-card>
+  </custom-list>
+
+  <h2>Batch Actions</h2>
+  <custom-list [pageSize]="2" [items]="stream$ | async">
+    <custom-table color="primary">
+      <custom-table-column name="id" title="id" prop="id">
+        <ng-template let-item="item">{{ item.id }}</ng-template>
+      </custom-table-column>
+
+      <custom-table-column name="name" title="name" prop="name">
+        <ng-template let-item="item">{{ item.name }}</ng-template>
+      </custom-table-column>
+    </custom-table>
+    <custom-list-card>
+      <ng-template let-item="item">
+        <div class="item-card">
+          <div>Id: {{ item.id }}</div>
+          <div>Name: {{ item.name }}</div>
+        </div>
+      </ng-template>
+    </custom-list-card>
+  </custom-list>
+
   <h2>async</h2>
   <custom-list [pageSize]="2" [items]="fetchItems">
     <custom-table color="primary">

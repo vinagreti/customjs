@@ -6,6 +6,7 @@ export * from './lib/custom-list-card/custom-list-card.component';
 export * from './lib/custom-list-card/custom-list-card.module';
 export * from './lib/custom-list-filter/custom-list-filter.component';
 export * from './lib/custom-list-filter/custom-list-filter.module';
+export * from './lib/custom-list-selection.model';
 export * from './lib/custom-list.component';
 export * from './lib/custom-list.models';
 export * from './lib/custom-list.module';
