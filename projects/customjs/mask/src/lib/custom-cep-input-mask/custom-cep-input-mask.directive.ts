@@ -10,7 +10,7 @@ const maskPattern = `[0-9]{${minLength},${maxLength}}`;
   selector: '[customCepInputMask]',
 })
 export class CustomCepInputMaskDirective extends CustomInputMaskDirective {
-  protected ngModelValidations = [
+  protected ngModelValidators = [
     Validators.maxLength(maxLength),
     Validators.minLength(minLength),
     Validators.pattern(maskPattern),
