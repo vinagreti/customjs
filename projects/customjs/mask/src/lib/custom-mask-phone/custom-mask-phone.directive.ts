@@ -41,7 +41,7 @@ export class CustomMaskPhoneDirective implements OnInit, OnDestroy {
   }
 
   private configureInput() {
-    this.renderer.setAttribute(this.el.nativeElement, 'pattern', 'd{11}');
+    this.renderer.setAttribute(this.el.nativeElement, 'pattern', '([0-9]{2})([6-9]{1})([0-9]{4})([0-9]{4})');
     this.renderer.setAttribute(this.el.nativeElement, 'maxlength', '11');
     this.renderer.setAttribute(this.el.nativeElement, 'minlength', '11');
     this.renderer.setAttribute(this.el.nativeElement, 'type', 'tel');
@@ -52,7 +52,7 @@ export class CustomMaskPhoneDirective implements OnInit, OnDestroy {
       this.ngModel.control.setValidators([
         Validators.maxLength(11),
         Validators.minLength(11),
-        Validators.pattern(/\d{11}/),
+        Validators.pattern(/([0-9]{2})([6-9])([0-9]{8})/),
       ]);
     }
   }
