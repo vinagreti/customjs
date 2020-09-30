@@ -1,16 +1,15 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ContentChild,
   ContentChildren,
   Input,
+  OnInit,
   Output,
   QueryList,
 } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { CustomActionsComponent } from '@customjs/smart-layout';
-import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { BehaviorSubject, ReplaySubject } from 'rxjs';
 import { CustomTableColumnComponent } from './custom-table-column/custom-table-column.component';
 import { CustomTableSelection, ICustomTableSelection } from './custom-table-selection.model';
 
@@ -25,28 +24,12 @@ enum STATIC_COLUMNS {
   styleUrls: ['./custom-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CustomTableComponent {
+export class CustomTableComponent implements OnInit {
   actions$ = new BehaviorSubject<CustomActionsComponent>(undefined);
 
   columns$ = new BehaviorSubject<CustomTableColumnComponent[]>([]);
 
-  columnsNames$: Observable<string[]> = this.columns$.pipe(
-    switchMap(columns =>
-      this.actions$.pipe(
-        map(actions => {
-          const columnsNames = columns.map(column => column.name);
-          const finalColumns = [...columnsNames];
-          if (actions) {
-            finalColumns.push(STATIC_COLUMNS.ACTIONS);
-          }
-          if (this.selectable) {
-            finalColumns.unshift(STATIC_COLUMNS.SELECT);
-          }
-          return finalColumns;
-        }),
-      ),
-    ),
-  );
+  visibleColumns$ = new BehaviorSubject<string[]>([]);
 
   items$ = new BehaviorSubject<any>([]);
 
@@ -54,11 +37,25 @@ export class CustomTableComponent {
 
   @Input() selection: ICustomTableSelection = new CustomTableSelection();
 
-  @Input() selectable: boolean;
+  @Input()
+  set selectable(v: boolean) {
+    this.innerSelectable = v;
+    this.setColumns();
+  }
+  get selectable() {
+    return this.innerSelectable;
+  }
 
   @Input() selectionDisabled: boolean;
 
-  @Input() hideBatchSelection: boolean;
+  @Input()
+  set hideBatchSelection(v: boolean) {
+    this.innerHideBatchSelection = v;
+    this.setColumns();
+  }
+  get hideBatchSelection() {
+    return this.innerHideBatchSelection;
+  }
 
   @Input() noDataMessage = 'label.No_data';
 
@@ -83,11 +80,13 @@ export class CustomTableComponent {
   @ContentChildren(CustomTableColumnComponent)
   set innerColumns(v: QueryList<CustomTableColumnComponent>) {
     this.columns$.next(v.toArray());
+    this.setColumns();
   }
 
-  @ContentChild(CustomActionsComponent)
-  set actions(v: CustomActionsComponent) {
-    this.actions$.next(v);
+  @ContentChildren(CustomActionsComponent, { descendants: false })
+  set actions(v: QueryList<CustomActionsComponent>) {
+    this.actions$.next(v.toArray()[0]);
+    this.setColumns();
   }
 
   @Output() sort = new ReplaySubject<string>();
@@ -96,7 +95,15 @@ export class CustomTableComponent {
 
   private innerColor: ThemePalette = 'primary';
 
+  private innerSelectable: boolean;
+
+  private innerHideBatchSelection: boolean;
+
   constructor() {}
+
+  ngOnInit() {
+    this.setColumns();
+  }
 
   onSort(prop: string) {
     if (this.currentSortProperty !== prop) {
@@ -105,5 +112,18 @@ export class CustomTableComponent {
       this.currentSortProperty = `-${prop}`;
     }
     this.sort.next(this.currentSortProperty);
+  }
+
+  private setColumns() {
+    const columns = this.columns$.getValue();
+    const visibleColumns = columns.map(column => column.name);
+    const finalColumns = [...visibleColumns];
+    if (this.actions$.getValue()) {
+      finalColumns.push(STATIC_COLUMNS.ACTIONS);
+    }
+    if (this.selectable) {
+      finalColumns.unshift(STATIC_COLUMNS.SELECT);
+    }
+    this.visibleColumns$.next(finalColumns);
   }
 }

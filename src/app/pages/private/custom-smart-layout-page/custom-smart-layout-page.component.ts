@@ -7,6 +7,12 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomSmartLayoutPageComponent implements OnInit {
+  config = {
+    loading: false,
+    disabled: false,
+    option3: false,
+  };
+
   constructor() {}
 
   ngOnInit() {}

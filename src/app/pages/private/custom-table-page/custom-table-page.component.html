@@ -1,12 +1,6 @@
 <h1>Custom Table</h1>
-<p>SELECTED: {{ myCustomTable.selection.selected | json }}</p>
-<p>ALL SELECTED: {{ myCustomTable.isAllSelected }}</p>
 
-<custom-actions *ngIf="myCustomTable.selection.hasValue()">
-  Batch Actions
-</custom-actions>
-
-<custom-table [items]="items" color="warn" #myCustomTable [selectable]="true">
+<custom-table [items]="items" color="warn" #myCustomTable>
   <custom-table-column title="title" name="name1" prop="prop">
     <ng-template let-item="item">
       {{ item.name }}

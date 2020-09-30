@@ -2,10 +2,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChild,
+  ContentChildren,
   EventEmitter,
   Input,
   OnDestroy,
   Output,
+  QueryList,
   ViewChild,
 } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
@@ -13,7 +15,7 @@ import { I18nService } from '@customjs/i18n';
 import { CustomPaginatorComponent } from '@customjs/paginator';
 import { CustomActionsComponent } from '@customjs/smart-layout';
 import { CustomTableComponent } from '@customjs/table';
-//import { CustomTableComponent } from 'projects/customjs/table/src/public-api';
+// import { CustomTableComponent } from 'projects/customjs/table/src/public-api';
 import { BehaviorSubject, Observable, ReplaySubject, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { CustomListCardComponent } from './custom-list-card/custom-list-card.component';
@@ -67,12 +69,12 @@ export class CustomListComponent implements OnDestroy {
 
   visibleItems$ = new BehaviorSubject<any[]>([]);
 
-  @ContentChild(CustomActionsComponent, { static: false })
-  get batchActions() {
-    return this.innerBatchActions;
+  @ContentChildren(CustomActionsComponent, { descendants: false })
+  get actions() {
+    return this.innerActions;
   }
-  set batchActions(v: CustomActionsComponent) {
-    this.innerBatchActions = v;
+  set actions(v: QueryList<CustomActionsComponent>) {
+    this.innerActions = v;
     this.connectSelectedItemsToBatchActionsData();
     this.setTableSelectable();
   }
@@ -83,11 +85,11 @@ export class CustomListComponent implements OnDestroy {
   }
   set table(v: CustomTableComponent) {
     this.innerTable = v;
-    this.hideTableBatchSelection();
+    this.disableTableBatchSelection();
     this.setTableItems();
     this.setTableColor();
-    this.setTableSelectable();
     this.setTableSelectionModel();
+    this.setTableSelectable();
     this.watchTableEvents();
   }
 
@@ -191,7 +193,7 @@ export class CustomListComponent implements OnDestroy {
 
   private fetchMethodSubscription: Subscription;
 
-  private innerBatchActions: CustomActionsComponent;
+  private innerActions: QueryList<CustomActionsComponent>;
 
   constructor(public i18n: I18nService<CustomListTranslationKeysMap>) {}
 
@@ -227,6 +229,10 @@ export class CustomListComponent implements OnDestroy {
     return this.selection.areAllSelected(this.visibleItems$.getValue());
   }
 
+  get batchActions() {
+    return this.innerActions?.toArray()[0];
+  }
+
   ////////////
   // FILTER //
   ////////////
@@ -260,19 +266,13 @@ export class CustomListComponent implements OnDestroy {
   ///////////
   private setTableSelectable() {
     if (this.table) {
-      this.table.selectable = this.innerSelectable || !!this.innerBatchActions;
+      this.table.selectable = this.innerSelectable || !!this.batchActions;
     }
   }
 
   private setTableSelectionDisabled() {
     if (this.table) {
       this.table.selectionDisabled = this.innerSelectionDisabled;
-    }
-  }
-
-  private hideTableBatchSelection() {
-    if (this.table) {
-      this.table.hideBatchSelection = true;
     }
   }
 
@@ -285,6 +285,12 @@ export class CustomListComponent implements OnDestroy {
   private setTableColor() {
     if (this.table) {
       this.table.color = this.color;
+    }
+  }
+
+  private disableTableBatchSelection() {
+    if (this.table) {
+      this.table.hideBatchSelection = true;
     }
   }
 

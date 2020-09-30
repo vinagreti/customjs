@@ -20,7 +20,7 @@ import { CustomActionsConfig } from './custom-actions.models';
 export class CustomActionsComponent {
   options$ = new ReplaySubject<CustomActionsOptionComponent[]>();
 
-  template$ = new ReplaySubject<TemplateRef<any>>();
+  childTemplate$ = new ReplaySubject<TemplateRef<any>>();
 
   @Input() data;
 
@@ -30,7 +30,7 @@ export class CustomActionsComponent {
 
   @Input() loading: boolean;
 
-  @Input() config: CustomActionsConfig;
+  @Input() config: CustomActionsConfig = {};
 
   @Input() title: string;
 
@@ -39,9 +39,12 @@ export class CustomActionsComponent {
   @ViewChild('actionsTemplate', { static: true })
   template: TemplateRef<any>;
 
-  @ContentChildren(TemplateRef, { descendants: false }) // direct children only
+  @ContentChildren(TemplateRef, { descendants: false })
   private set childTemplates(v: QueryList<TemplateRef<any>>) {
-    this.template$.next(v.toArray()[0]);
+    const templates = v
+      .toArray()
+      .filter((template: any) => template._declarationTContainer.tagName === 'ng-template');
+    this.childTemplate$.next(templates[0]);
   }
 
   @ContentChildren(CustomActionsOptionComponent, { descendants: false })

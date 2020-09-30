@@ -1,15 +1,15 @@
 <h1>Custom List</h1>
 
 <app-demo-container readmeSrc="/assets/docs/list/README.md">
-  <h2>Row Actions</h2>
-  <custom-list [pageSize]="2" [items]="stream$ | async" [selectable]="true" #customList>
+  <h2>Batch and Row Actions</h2>
+  <custom-list [pageSize]="2" [items]="stream$ | async" [selectable]="true" #customList1>
     <!-- BATCH ACTIONS -->
     <custom-actions>
       <ng-template let-data="data">
         <custom-actions>
           <custom-actions-option
             (optionSelected)="onOptionSelected($event)"
-            [disabled]="!customList.areAllSelected"
+            [disabled]="!customList1.areAllSelected"
             ><ng-template let-data="data">Options</ng-template></custom-actions-option
           >
         </custom-actions>
@@ -87,8 +87,52 @@
     </custom-list-card>
   </custom-list>
 
+  <h2>Row Actions</h2>
+  <custom-list [pageSize]="2" [items]="stream$ | async" #customList2>
+    <custom-table color="primary">
+      <custom-actions>
+        <ng-template let-data="data">
+          <custom-actions>
+            <custom-actions-option
+              (optionSelected)="onOptionSelected($event)"
+              [disabled]="!customList2.areAllSelected"
+              ><ng-template let-data="data">Options</ng-template></custom-actions-option
+            >
+          </custom-actions>
+        </ng-template>
+      </custom-actions>
+
+      <custom-table-column name="id" title="id" prop="id">
+        <ng-template let-item="item">{{ item.id }}</ng-template>
+      </custom-table-column>
+
+      <custom-table-column name="name" title="name" prop="name">
+        <ng-template let-item="item">{{ item.name }}</ng-template>
+      </custom-table-column>
+    </custom-table>
+    <custom-list-card>
+      <ng-template let-item="item">
+        <div class="item-card">
+          <div>Id: {{ item.id }}</div>
+          <div>Name: {{ item.name }}</div>
+        </div>
+      </ng-template>
+    </custom-list-card>
+  </custom-list>
+
   <h2>Batch Actions</h2>
-  <custom-list [pageSize]="2" [items]="stream$ | async">
+  <custom-list [pageSize]="2" [items]="stream$ | async" #customList2>
+    <custom-actions>
+      <ng-template let-data="data">
+        <custom-actions>
+          <custom-actions-option
+            (optionSelected)="onOptionSelected($event)"
+            [disabled]="!customList2.areAllSelected"
+            ><ng-template let-data="data">Options</ng-template></custom-actions-option
+          >
+        </custom-actions>
+      </ng-template>
+    </custom-actions>
     <custom-table color="primary">
       <custom-table-column name="id" title="id" prop="id">
         <ng-template let-item="item">{{ item.id }}</ng-template>

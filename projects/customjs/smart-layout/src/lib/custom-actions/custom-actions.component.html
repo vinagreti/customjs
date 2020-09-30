@@ -21,21 +21,21 @@
           (click)="option.onOptionSelected(data || templateData)"
         >
           <ng-container
-            [ngTemplateOutlet]="option.template"
+            [ngTemplateOutlet]="option.childTemplate$ | async"
             [ngTemplateOutletContext]="{ data: data || templateData }"
           ></ng-container>
         </button>
       </mat-menu>
     </ng-container>
 
-    <ng-container *ngIf="template$ | async">
+    <ng-container *ngIf="childTemplate$ | async">
       <ng-container
-        [ngTemplateOutlet]="template$ | async"
+        [ngTemplateOutlet]="childTemplate$ | async"
         [ngTemplateOutletContext]="{ data: data || templateData }"
       ></ng-container>
     </ng-container>
 
-    <ng-container *ngIf="!(template$ | async) && (options$ | async)?.length === 0">
+    <ng-container *ngIf="!(childTemplate$ | async) && (options$ | async)?.length === 0">
       <ng-content></ng-content>
     </ng-container>
   </div>
