@@ -76,9 +76,9 @@
         </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="columnsNames$ | async"></tr>
+      <tr mat-header-row *matHeaderRowDef="visibleColumns$ | async"></tr>
 
-      <tr mat-row [attr.color]="color" *matRowDef="let item; columns: columnsNames$ | async"></tr>
+      <tr mat-row [attr.color]="color" *matRowDef="let item; columns: visibleColumns$ | async"></tr>
     </table>
   </ng-container>
 </ng-container>

@@ -13,8 +13,23 @@
 
 <hr />
 <h2>Actions + Options + ng-template</h2>
-<custom-actions [data]="{ name: 1 }" [loading]="true" [disabled]="true">
+
+<div fxLayout="row wrap" fxLayoutGap="8px grid">
+  <div><button mat-button (click)="config.disabled = !config.disabled">disabled</button></div>
+  <div><button mat-button (click)="config.loading = !config.loading">loading</button></div>
+  <div><button mat-button (click)="config.option3 = !config.option3">toggle option3</button></div>
+</div>
+
+<custom-actions [data]="{ name: 1 }" [loading]="config.loading" [disabled]="config.disabled">
   <custom-actions-option (optionSelected)="optionSelected($event)">
-    <ng-template>OPTIONS FROM NG TEMPLATE</ng-template>
+    <ng-template>OPTION 1</ng-template>
+  </custom-actions-option>
+
+  <custom-actions-option (optionSelected)="optionSelected($event)">
+    <ng-template>OPTION 2</ng-template>
+  </custom-actions-option>
+
+  <custom-actions-option (optionSelected)="optionSelected($event)" *ngIf="config.option3">
+    <ng-template>OPTION 3</ng-template>
   </custom-actions-option>
 </custom-actions>

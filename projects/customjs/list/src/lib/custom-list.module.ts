@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CustomPaginatorModule } from '@customjs/paginator';
 import { CustomActionsModule } from '@customjs/smart-layout';
 import { CustomTableModule } from '@customjs/table';
-//import { CustomTableModule } from 'projects/customjs/table/src/public-api';
+// import { CustomTableModule } from 'projects/customjs/table/src/public-api';
 import { CustomListCardModule } from './custom-list-card/custom-list-card.module';
 import { CustomListFilterModule } from './custom-list-filter/custom-list-filter.module';
 import { CustomListComponent } from './custom-list.component';
