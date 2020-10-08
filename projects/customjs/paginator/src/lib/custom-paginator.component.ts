@@ -89,41 +89,43 @@ export class CustomPaginatorComponent {
 
   constructor(public i18n: I18nService<CustomPaginatorTranslationKeysMap>) {}
 
-  prev() {
+  prev(emitChange = true) {
     const prev = this.page - 1;
     if (prev > 0) {
-      this.setPage(prev);
+      this.setPage(prev, emitChange);
       this.refreshState();
     } else {
-      this.start();
+      this.start(emitChange);
     }
   }
 
-  next() {
+  next(emitChange = true) {
     const next = this.page + 1;
     const totalPages = this.totalPages$.getValue();
     if (next < totalPages) {
-      this.setPage(next);
+      this.setPage(next, emitChange);
       this.refreshState();
     } else {
-      this.end();
+      this.end(emitChange);
     }
   }
 
-  start() {
-    this.setPage(1);
+  start(emitChange = true) {
+    this.setPage(1, emitChange);
     this.refreshState();
   }
 
-  end() {
+  end(emitChange = true) {
     const totalPages = this.totalPages$.getValue();
-    this.setPage(totalPages);
+    this.setPage(totalPages, emitChange);
     this.refreshState();
   }
 
-  private setPage(page: number) {
+  private setPage(page: number, emitChange = true) {
     this.innerPage = page;
-    this.page$.next(page);
+    if (emitChange) {
+      this.page$.next(page);
+    }
   }
 
   private refreshState(emitPaginate = true) {

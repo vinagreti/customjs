@@ -1,6 +1,8 @@
 <h1>Custom List</h1>
 
 <app-demo-container readmeSrc="/assets/docs/list/README.md">
+  <button (click)="onChangeItemsClicked()">Change items</button>
+
   <h2>Batch and Row Actions</h2>
   <custom-list [pageSize]="2" [items]="stream$ | async" [selectable]="true" #customList1>
     <!-- BATCH ACTIONS -->

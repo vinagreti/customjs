@@ -62,4 +62,8 @@ export class CustomListPageComponent {
   onOptionSelected(selectedItems: any[]) {
     console.log('onOptionSelected', selectedItems);
   }
+
+  onChangeItemsClicked() {
+    this.stream$.next([...ITEMS_MOCK]);
+  }
 }
