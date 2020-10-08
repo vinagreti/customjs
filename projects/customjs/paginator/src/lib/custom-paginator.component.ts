@@ -23,9 +23,7 @@ export class CustomPaginatorComponent {
   private visibleItems$ = new EventEmitter<any[]>();
 
   private paginate$ = new EventEmitter<CustomPaginatorEvent>();
-
   page$ = new BehaviorSubject<number>(1);
-
   @Output() paginate = this.paginate$.pipe(
     distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b)),
     debounceTime(0), // waits for all bindings to finish // TODO: resolve this weird behaviour
@@ -92,7 +90,7 @@ export class CustomPaginatorComponent {
   prev(emitChange = true) {
     const prev = this.page - 1;
     if (prev > 0) {
-      this.setPage(prev, emitChange);
+      this.setPage(prev);
       this.refreshState(emitChange);
     } else {
       this.start(emitChange);
@@ -103,7 +101,7 @@ export class CustomPaginatorComponent {
     const next = this.page + 1;
     const totalPages = this.totalPages$.getValue();
     if (next < totalPages) {
-      this.setPage(next, emitChange);
+      this.setPage(next);
       this.refreshState(emitChange);
     } else {
       this.end(emitChange);
@@ -111,21 +109,19 @@ export class CustomPaginatorComponent {
   }
 
   start(emitChange = true) {
-    this.setPage(1, emitChange);
+    this.setPage(1);
     this.refreshState(emitChange);
   }
 
   end(emitChange = true) {
     const totalPages = this.totalPages$.getValue();
-    this.setPage(totalPages, emitChange);
+    this.setPage(totalPages);
     this.refreshState(emitChange);
   }
 
-  private setPage(page: number, emitChange = true) {
+  private setPage(page: number) {
     this.innerPage = page;
-    if (emitChange) {
-      this.page$.next(page);
-    }
+    this.page$.next(page);
   }
 
   private refreshState(emitPaginate = true) {
