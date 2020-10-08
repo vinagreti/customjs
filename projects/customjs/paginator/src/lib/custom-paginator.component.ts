@@ -93,7 +93,7 @@ export class CustomPaginatorComponent {
     const prev = this.page - 1;
     if (prev > 0) {
       this.setPage(prev, emitChange);
-      this.refreshState();
+      this.refreshState(emitChange);
     } else {
       this.start(emitChange);
     }
@@ -104,7 +104,7 @@ export class CustomPaginatorComponent {
     const totalPages = this.totalPages$.getValue();
     if (next < totalPages) {
       this.setPage(next, emitChange);
-      this.refreshState();
+      this.refreshState(emitChange);
     } else {
       this.end(emitChange);
     }
@@ -112,13 +112,13 @@ export class CustomPaginatorComponent {
 
   start(emitChange = true) {
     this.setPage(1, emitChange);
-    this.refreshState();
+    this.refreshState(emitChange);
   }
 
   end(emitChange = true) {
     const totalPages = this.totalPages$.getValue();
     this.setPage(totalPages, emitChange);
-    this.refreshState();
+    this.refreshState(emitChange);
   }
 
   private setPage(page: number, emitChange = true) {
