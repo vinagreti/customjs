@@ -1,3 +1,4 @@
+import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { I18nLocalesConfig, I18N_LOCALES_CONFIG } from './models/i18n-locales-config.interface';
@@ -21,8 +22,8 @@ export class I18nService<T> {
 
   private storageKey: string;
 
-  constructor(@Inject(I18N_LOCALES_CONFIG) private i18nLocalesConfig: I18nLocalesConfig) {
-    this.mapTransçationKeys();
+  constructor(@Inject(I18N_LOCALES_CONFIG) private i18nLocalesConfig: I18nLocalesConfig, @Inject(DOCUMENT) private document: any) {
+    this.mapTranslationKeys();
   }
 
   setLocale(locale: I18nLocale) {
@@ -37,10 +38,16 @@ export class I18nService<T> {
     this.setStorageKey();
     this.detectetEnabledLocales();
     this.loadLocaleFromMemory();
+    this.setHtmlLanguage();
     return this.loadTranslationFile();
   }
 
-  private mapTransçationKeys() {
+  private setHtmlLanguage() {
+    console.log('AQUI')
+    this.document.documentElement.lang = this.locale;
+  }
+
+  private mapTranslationKeys() {
     this.setTranslations(this.i18nLocalesConfig.translationKeys);
   }
 
