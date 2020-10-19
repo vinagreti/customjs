@@ -43,7 +43,6 @@ export class I18nService<T> {
   }
 
   private setHtmlLanguage() {
-    console.log('AQUI')
     this.document.documentElement.lang = this.locale;
   }
 
