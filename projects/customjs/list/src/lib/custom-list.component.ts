@@ -353,7 +353,7 @@ export class CustomListComponent implements OnDestroy {
   }
 
   private onInputItemsChange() {
-    this.paginatorComponent.start(false);
+    this.paginatorComponent.start();
     setTimeout(() => {
       // wait for all initial input bindings bifdings
       this.detectFetchType();
