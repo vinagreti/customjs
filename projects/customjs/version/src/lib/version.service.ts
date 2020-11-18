@@ -22,6 +22,8 @@ export class VersionService {
 
   online$: Observable<boolean>;
 
+  installing$: ReplaySubject<boolean> = new ReplaySubject();
+
   private httpCallInternetConnectionStatus$ = new BehaviorSubject<boolean>(true);
 
   private isBrowser: boolean;
@@ -38,11 +40,15 @@ export class VersionService {
   }
 
   installLatestVersion() {
+    this.installing$.next(true);
     const currentVersion = this.getLatestVersionInMemory();
     this.persistCurrentVersion(currentVersion);
-    this.updateSw().then(() => {
+    const updateOperation = this.updateSw();
+    updateOperation.then(() => {
+      this.installing$.next(false);
       this.reloadApp();
     });
+    return updateOperation;
   }
 
   private injectSwUpdate() {

@@ -1,8 +1,8 @@
 {
   "name": "@customjs/currency-input",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "peerDependencies": {
-    "@angular/common": ">=8.2.0",
-    "@angular/core": "^>=8.2.0"
+    "@angular/common": ">=8",
+    "@angular/core": ">=8"
   }
 }
