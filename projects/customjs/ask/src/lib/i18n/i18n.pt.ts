@@ -1,5 +1,5 @@
 export default {
   cancel: 'Cancelar',
   confirm: 'Confirmar',
-  reject: 'Rechazar',
+  reject: 'Negar',
 };

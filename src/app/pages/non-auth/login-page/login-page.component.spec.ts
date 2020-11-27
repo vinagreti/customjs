@@ -1,7 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { I18nServiceTestingModule } from '@customjs/i18n';
 import { AppTranslationKeys } from '@i18n/i18n-translation-keys';
 import { AuthServiceTestingModule } from '@services/auth/testing';
@@ -14,13 +11,7 @@ describe('LoginPageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LoginPageComponent],
-      imports: [
-        AuthServiceTestingModule,
-        I18nServiceTestingModule.forRoot(AppTranslationKeys),
-        MatInputModule,
-        FormsModule,
-        NoopAnimationsModule,
-      ],
+      imports: [AuthServiceTestingModule, I18nServiceTestingModule.forRoot(AppTranslationKeys)],
     }).compileComponents();
   }));
 
