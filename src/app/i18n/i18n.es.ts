@@ -1,4 +1,5 @@
 import { AppTranslationKeysMap } from '@i18n/i18n-translation-keys';
+import * as addressInput from 'projects/customjs/address-input/src/lib/i18n/i18n.es';
 import * as ask from 'projects/customjs/ask/src/lib/i18n/i18n.es';
 import * as list from 'projects/customjs/list/src/lib/i18n/i18n.es';
 import * as paginator from 'projects/customjs/paginator/src/lib/i18n/i18n.es';
@@ -41,6 +42,7 @@ export const es: AppTranslationKeysMap = {
   },
   thirdParty: {
     customjs: {
+      addressInput: addressInput.default,
       ask: ask.default,
       version: version.default,
       list: list.default,

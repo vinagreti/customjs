@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { DemoContainerModule } from '@components/layout';
 import {
   CustomCepInputMaskModule,
   CustomCepMaskModule,
@@ -26,6 +27,7 @@ import { CustomMasksPageComponent } from './custom-masks-page.component';
     CustomMaskEmailModule,
     MatInputModule,
     FormsModule,
+    DemoContainerModule,
   ],
 })
 export class CustomMasksPageModule {}

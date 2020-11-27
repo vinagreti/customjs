@@ -1,0 +1,13 @@
+<app-demo-container readmeSrc="/assets/docs/generic-http/README.md" title="Custom Generic Http">
+  <mat-form-field>
+    <input matInput placeholder="URL" type="text" name="resourceUrl" [(ngModel)]="resourceUrl" />
+  </mat-form-field>
+
+  <button mat-flat-button (click)="call(resourceUrl)">Executar requisição</button>
+
+  <ng-container *ngIf="result$ | async as result">
+    <hr />
+    <h2>Result</h2>
+    <div>{{ result | json }}</div>
+  </ng-container>
+</app-demo-container>

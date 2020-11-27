@@ -1,0 +1,4 @@
+<app-demo-container readmeSrc="/assets/docs/version/README.md" title="Custom Version">
+  <p>Currenct Version: {{ (versionService.data$ | async)?.currentVersion }}</p>
+  <p>Latest Version: {{ (versionService.data$ | async)?.currentVersion }}</p>
+</app-demo-container>

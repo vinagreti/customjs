@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { CustomBackButtonModule } from '@components/custom-back-button';
 import { DemoContainerModule } from '@components/layout';
 import { AlertModule } from '@customjs/alert';
@@ -14,6 +15,7 @@ import { CustomAlertPageComponent } from './custom-alert-page.component';
     AlertModule,
     CustomBackButtonModule,
     DemoContainerModule,
+    MatButtonModule,
   ],
 })
 export class CustomAlertPageModule {}

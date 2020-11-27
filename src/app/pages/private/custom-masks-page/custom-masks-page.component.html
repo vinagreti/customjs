@@ -1,75 +1,75 @@
-<h1>Custom Masks</h1>
+<app-demo-container readmeSrc="/assets/docs/mask/README.md" title="Custom Masks">
+  <h2>CPF - Social Security Number</h2>
 
-<h2>CPF - Social Security Number</h2>
+  <mat-form-field>
+    <input
+      matInput
+      required
+      placeholder="CPF"
+      customCpfInputMask
+      name="cpf"
+      [(ngModel)]="maskInitialData.cpf"
+      #customCpfInputMaskControl="ngModel"
+    />
 
-<mat-form-field>
-  <input
-    matInput
-    required
-    placeholder="CPF"
-    customCpfInputMask
-    name="cpf"
-    [(ngModel)]="maskInitialData.cpf"
-    #customCpfInputMaskControl="ngModel"
-  />
+    <mat-error>{{ customCpfInputMaskControl.errors | json }}</mat-error>
+  </mat-form-field>
 
-  <mat-error>{{ customCpfInputMaskControl.errors | json }}</mat-error>
-</mat-form-field>
+  <div><label>Masked Value:</label> {{ maskInitialData.cpf | customCpfMask }}</div>
 
-<div><label>Masked Value:</label> {{ maskInitialData.cpf | customCpfMask }}</div>
+  <h2>CEP</h2>
 
-<h2>CEP</h2>
+  <mat-form-field>
+    <input
+      matInput
+      required
+      placeholder="CEP"
+      customCepInputMask
+      name="cep"
+      [(ngModel)]="maskInitialData.cep"
+      #customCepInputMaskControl="ngModel"
+    />
 
-<mat-form-field>
-  <input
-    matInput
-    required
-    placeholder="CEP"
-    customCepInputMask
-    name="cep"
-    [(ngModel)]="maskInitialData.cep"
-    #customCepInputMaskControl="ngModel"
-  />
+    <mat-error>{{ customCepInputMaskControl.errors | json }}</mat-error>
+  </mat-form-field>
 
-  <mat-error>{{ customCepInputMaskControl.errors | json }}</mat-error>
-</mat-form-field>
+  <div><label>Masked Value:</label> {{ maskInitialData.cep | customCepMask }}</div>
 
-<div><label>Masked Value:</label> {{ maskInitialData.cep | customCepMask }}</div>
+  <h2>Typeable Code (código de barras, linha digitável)</h2>
 
-<h2>Typeable Code (código de barras, linha digitável)</h2>
+  <mat-form-field>
+    <input
+      matInput
+      required
+      placeholder="Typeable Code"
+      customTypeableCodeInputMask
+      name="typeableCode"
+      [(ngModel)]="maskInitialData.invoice"
+      #customTypeableCodeInputMaskControl="ngModel"
+    />
 
-<mat-form-field>
-  <input
-    matInput
-    required
-    placeholder="Typeable Code"
-    customTypeableCodeInputMask
-    name="typeableCode"
-    [(ngModel)]="maskInitialData.invoice"
-    #customTypeableCodeInputMaskControl="ngModel"
-  />
+    <mat-error>{{ customTypeableCodeInputMaskControl.errors | json }}</mat-error>
+  </mat-form-field>
 
-  <mat-error>{{ customTypeableCodeInputMaskControl.errors | json }}</mat-error>
-</mat-form-field>
+  <div><label>Masked Value:</label> {{ maskInitialData.invoice }}</div>
 
-<div><label>Masked Value:</label> {{ maskInitialData.invoice }}</div>
+  <h2>Email</h2>
 
-<h2>Email</h2>
+  <mat-form-field>
+    <input
+      customMaskEmail
+      #emailInput="ngModel"
+      matInput
+      type="email"
+      placeholder="label"
+      value="value"
+      required="true"
+      [(ngModel)]="maskInitialData.email"
+    />
+    <mat-error *ngIf="!emailInput.valid">
+      ERRO
+    </mat-error>
+  </mat-form-field>
 
-<mat-form-field>
-  <input
-    customMaskEmail
-    #emailInput="ngModel"
-    matInput
-    type="email"
-    placeholder="label"
-    value="value"
-    required="true"
-    [(ngModel)]="maskInitialData.email"
-  />
-  <mat-error *ngIf="!emailInput.valid">
-    ERRO
-  </mat-error>
-</mat-form-field>
-
-<div><label>Masked Value:</label> {{ maskInitialData.email }}</div>
+  <div><label>Masked Value:</label> {{ maskInitialData.email }}</div>
+</app-demo-container>
