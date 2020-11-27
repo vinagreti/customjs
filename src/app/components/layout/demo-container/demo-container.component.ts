@@ -15,6 +15,8 @@ export class DemoContainerComponent {
 
   @Input() readmeSrc = '';
 
+  @Input() title = '';
+
   @Input() activeTab;
 
   constructor() {}
