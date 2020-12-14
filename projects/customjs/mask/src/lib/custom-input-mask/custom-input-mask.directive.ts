@@ -5,7 +5,7 @@ import {
   OnDestroy,
   OnInit,
   Optional,
-  Renderer2,
+  Renderer2
 } from '@angular/core';
 import { NgModel, ValidatorFn } from '@angular/forms';
 import { ReplaySubject, Subscription } from 'rxjs';
@@ -25,7 +25,7 @@ export class CustomInputMaskDirective implements OnInit, OnDestroy {
     protected el: ElementRef,
     protected renderer: Renderer2,
     @Optional() protected ngModel: NgModel,
-  ) {}
+  ) { }
 
   @HostListener('input', ['$event.target.value'])
   inputChanged(value: string) {
@@ -42,7 +42,7 @@ export class CustomInputMaskDirective implements OnInit, OnDestroy {
     this.unsubscribefromValueChange();
   }
 
-  protected configureInput() {}
+  protected configureInput() { }
 
   protected configureNgModel() {
     if (this.ngModel) {

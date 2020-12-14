@@ -3,7 +3,7 @@ import { NgModel, Validators } from '@angular/forms';
 import { CustomInputMaskDirective } from '../custom-input-mask';
 
 const minLength = 4;
-const maxLength = 4;
+const maxLength = 24;
 const maskPattern = `[0-9,A-Z,a-z,\.,\-]{${minLength},${maxLength}}`;
 
 @Directive({
