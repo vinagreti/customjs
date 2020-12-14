@@ -4,7 +4,7 @@ import { CustomInputMaskDirective } from '../custom-input-mask';
 
 const minLength = 4;
 const maxLength = 24;
-const maskPattern = `[0-9A-Za-z.\-/]{${minLength},${maxLength}}`;
+const maskPattern = `[0-9A-Za-z.\\-/]{${minLength},${maxLength}}`;
 
 @Directive({
   selector: '[customRgInputMask]',
